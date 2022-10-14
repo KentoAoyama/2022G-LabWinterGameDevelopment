@@ -1,6 +1,6 @@
 <h1> タイトル 未定 </h1>
-<h3>テーマ「雪」</h3>
-
+<h2>テーマ「 雪 」</h2>
+<tr>
 <table border="1" width="300">
 <tr>
 <th bgcolor="#FFFFFF"><font color="#FFFFFF">エンジン</font></th>
@@ -27,7 +27,7 @@
 ・bool変数は_is●●<br>
 
 <h1> 導入済みアセット </h1>
-
+<br>
 <h1> 制作人数 </h1>
 プログラマー 8名<br>
 2Dデザイナー 4名<br>
