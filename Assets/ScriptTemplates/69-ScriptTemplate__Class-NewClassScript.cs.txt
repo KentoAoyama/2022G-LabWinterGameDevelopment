@@ -1,0 +1,10 @@
+using System;
+using UnityEngine;
+
+    #ROOTNAMESPACEBEGIN#
+[System.Serializable]
+public class #SCRIPTNAME#
+{
+	
+}
+#ROOTNAMESPACEEND#

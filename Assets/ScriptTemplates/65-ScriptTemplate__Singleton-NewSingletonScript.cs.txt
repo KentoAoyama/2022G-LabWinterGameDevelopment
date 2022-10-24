@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+    #ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME#
+{
+    #region Singleton
+    private static #SCRIPTNAME# _instance = new #SCRIPTNAME#();
+    public static #SCRIPTNAME# Instance
+    {
+        get
+        {
+            if(_instance == null)
+            {
+                Debug.LogError($"Error! Please correct!");
+            }
+            return _instance;
+        }
+    }
+    private #SCRIPTNAME#(){}
+    #endregion
+
+    #region Member Variables
+    #endregion
+
+    #region Properties
+    #endregion
+
+    #region Events
+    #endregion
+
+    #region Public Methods
+    #endregion
+
+    #region Private Methods
+    #endregion
+}
+#ROOTNAMESPACEEND#
