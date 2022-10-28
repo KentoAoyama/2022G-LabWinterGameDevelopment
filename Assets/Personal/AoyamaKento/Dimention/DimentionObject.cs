@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Dimentionの対象に
+/// Dimentionの対象になるオブジェクトにアタッチするクラス
 /// </summary>
 public class DimentionObject : MonoBehaviour
 {
