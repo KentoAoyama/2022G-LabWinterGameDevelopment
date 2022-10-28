@@ -1,7 +1,7 @@
-public interface IGameEvent
+public interface IGimmickEvent
 {
     /// <summary>
     /// IGameEventによって実装される、ギミックが作動した時に実行されるメソッド
     /// </summary>
-    void GameEvent();
+    void GimmickEvent();
 }
