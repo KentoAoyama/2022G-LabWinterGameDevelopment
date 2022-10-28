@@ -7,6 +7,7 @@ public class DimentionObject : MonoBehaviour
 {
     private void Start()
     {
+        //DimentionManager‚ÉŽ©•ª‚ð“o˜^‚·‚é
         DimentionManager.Instance.DimentionObjectHolder.Add(gameObject);
     }
 }
