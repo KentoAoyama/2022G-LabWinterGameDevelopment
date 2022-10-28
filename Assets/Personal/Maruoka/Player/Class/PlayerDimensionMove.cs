@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
 
-    #ROOTNAMESPACEBEGIN#
 [System.Serializable]
-public class #SCRIPTNAME#
+public class PlayerDimensionMove
 {
     #region Properties
     #endregion
@@ -20,4 +19,3 @@ public class #SCRIPTNAME#
     #region Public Methods
     #endregion
 }
-#ROOTNAMESPACEEND#
