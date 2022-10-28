@@ -1,4 +1,4 @@
-<h1> 「 Snow Alone 」 </h1>
+<h1> タイトル「 Snow Alone 」 </h1>
 <h2>テーマ「 雪 」</h2>
 <tr>
 <table border="1" width="300">
