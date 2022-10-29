@@ -5,12 +5,29 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    Mode _mode;
+    private Mode _mode;
 
-    PlayerMove _mover = default;
-    PlayerAttack _attacker = default;
-    PlayerAction _actioner = default;
-    PlayerState _stater = default;
+    [InputName, SerializeField]
+    private string _dimensionChangeKey = "";
+
+    [Header("2D移動関連")]
+    [Tooltip("移動速度"), SerializeField]
+    private float _moveSpeed = 1f;
+    [Tooltip("ジャンプ力"), SerializeField]
+    private float _jumpPower = 1f;
+    [Tooltip("移動ボタンの名前"), InputName, SerializeField]
+    private string _horizontalMoveButtonName = "";
+    [Tooltip("移動ボタンの名前"), InputName, SerializeField]
+    private string _jumpButtonName = "";
+
+
+
+    private PlayerMove _mover = default;
+    private PlayerAttack _attacker = default;
+    private PlayerAction _actioner = default;
+    private PlayerState _stater = default;
+
+    private PlayerDimensionChanger _dimensionChanger = new PlayerDimensionChanger();
 
     #region Unity Methods
     private void Start()
@@ -36,6 +53,7 @@ public class PlayerController : MonoBehaviour
         _mover.Move();
         _attacker.OnFire();
         _stater.StateUpdate();
+        _dimensionChanger.Detection(_dimensionChangeKey);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -69,7 +87,9 @@ public class PlayerController : MonoBehaviour
 
     private void Initialize2DMode()
     {
-        _mover = new PlayerMove2D();
+        _mover = new PlayerMove2D(
+            GetComponent<Rigidbody2D>(), _moveSpeed, _jumpPower,
+            _horizontalMoveButtonName, _jumpButtonName, GetComponent<GroundCheck>());
         _attacker = new PlayerAttack2D();
         _actioner = new PlayerAction2D();
         _stater = new PlayerStateController2D();
@@ -77,7 +97,10 @@ public class PlayerController : MonoBehaviour
 
     private void Initialize3DMode()
     {
-        _mover = new PlayerMove3D();
+        _mover = new PlayerMove3D(GetComponent<Rigidbody>(), _moveSpeed, _horizontalMoveButtonName);
+        _attacker = new PlayerAttack3D();
+        _actioner = new PlayerAction3D();
+        _stater = new PlayerStateController3D();
     }
 }
 
