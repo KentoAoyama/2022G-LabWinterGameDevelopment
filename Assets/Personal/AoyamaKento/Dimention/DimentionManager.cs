@@ -5,8 +5,10 @@ using UnityEngine;
 /// <summary>
 /// Dimentionを管理するstaticクラス
 /// </summary>
-public class DimentionManager
+public class DimentionManager : MonoBehaviour
 {
+    DementionChangeMover _mover;
+
     //クラスをSingletonにする
     private static DimentionManager _instance = new ();
     public static DimentionManager Instance
@@ -31,6 +33,9 @@ public class DimentionManager
     /// </summary>
     public List<GameObject> DimentionObjectHolder { get => _dimentionObjectHolder; set => _dimentionObjectHolder = value; }
 
-    
 
+    private void Start()
+    {
+        
+    }
 }
