@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Dimention‚ğ•Ï‚¦‚½‚Ìˆ—‚ğ’è‹`‚·‚éƒNƒ‰ƒX
 /// </summary>
-public class DementionChangeMover
+public class DimentionChangeMover
 {
-
+    public int aa = 1;
 }
