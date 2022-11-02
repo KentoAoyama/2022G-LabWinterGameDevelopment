@@ -24,7 +24,6 @@ public class DimentionManager
 
 
     private DimentionChangeMoveMono _changeMoveMono;
-
     /// <summary>
     /// DimentionChangeMoveMonoを取得するためのプロパティ
     /// </summary>
@@ -51,7 +50,9 @@ public class DimentionManager
     /// </summary>
     public List<GameObject> DimentionCharactorHolder { get => _dimentionCharactorHolder; set => _dimentionCharactorHolder = value; }
 
-
+    /// <summary>
+    /// Player側からDimentionの変更を行う際に呼び出すメソッド
+    /// </summary>
     public void DimentionChange()
     {
         

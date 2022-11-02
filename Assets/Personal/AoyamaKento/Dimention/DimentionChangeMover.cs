@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Dimentionを変えた時の処理を定義するクラス
+/// Dimentionを変える時の処理を定義するクラス
 /// </summary>
 public class DimentionChangeMover
 {
-    public int aa = 1;
+    public void DimentionSceneChange(string sceneName)
+    {
+
+    }
 }
