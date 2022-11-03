@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class PlayerState
+public abstract class PlayerStateController
 {
     public abstract void StateUpdate();
 }

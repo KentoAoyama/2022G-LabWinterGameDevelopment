@@ -10,22 +10,24 @@ public class PlayerController : MonoBehaviour
     [InputName, SerializeField]
     private string _dimensionChangeKey = "";
 
-    [Header("2D移動関連")]
+    [Header("移動関連")]
     [Tooltip("移動速度"), SerializeField]
     private float _moveSpeed = 1f;
-    [Tooltip("ジャンプ力"), SerializeField]
-    private float _jumpPower = 1f;
+    [Tooltip("ジャンプ力 : 2Dのみ"), SerializeField]
+    private float _jumpPower2D = 1f;
     [Tooltip("移動ボタンの名前"), InputName, SerializeField]
     private string _horizontalMoveButtonName = "";
-    [Tooltip("移動ボタンの名前"), InputName, SerializeField]
-    private string _jumpButtonName = "";
+    [Tooltip("ジャンプボタンの名前 : 2Dのみ"), InputName, SerializeField]
+    private string _jumpButtonName2D = "";
 
-
+    [Header("レールコントローラー（3Dの挙動）")]
+    [SerializeField]
+    private RailControl3D _railControler3D = default;
 
     private PlayerMove _mover = default;
     private PlayerAttack _attacker = default;
     private PlayerAction _actioner = default;
-    private PlayerState _stater = default;
+    private PlayerStateController _stater = default;
 
     private PlayerDimensionChanger _dimensionChanger = new PlayerDimensionChanger();
 
@@ -54,6 +56,11 @@ public class PlayerController : MonoBehaviour
         _attacker.OnFire();
         _stater.StateUpdate();
         _dimensionChanger.Detection(_dimensionChangeKey);
+
+        if (_mode == Mode.Mode3D)
+        {
+            _railControler3D.Process();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -88,8 +95,8 @@ public class PlayerController : MonoBehaviour
     private void Initialize2DMode()
     {
         _mover = new PlayerMove2D(
-            GetComponent<Rigidbody2D>(), _moveSpeed, _jumpPower,
-            _horizontalMoveButtonName, _jumpButtonName, GetComponent<GroundCheck>());
+            GetComponent<Rigidbody2D>(), _moveSpeed, _jumpPower2D,
+            _horizontalMoveButtonName, _jumpButtonName2D, GetComponent<GroundCheck>());
         _attacker = new PlayerAttack2D();
         _actioner = new PlayerAction2D();
         _stater = new PlayerStateController2D();
@@ -97,10 +104,13 @@ public class PlayerController : MonoBehaviour
 
     private void Initialize3DMode()
     {
-        _mover = new PlayerMove3D(GetComponent<Rigidbody>(), _moveSpeed, _horizontalMoveButtonName);
+        _mover = new PlayerMove3D(
+            GetComponent<Rigidbody>(), _moveSpeed,
+            _horizontalMoveButtonName);
         _attacker = new PlayerAttack3D();
         _actioner = new PlayerAction3D();
         _stater = new PlayerStateController3D();
+        _railControler3D.Init(transform,_mover as PlayerMove3D);
     }
 }
 

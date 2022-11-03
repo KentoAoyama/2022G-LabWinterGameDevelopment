@@ -9,11 +9,32 @@ public class PlayerMove3D : PlayerMove
 
     private Rigidbody _rb;
     private float _moveSpeed;
+    private bool _isMove = true;
 
-    public PlayerMove3D(Component rb, float moveSpeed,string horizontalButtonName)
+    public bool IsMove 
+    { 
+        get => _isMove;
+        set 
+        {
+            if (value)
+            {
+                Debug.Log("プレイヤーを移動可能にします");
+            }
+            else
+            {
+                Debug.LogWarning("プレイヤーを移動不可にします");
+            }
+            _isMove = value; 
+        } 
+    }
+
+    public PlayerMove3D(
+        Component rb, float moveSpeed,
+        string horizontalButtonName)
     {
         Init(rb);
         _moveSpeed = moveSpeed;
+        _horizontalButtonName = horizontalButtonName;
     }
 
     protected override void Init(Component rb)
@@ -40,11 +61,10 @@ public class PlayerMove3D : PlayerMove
     {
         // 水平移動
         _rb.velocity =
-            new Vector2(
+            new Vector3(
                 _moveSpeed * _inputer.GetAxisRaw(_horizontalButtonName),
-                _rb.velocity.y);
-
-        // 奥行き移動
-        throw new NotImplementedException();
+                _rb.velocity.y,
+                0.0f
+                );
     }
 }

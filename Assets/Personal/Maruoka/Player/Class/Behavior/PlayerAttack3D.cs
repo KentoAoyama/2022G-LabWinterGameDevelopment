@@ -6,6 +6,6 @@ public class PlayerAttack3D : PlayerAttack
 {
     public override void OnFire()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 }
