@@ -5,16 +5,16 @@ using UnityEngine;
     #ROOTNAMESPACEBEGIN#
 public class #SCRIPTNAME# : MonoBehaviour
 {
-　　//プロパティ
-    #region Properties
-    #endregion
-
     //インスペクターに表示する変数
     #region Inspector Variables
     #endregion
 
     //インスペクターに表示しないメンバー変数
     #region Member Variables
+    #endregion
+
+    //プロパティ
+    #region Properties
     #endregion
 
     //定数
@@ -41,11 +41,11 @@ public class #SCRIPTNAME# : MonoBehaviour
     #region Enums
     #endregion
 
-    //パブリックなメソッド
+    //パブリックメソッド
     #region Public Methods
     #endregion
 
-    //プライベートなメソッド
+    //プライベートメソッド
     #region Private Methods
     #endregion
 }

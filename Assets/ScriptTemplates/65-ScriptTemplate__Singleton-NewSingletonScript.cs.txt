@@ -5,6 +5,7 @@ using UnityEngine;
     #ROOTNAMESPACEBEGIN#
 public class #SCRIPTNAME#
 {
+    //シングルトン
     #region Singleton
     private static #SCRIPTNAME# _instance = new #SCRIPTNAME#();
     public static #SCRIPTNAME# Instance
@@ -21,18 +22,23 @@ public class #SCRIPTNAME#
     private #SCRIPTNAME#(){}
     #endregion
 
+    //メンバー変数
     #region Member Variables
     #endregion
 
+    //プロパティ
     #region Properties
     #endregion
 
+    //イベント
     #region Events
     #endregion
 
+    パブリックメソッド
     #region Public Methods
     #endregion
 
+    //プライベートメソッド
     #region Private Methods
     #endregion
 }

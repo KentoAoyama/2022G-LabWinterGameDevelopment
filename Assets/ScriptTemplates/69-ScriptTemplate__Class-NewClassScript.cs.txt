@@ -5,19 +5,24 @@ using UnityEngine;
 [System.Serializable]
 public class #SCRIPTNAME#
 {
-    #region Properties
-    #endregion
-
+    //メンバー変数
     #region Member Variables
     #endregion
 
+    //プロパティ
+    #region Properties
+    #endregion
+
+    //定数
     #region Constant
     #endregion
 
-    #region Private Methods
+    //パブリックメソッド
+    #region Public Methods
     #endregion
 
-    #region Public Methods
+    //プライベートメソッド
+    #region Private Methods
     #endregion
 }
 #ROOTNAMESPACEEND#
