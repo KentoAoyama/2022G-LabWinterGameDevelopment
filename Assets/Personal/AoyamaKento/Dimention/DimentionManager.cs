@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Dimentionを管理するstaticクラス
@@ -23,15 +24,6 @@ public class DimentionManager
     private DimentionManager() { }
 
 
-    private DimentionChangeMoveMono _changeMoveMono;
-    /// <summary>
-    /// DimentionChangeMoveMonoを取得するためのプロパティ
-    /// </summary>
-    public DimentionChangeMoveMono ChangeMoveMono {set => _changeMoveMono = value; }
-
-    private DimentionChangeMover _changeMover = new();
-
-
     /// <summary>
     /// Dimentionを行うオブジェクトのリスト
     /// </summary>
@@ -51,10 +43,11 @@ public class DimentionManager
     public List<GameObject> DimentionCharactorHolder { get => _dimentionCharactorHolder; set => _dimentionCharactorHolder = value; }
 
     /// <summary>
-    /// Player側からDimentionの変更を行う際に呼び出すメソッド
+    /// Sceneの遷移を行うためのクラス
     /// </summary>
-    public void DimentionChange()
+    /// <param name="sceneName"></param>
+    public void DimentionChange(string sceneName)
     {
-        
+        SceneManager.LoadScene(sceneName);
     }
 }
