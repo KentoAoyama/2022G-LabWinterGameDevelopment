@@ -2,7 +2,7 @@
     "name": "AoyamaKento",
     "rootNamespace": "",
     "references": [
-        ""
+        "InGame"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
