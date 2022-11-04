@@ -1,27 +1,27 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
     #ROOTNAMESPACEBEGIN#
 [System.Serializable]
 public class #SCRIPTNAME#
 {
-    //ƒƒ“ƒo[•Ï”
+    //ãƒ¡ãƒ³ãƒãƒ¼å¤‰æ•°
     #region Member Variables
     #endregion
 
-    //ƒvƒƒpƒeƒB
+    //ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     #region Properties
     #endregion
 
-    //’è”
+    //å®šæ•°
     #region Constant
     #endregion
 
-    //ƒpƒuƒŠƒbƒNƒƒ\ƒbƒh
+    //ãƒ‘ãƒ–ãƒªãƒƒã‚¯ãƒ¡ã‚½ãƒƒãƒ‰
     #region Public Methods
     #endregion
 
-    //ƒvƒ‰ƒCƒx[ƒgƒƒ\ƒbƒh
+    //ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ¡ã‚½ãƒƒãƒ‰
     #region Private Methods
     #endregion
 }

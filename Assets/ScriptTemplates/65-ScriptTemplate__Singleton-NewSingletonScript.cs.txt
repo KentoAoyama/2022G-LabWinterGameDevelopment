@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
     #ROOTNAMESPACEBEGIN#
 public class #SCRIPTNAME#
 {
-    //ƒVƒ“ƒOƒ‹ƒgƒ“
+    //ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
     #region Singleton
     private static #SCRIPTNAME# _instance = new #SCRIPTNAME#();
     public static #SCRIPTNAME# Instance
@@ -22,23 +22,23 @@ public class #SCRIPTNAME#
     private #SCRIPTNAME#(){}
     #endregion
 
-    //ƒƒ“ƒo[•Ï”
+    //ãƒ¡ãƒ³ãƒãƒ¼å¤‰æ•°
     #region Member Variables
     #endregion
 
-    //ƒvƒƒpƒeƒB
+    //ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
     #region Properties
     #endregion
 
-    //ƒCƒxƒ“ƒg
+    //ã‚¤ãƒ™ãƒ³ãƒˆ
     #region Events
     #endregion
 
-    ƒpƒuƒŠƒbƒNƒƒ\ƒbƒh
+    ãƒ‘ãƒ–ãƒªãƒƒã‚¯ãƒ¡ã‚½ãƒƒãƒ‰
     #region Public Methods
     #endregion
 
-    //ƒvƒ‰ƒCƒx[ƒgƒƒ\ƒbƒh
+    //ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ¡ã‚½ãƒƒãƒ‰
     #region Private Methods
     #endregion
 }
