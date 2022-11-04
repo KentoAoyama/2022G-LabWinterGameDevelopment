@@ -28,4 +28,13 @@ public class PauseManager
     /// 一時停止再開の処理を登録するデリゲートプロパティ
     /// </summary>
     public Action OnResume;
+
+    /// <summary>
+    /// PauseResumeが行われているか確認するため、イベントにログを追加するためのメソッド
+    /// </summary>
+    public void AddPauseDebug()
+    {
+        OnPause += () => Debug.Log("Pauseの処理が実行されました");
+        OnResume += () => Debug.Log("Resumeの処理が実行されました");
+    }
 }

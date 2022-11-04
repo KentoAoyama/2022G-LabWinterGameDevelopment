@@ -7,7 +7,12 @@ public class PauseController : MonoBehaviour
     /// </summary>
     private bool _isPause = false;
 
-    void Update()
+    private void Start()
+    {
+        PauseManager.Instance.AddPauseDebug();
+    }
+
+    private void Update()
     {
         ///ボタンが押されたらポーズを実行
         if (Input.GetKeyDown(KeyCode.P)) //ここの押されるボタンは後で変更
