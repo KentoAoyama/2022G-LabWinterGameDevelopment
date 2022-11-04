@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatus
+public class PlayerStatusManager
 {
     #region Singleton
-    private static PlayerStatus _instance = new PlayerStatus();
-    public static PlayerStatus Instance
+    private static PlayerStatusManager _instance = new PlayerStatusManager();
+    public static PlayerStatusManager Instance
     {
         get
         {
@@ -17,7 +17,7 @@ public class PlayerStatus
             return _instance;
         }
     }
-    private PlayerStatus(){}
+    private PlayerStatusManager(){}
     #endregion
 
     #region Member Variables
