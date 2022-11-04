@@ -1,25 +1,31 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
     #ROOTNAMESPACEBEGIN#
 public class #SCRIPTNAME# : MonoBehaviour
 {
+　　//プロパティ
     #region Properties
     #endregion
 
+    //インスペクターに表示する変数
     #region Inspector Variables
     #endregion
 
+    //インスペクターに表示しないメンバー変数
     #region Member Variables
     #endregion
 
+    //定数
     #region Constant
     #endregion
 
+    //イベント
     #region Events
     #endregion
     
+    //Unityのメソッド
     #region Unity Methods
     private void Start()
     {
@@ -31,12 +37,15 @@ public class #SCRIPTNAME# : MonoBehaviour
     }
     #endregion
 
+    //列挙型
     #region Enums
     #endregion
 
+    //パブリックなメソッド
     #region Public Methods
     #endregion
 
+    //プライベートなメソッド
     #region Private Methods
     #endregion
 }
