@@ -2,8 +2,7 @@
     "name": "AoyamaKento",
     "rootNamespace": "",
     "references": [
-        "InGame",
-        "Editorextension"
+        "InGame"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
