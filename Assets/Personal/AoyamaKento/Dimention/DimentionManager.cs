@@ -50,4 +50,6 @@ public class DimentionManager
     {
         SceneManager.LoadScene(sceneName);
     }
+
+
 }

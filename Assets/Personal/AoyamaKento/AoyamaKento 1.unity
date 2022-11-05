@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a31bad590b00f468d0bf0f1222ba5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _changeSceneName: AoyamaKento 1
+  _changeSceneName: AoyamaKento
   _changeSceneTime: 1
 --- !u!1 &2090765829
 GameObject:
