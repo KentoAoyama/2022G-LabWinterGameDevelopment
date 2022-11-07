@@ -24,6 +24,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private RailControl3D _railControler3D = default;
 
+    [Header("攻撃関連")]
+    [InputName, SerializeField]
+    private string _fireButtonName = default;
+    [SerializeField]
+    private Vector3 _attackPosOffset = default;
+    [SerializeField]
+    private Vector3 _attackAreaSize = default;
+    [SerializeField]
+    private LayerMask _attackTargetLayer = default;
+    [SerializeField]
+    private Color _attackAreaGizmoColor = Color.red;
+
     private PlayerMove _mover = default;
     private PlayerAttack _attacker = default;
     private PlayerAction _actioner = default;
@@ -53,8 +65,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _mover.Move();
-        _attacker.OnFire();
-        _stater.StateUpdate();
+        _stater.Update();
         _dimensionChanger.Detection(_dimensionChangeKey);
 
         if (_mode == Mode.Mode3D)
@@ -90,28 +101,68 @@ public class PlayerController : MonoBehaviour
             _actioner.OnActionExit(gimmick);
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        OnDrawGizmos_AttackArea();
+    }
     #endregion
 
     private void Initialize2DMode()
     {
+        var rb2D = GetComponent<Rigidbody2D>();
         _mover = new PlayerMove2D(
-            GetComponent<Rigidbody2D>(), _moveSpeed, _jumpPower2D,
-            _horizontalMoveButtonName, _jumpButtonName2D, GetComponent<GroundCheck>());
-        _attacker = new PlayerAttack2D();
+            rb2D, _moveSpeed, _jumpPower2D,
+            _horizontalMoveButtonName, _jumpButtonName2D,
+            GetComponent<GroundCheck>());
         _actioner = new PlayerAction2D();
-        _stater = new PlayerStateController2D();
+        _stater = new PlayerStateController2D(rb2D);
+        _attacker = new PlayerAttack2D(
+            _stater, _fireButtonName, transform,
+            _attackPosOffset, _attackAreaSize, _attackTargetLayer);
     }
 
     private void Initialize3DMode()
     {
+        var rb = GetComponent<Rigidbody>();
         _mover = new PlayerMove3D(
-            GetComponent<Rigidbody>(), _moveSpeed,
+            rb, _moveSpeed,
             _horizontalMoveButtonName);
-        _attacker = new PlayerAttack3D();
         _actioner = new PlayerAction3D();
-        _stater = new PlayerStateController3D();
-        _railControler3D.Init(transform,_mover as PlayerMove3D);
+        _stater = new PlayerStateController3D(rb);
+        _attacker = new PlayerAttack3D(_stater, _fireButtonName, transform,
+            _attackPosOffset, _attackAreaSize, _attackTargetLayer);
+        _railControler3D.Init(transform, _mover as PlayerMove3D);
     }
+
+    #region Animation Event
+    // アニメーションイベントから呼び出すことを想定して作成したメソッド群
+    public void OnFire()
+    {
+        _attacker.OnFire();
+    }
+    #endregion
+
+    #region Test
+    // テストコード群
+    private void OnDrawGizmos_AttackArea()
+    {
+        Gizmos.color = _attackAreaGizmoColor;
+        // 位置を設定する。
+        var pos = _attackPosOffset;
+        // 向きに応じて位置を調整する
+        // pos.x *= _stater.FacingDirection == FacingDirection.RIGHT ? 1f : -1f;
+        if (_stater?.FacingDirection == FacingDirection.LEFT)
+        {
+            pos.x *= -1f;
+        }
+        pos += transform.position;
+        // 描画する
+        Gizmos.DrawCube(
+            pos,
+            _attackAreaSize);
+    }
+    #endregion
 }
 
 [System.Serializable]
