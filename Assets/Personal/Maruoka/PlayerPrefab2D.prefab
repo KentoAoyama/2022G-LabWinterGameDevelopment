@@ -109,11 +109,12 @@ MonoBehaviour:
   _jumpButtonName2D: Horizontal
   _railControler3D:
     _maxRails: 1
-    _upStepButtonName: 
-    _downStepButtonName: 
+    _upStepButtonName: Horizontal
+    _downStepButtonName: Horizontal
     _widthBetweenRails: 1
     _jumpPower: 1
     _stepDuration: 1.5
+  _fireButtonName: 
 --- !u!114 &4074260259602323781
 MonoBehaviour:
   m_ObjectHideFlags: 0
