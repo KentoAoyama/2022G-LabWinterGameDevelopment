@@ -42,14 +42,34 @@ public class DimentionManager
     /// </summary>
     public List<GameObject> DimentionCharactorHolder { get => _dimentionCharactorHolder; set => _dimentionCharactorHolder = value; }
 
+
+
     /// <summary>
-    /// Sceneの遷移を行うためのクラス
+    /// シーンの遷移を開始するためのクラス
     /// </summary>
-    /// <param name="sceneName"></param>
-    public void DimentionChange(string sceneName)
+    /// <param name="sceneName">遷移するシーンの名前</param>
+    /// <param name="changeInterval">シーンの遷移にかける時間</param>
+    /// <returns></returns>
+    public IEnumerator DimentionChangeStart(string sceneName, float changeInterval = 1.0f)
     {
+        PauseManager.Instance.OnPause();
+        GameStateManager.Instance.GameState = GameStateManager.InGameState.DimentionChange;
+
+        yield return new WaitForSeconds(changeInterval);
+
         SceneManager.LoadScene(sceneName);
     }
 
+    /// <summary>
+    /// シーンの変更完了後の処理
+    /// </summary>
+    /// <param name="finishInterval">シーン遷移後の演出にかける時間</param>
+    public IEnumerator DimentionChangeFinish(float finishInterval = 1.0f)
+    {
+        PauseManager.Instance.OnPause();
 
+        yield return new WaitForSeconds(finishInterval);
+
+        PauseManager.Instance.OnResume();
+    }
 }
