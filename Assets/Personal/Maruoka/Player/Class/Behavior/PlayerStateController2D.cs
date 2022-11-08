@@ -4,8 +4,31 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStateController2D : PlayerStateController
 {
-    public override void StateUpdate()
+    public PlayerStateController2D(Rigidbody2D rb2D)
     {
-        throw new NotImplementedException();
+        _rb2D = rb2D;
+    }
+
+    private readonly Rigidbody2D _rb2D = default;
+
+    public override void Update()
+    {
+        // 向いている方向を更新する
+        if (!Mathf.Approximately(_rb2D.velocity.x, 0f))
+        {
+            if (_rb2D.velocity.x > 0f)
+            {
+                FacingDirection = FacingDirection.RIGHT;
+            }
+            else if (_rb2D.velocity.x < 0f)
+            {
+                FacingDirection = FacingDirection.LEFT;
+            }
+        }
+        // ステートを更新する
+        var state = PlayerState.IDLE;
+
+
+        _nowState = state;
     }
 }

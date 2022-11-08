@@ -13,5 +13,4 @@ public class PlayerAction2D : PlayerAction
     {
         throw new NotImplementedException();
     }
-
 }
