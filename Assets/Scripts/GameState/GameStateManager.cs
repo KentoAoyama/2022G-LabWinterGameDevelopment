@@ -20,11 +20,6 @@ public class GameStateManager
 
     private static InGameState _gameState;
 
-    /// <summary>
-    /// 外部からStateを参照、変更する用のプロパティ
-    /// </summary>
-    public InGameState GameState { get => _gameState; set => _gameState = value; }
-
     public enum InGameState
     {
         /// <summary>
@@ -56,5 +51,16 @@ public class GameStateManager
         /// プレイヤーがゴールしている状態を表す
         /// </summary>
         Goal
+    }
+
+    /// <summary>
+    /// GameStateの変更を行う際に呼び出すメソッド
+    /// </summary>
+    /// <param name="gameState">変更するState</param>
+    public void GameStateChange(InGameState gameState)
+    {
+        InGameState beforeState = _gameState;
+        _gameState = gameState;
+        Debug.Log($"GameStateが{beforeState}から、{_gameState}に変更されました。");
     }
 }
