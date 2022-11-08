@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -15,11 +13,17 @@ public class DimentionController : MonoBehaviour
 
     private void Start()
     {
-
+        if (GameStateManager.Instance.GameState == GameStateManager.InGameState.DimentionChange)
+        {
+            DimentionManager.Instance.DimentionChangeFinish(_changeSceneTime);
+        }
     }
 
+    /// <summary>
+    /// プレイヤーが呼び出すDimentionの変更を行うメソッド
+    /// </summary>
     public void DimentionChange()
     {
-        DimentionManager.Instance.DimentionChange(_changeSceneName);
+        DimentionManager.Instance.DimentionChangeStart(_changeSceneName, _changeSceneTime);
     }
 }
