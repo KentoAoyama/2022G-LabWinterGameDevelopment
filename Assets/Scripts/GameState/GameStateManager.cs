@@ -18,7 +18,11 @@ public class GameStateManager
     }
     private GameStateManager() { }
 
-    private static InGameState _gameState;
+    private InGameState _gameState;
+    /// <summary>
+    /// InGameStateを外部から参照する用のプロパティ
+    /// </summary>
+    public InGameState GameState => _gameState;
 
     public enum InGameState
     {
