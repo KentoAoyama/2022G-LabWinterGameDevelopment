@@ -5,6 +5,7 @@ using UnityEngine;
 public class DimentionTest : MonoBehaviour
 {
     [SerializeField] DimentionController _dimentionController;
+    [InputName, SerializeField] string _inputName;
 
     void Start()
     {
@@ -14,8 +15,9 @@ public class DimentionTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown(_inputName))
         {
+            Debug.Log("OK");
             _dimentionController.DimentionChange();
         }
     }
