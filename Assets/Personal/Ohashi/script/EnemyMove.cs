@@ -1,38 +1,38 @@
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour
+public abstract class EnemyMove : MonoBehaviour
 {
-    [SerializeField, Tooltip("プレイヤーの座標")] private Transform _playerTransform;
-    [SerializeField, Tooltip("移動するかどうかの距離")] private float _moveDistance = 5.0f;
-    [SerializeField, Tooltip("移動の速さ")] private float _moveSpeed;
+    [SerializeField, Tooltip("プレイヤーの座標")] protected Transform _playerTransform;
+    [SerializeField, Tooltip("移動するかどうかの距離")] protected float _moveDistance = 5.0f;
+    [SerializeField, Tooltip("移動の速さ")] protected float _moveSpeed = 3.0f;
+    [SerializeField, Tooltip("攻撃できるかどうかの距離")] private float _attackDistance;
 
-    private Rigidbody _rb;
+    /// <summary>
+    /// ディメンション別のエネミーの移動処理
+    /// </summary>
+    protected abstract void RbMove();
 
-    private void Start()
-    {
-        _rb = GetComponent<Rigidbody>();
-    }
     /// <summary>
     /// playerとenemyのX軸の二点間の差で距離を測る
     /// </summary>
-    public bool PlayerSearch()
+    public bool PlayerSearch(float distance)
     {
         float playerDistans = _playerTransform.position.x - transform.position.x;
-        if(_moveDistance > playerDistans && -_moveDistance < playerDistans)
+        Debug.Log(playerDistans);
+        if(distance > playerDistans && -distance < playerDistans)
         {
             return true;
         }
         return false;
     }
     /// <summary>
-    /// エネミーの移動処理
+    /// エネミーの移動判定
     /// </summary>
     public void Move()
     {
-        if(!PlayerSearch())
+        if(PlayerSearch(_moveDistance) && !PlayerSearch(_attackDistance))
         {
-            Vector3 target = (_playerTransform.position - transform.position).normalized;
-            _rb.velocity = new Vector3(target.x * _moveSpeed, 0, 0);
+            RbMove();
         }
     }
 }
