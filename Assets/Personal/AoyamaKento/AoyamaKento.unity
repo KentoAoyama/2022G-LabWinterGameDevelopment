@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dimentionController: {fileID: 1359995379}
+  _inputName: Jump
 --- !u!114 &1359995379
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class DimentionController : MonoBehaviour
     {
         if (GameStateManager.Instance.GameState == GameStateManager.InGameState.DimentionChange)
         {
-            DimentionManager.Instance.DimentionChangeFinish(_changeSceneTime);
+            StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_changeSceneTime));
         }
     }
 
@@ -24,6 +24,6 @@ public class DimentionController : MonoBehaviour
     /// </summary>
     public void DimentionChange()
     {
-        DimentionManager.Instance.DimentionChangeStart(_changeSceneName, _changeSceneTime);
+        StartCoroutine(DimentionManager.Instance.DimentionChangeStart(_changeSceneName, _changeSceneTime));        
     }
 }
