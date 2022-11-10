@@ -8,20 +8,19 @@ using System.IO;
 /// </summary>
 public class DataSave : MonoBehaviour
 {
+    //保存しておく必要があるデータ一覧↓
+    //1,Playerの位置(Position)
+    //2,ゲームの進行状況(ステージ内のギミック、エリアをどこまで攻略したか)
+
     // Start is called before the first frame update
     void Start()
     {
-        //Gimmickの実行状態を適応
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    public void PlayerData()
-    {
-
     }
 }
