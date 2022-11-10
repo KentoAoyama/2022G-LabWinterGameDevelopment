@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAttack _attacker = default;
     private PlayerAction _actioner = default;
     private PlayerStateController _stater = default;
+    private PlayerDamage _damage = default;
 
     private PlayerDimensionChanger _dimensionChanger = new PlayerDimensionChanger();
 
@@ -120,6 +121,7 @@ public class PlayerController : MonoBehaviour
         _attacker = new PlayerAttack2D(
             _stater, _fireButtonName, transform,
             _attackPosOffset, _attackAreaSize, _attackTargetLayer);
+        _damage = new Damage2D();
     }
 
     private void Initialize3DMode()
@@ -133,6 +135,7 @@ public class PlayerController : MonoBehaviour
         _attacker = new PlayerAttack3D(_stater, _fireButtonName, transform,
             _attackPosOffset, _attackAreaSize, _attackTargetLayer);
         _railControler3D.Init(transform, _mover as PlayerMove3D);
+        _damage = new Damage3D(rb);
     }
 
     #region Animation Event
@@ -161,6 +164,10 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawCube(
             pos,
             _attackAreaSize);
+    }
+    public void OnDamage(int value)
+    {
+        _damage.OnDamage(value);
     }
     #endregion
 }

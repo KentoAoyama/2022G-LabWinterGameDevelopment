@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4074260259602323802}
   - component: {fileID: 4074260259602323803}
-  - component: {fileID: 4074260259602323780}
   - component: {fileID: 4074260259602323781}
   - component: {fileID: 4074260259602323782}
   - component: {fileID: 4074260259602323783}
@@ -89,32 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4074260259602323780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4074260259602323776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f71affd3b2e0be40aeeae84dec4e840, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mode: 0
-  _dimensionChangeKey: Horizontal
-  _moveSpeed: 1
-  _jumpPower2D: 1
-  _horizontalMoveButtonName: Horizontal
-  _jumpButtonName2D: Horizontal
-  _railControler3D:
-    _maxRails: 1
-    _upStepButtonName: Horizontal
-    _downStepButtonName: Horizontal
-    _widthBetweenRails: 1
-    _jumpPower: 1
-    _stepDuration: 1.5
-  _fireButtonName: 
 --- !u!114 &4074260259602323781
 MonoBehaviour:
   m_ObjectHideFlags: 0
