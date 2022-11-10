@@ -17,7 +17,6 @@ public class DimentionTest : MonoBehaviour
     {
         if (Input.GetButtonDown(_inputName))
         {
-            Debug.Log("OK");
             _dimentionController.DimentionChange();
         }
     }

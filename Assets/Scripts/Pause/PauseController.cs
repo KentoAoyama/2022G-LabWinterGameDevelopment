@@ -7,7 +7,7 @@ public class PauseController : MonoBehaviour
     /// </summary>
     private bool _isPause = false;
 
-    private void Start()
+    private void Awake()
     {
         PauseManager.Instance.AddPauseDebug();
     }

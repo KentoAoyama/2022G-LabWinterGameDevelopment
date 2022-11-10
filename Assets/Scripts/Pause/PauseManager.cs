@@ -18,7 +18,6 @@ public class PauseManager
     }
     private PauseManager() { }
 
-
     /// <summary>
     /// 一時停止の処理を登録するデリゲートプロパティ
     /// </summary>
@@ -34,7 +33,10 @@ public class PauseManager
     /// </summary>
     public void AddPauseDebug()
     {
-        OnPause += () => Debug.Log("Pauseの処理が実行されました");
-        OnResume += () => Debug.Log("Resumeの処理が実行されました");
+        if (OnPause == null && OnResume == null)
+        {
+            OnPause += () => Debug.Log("Pauseの処理が実行されました");
+            OnResume += () => Debug.Log("Resumeの処理が実行されました");
+        }
     }
 }
