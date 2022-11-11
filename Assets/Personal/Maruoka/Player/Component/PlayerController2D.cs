@@ -23,13 +23,13 @@ public class PlayerController2D : MonoBehaviour
         var rb2D = GetComponent<Rigidbody2D>();
         _damage.Init(rb2D);
         _attacker.Init(transform, _stateController);
-        Debug.Log(GetComponent<GroundCheck>());
         _mover.Init(rb2D, GetComponent<GroundCheck>());
         _stateController.Init(rb2D);
 
     }
     private void Update()
     {
+        _mover.IsMove = !_damage.IsKnockBackNow;
         _mover.Update();
         _stateController.Update();
     }
@@ -40,9 +40,9 @@ public class PlayerController2D : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void OnDamage()
+    public void TestOnDamage()
     {
-        //_damage.OnDamage();
+        _damage.OnDamage(0,Vector3.zero,0f,0);
     }
     #endregion
 

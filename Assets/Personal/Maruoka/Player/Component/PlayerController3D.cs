@@ -30,6 +30,7 @@ public class PlayerController3D : MonoBehaviour
     }
     private void Update()
     {
+        _mover.IsMove = !_damage.IsKnockBackNow;
         _mover.Update();
         _stateController.Update();
     }
@@ -40,9 +41,9 @@ public class PlayerController3D : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void OnDamage()
+    public void TestOnDamage()
     {
-        // _damage.OnDamage();
+        _damage.OnDamage(0,Vector3.zero,0,0);
     }
     #endregion
 

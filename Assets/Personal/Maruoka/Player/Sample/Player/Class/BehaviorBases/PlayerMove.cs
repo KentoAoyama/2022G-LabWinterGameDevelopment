@@ -14,11 +14,11 @@ public abstract class PlayerMove
         {
             if (value)
             {
-                Debug.Log("プレイヤーを移動可能にします");
+                // Debug.Log("プレイヤーを移動可能にします");
             }
             else
             {
-                Debug.LogWarning("プレイヤーを移動不可にします");
+                // Debug.LogWarning("プレイヤーを移動不可にします");
             }
             _isMove = value;
         }

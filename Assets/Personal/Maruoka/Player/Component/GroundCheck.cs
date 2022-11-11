@@ -26,10 +26,6 @@ public class GroundCheck : MonoBehaviour
             Physics2D.OverlapBoxAll(
                 transform.position + _offset,
                 _size, 0.0f, _layerMask);
-        foreach (var e in colliders)
-        {
-            Debug.Log(e.name);
-        }
         return colliders.Length > 0;
     }
 }
