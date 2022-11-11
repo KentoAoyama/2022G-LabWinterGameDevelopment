@@ -10,4 +10,10 @@ public class DimentionObject : MonoBehaviour
         //DimentionManager‚É©•ª‚ğ“o˜^‚·‚é
         DimentionManager.Instance.DimentionObjectHolder.Add(gameObject);
     }
+
+    private void OnDisable()
+    {
+        //DimentionManager‚©‚ç©•ª‚ğíœ‚·‚é
+        DimentionManager.Instance.DimentionObjectHolder.Remove(gameObject);
+    }
 }

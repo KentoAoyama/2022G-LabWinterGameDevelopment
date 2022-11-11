@@ -48,6 +48,24 @@ public class DimentionManager
     GameStateManager.InGameState _beforeState;
 
     /// <summary>
+    /// DimentionObjectHolderからオブジェクトを削除するためのメソッド
+    /// </summary>
+    /// <param name="gameObject">RemoveするGameObject</param>
+    public void DimentionObjectHolderRemove(GameObject gameObject)
+    {
+        _dimentionObjectHolder.Remove(gameObject);
+    }
+
+    /// <summary>
+    /// DimentionCharactorHolderからオブジェクトを削除するためのメソッド
+    /// </summary>
+    /// <param name="gameObject">RemoveするGameObject</param>
+    public void DimentionCharactorHolderRemove(GameObject gameObject)
+    {
+        _dimentionCharactorHolder.Remove(gameObject);
+    }
+
+    /// <summary>
     /// シーンの遷移を開始するためのクラス
     /// </summary>
     /// <param name="sceneName">遷移するシーンの名前</param>
@@ -57,9 +75,11 @@ public class DimentionManager
     {
         Debug.Log("DimentionChangeスタート");
 
+        //現在のステートを2D3D切り替えのために保存
         _beforeState = GameStateManager.Instance.GameState;
-
+        //ポーズの処理を実行
         PauseManager.Instance.OnPause();
+        //シーン遷移時の処理のためステートを変更
         GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.DimentionChange);
 
         yield return new WaitForSeconds(changeInterval);
@@ -73,6 +93,7 @@ public class DimentionManager
     /// <param name="finishInterval">シーン遷移後の演出にかける時間</param>
     public IEnumerator DimentionChangeFinish(float finishInterval = 1.0f)
     {
+        //GameStateの3D2Dを切り替える
         if (_beforeState == GameStateManager.InGameState.Game2D)
         {
             GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.Game3D);
@@ -81,13 +102,16 @@ public class DimentionManager
         {
             GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.Game2D);
         }
-
+        //遷移してすぐポーズを実行
         PauseManager.Instance.OnPause();
 
         yield return new WaitForSeconds(finishInterval);
 
+        //演出終了後ポーズを解除
         PauseManager.Instance.OnResume();
 
         Debug.Log("DimentionChange終了");
     }
+
+    
 }
