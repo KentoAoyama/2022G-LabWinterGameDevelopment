@@ -7,13 +7,13 @@ public class DimentionTest : MonoBehaviour
     [SerializeField] DimentionController _dimentionController;
     [InputName, SerializeField] string _inputName;
 
-    void Start()
+    private void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown(_inputName))
         {
