@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "InGame",
-        "Editorextension"
+        "Editorextension",
+        ""
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

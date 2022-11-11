@@ -48,24 +48,6 @@ public class DimentionManager
     GameStateManager.InGameState _beforeState;
 
     /// <summary>
-    /// DimentionObjectHolderからオブジェクトを削除するためのメソッド
-    /// </summary>
-    /// <param name="gameObject">RemoveするGameObject</param>
-    public void DimentionObjectHolderRemove(GameObject gameObject)
-    {
-        _dimentionObjectHolder.Remove(gameObject);
-    }
-
-    /// <summary>
-    /// DimentionCharactorHolderからオブジェクトを削除するためのメソッド
-    /// </summary>
-    /// <param name="gameObject">RemoveするGameObject</param>
-    public void DimentionCharactorHolderRemove(GameObject gameObject)
-    {
-        _dimentionCharactorHolder.Remove(gameObject);
-    }
-
-    /// <summary>
     /// シーンの遷移を開始するためのクラス
     /// </summary>
     /// <param name="sceneName">遷移するシーンの名前</param>
@@ -112,6 +94,4 @@ public class DimentionManager
 
         Debug.Log("DimentionChange終了");
     }
-
-    
 }
