@@ -19,7 +19,27 @@ public class DimentionManager
             return _instance;
         }
     }
-    private DimentionManager(){}
+    private DimentionManager() { }
+    #endregion
+
+    //パブリック変数
+    #region Public Variables
+
+    public enum ObjectType
+    {
+        Player,
+        Enemy,
+        EnemyBullet,
+
+        Others
+    }
+
+    //public struct EnemyStatus
+    //{
+    //    public int Health;
+    //    public int Id;
+    //}
+
     #endregion
 
     //メンバー変数
@@ -33,7 +53,7 @@ public class DimentionManager
     /// <summary>
     /// Dimentionを行うキャラクターのリスト
     /// </summary>
-    private List<GameObject> _dimentionCharactorHolder = new();
+    private List<GameObject> _dimentionEnemyHolder = new();
 
     /// <summary>
     /// シーンの遷移を行う前のStateを保存しておく用の変数
@@ -45,10 +65,6 @@ public class DimentionManager
     #region Properties
     #endregion
 
-    //イベント
-    #region Events
-    #endregion
-
     //パブリックメソッド
     #region Public Methods
 
@@ -58,13 +74,13 @@ public class DimentionManager
     /// <param name="retainedObject">追加するオブジェクト</param>
     public void AddDimentionHolder(GameObject retainedObject)
     {
-        //敵をDimenitonManagerに登録
+        //敵をEnemyHolderに登録
         if (retainedObject.TryGetComponent(out EnemyController _))
         {
-            _dimentionCharactorHolder.Add(retainedObject);
+            _dimentionEnemyHolder.Add(retainedObject);
         }
-        //プレイヤー・敵の弾をDimenitonManagerに登録
-        else if (retainedObject.TryGetComponent(out PlayerController _) ||            
+        //プレイヤー・敵の弾をObjectHolderに登録
+        else if (retainedObject.TryGetComponent(out PlayerController _) ||
             retainedObject.TryGetComponent(out EnemyBulletController _))
         {
             _dimentionObjectHolder.Add(retainedObject);
@@ -77,12 +93,12 @@ public class DimentionManager
     /// <param name="removeObject">削除するオブジェクト</param>
     public void RemoveDimentionHolder(GameObject removeObject)
     {
-        //敵をCharactorHolderに登録
+        //敵をEnemyHolderから削除
         if (removeObject.TryGetComponent(out EnemyController _))
         {
-            _dimentionCharactorHolder.Remove(removeObject);
+            _dimentionEnemyHolder.Remove(removeObject);
         }
-        //プレイヤー・敵の弾をObjectHolderに登録
+        //プレイヤー・敵の弾から削除
         else if (removeObject.TryGetComponent(out PlayerController _) ||
             removeObject.TryGetComponent(out EnemyBulletController _))
         {
@@ -99,6 +115,7 @@ public class DimentionManager
     public IEnumerator DimentionChangeStart(string sceneName, float changeInterval = 1.0f)
     {
         Debug.Log("DimentionChangeスタート");
+
 
         //現在のステートを2D3D切り替えのために保存
         _beforeState = GameStateManager.Instance.GameState;
@@ -118,6 +135,8 @@ public class DimentionManager
     /// <param name="finishInterval">シーン遷移後の演出にかける時間</param>
     public IEnumerator DimentionChangeFinish(float finishInterval = 1.0f)
     {
+
+
         //GameStateの3D2Dを切り替える
         if (_beforeState == GameStateManager.InGameState.Game2D)
         {
@@ -141,5 +160,11 @@ public class DimentionManager
 
     //プライベートメソッド
     #region Private Methods
+
+    //DimentionChange後にオブジェクトを前のシーンの位置に出す処理
+    private void DimenitonChangeObject()
+    {
+
+    }
     #endregion
 }

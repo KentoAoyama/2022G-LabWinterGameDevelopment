@@ -49,6 +49,7 @@ public class ObjectHolderManager
     /// </summary>
     public void AddHolder(GameObject retainedObject)
     {
+        //ポーズとDimentionのHolderに参照を渡す
         PauseManager.Instance.AddPauseResume(retainedObject);
         DimentionManager.Instance.AddDimentionHolder(retainedObject);
     }
@@ -58,6 +59,7 @@ public class ObjectHolderManager
     /// </summary>
     public void RemoveHolder(GameObject removeObject)
     {
+        //ポーズとDimentionのHolderから参照を削除する
         PauseManager.Instance.RemovePauseResume(removeObject);
         DimentionManager.Instance.RemoveDimentionHolder(removeObject);
     }

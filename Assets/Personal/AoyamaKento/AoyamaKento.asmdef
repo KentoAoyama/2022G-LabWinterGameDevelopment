@@ -5,7 +5,8 @@
         "InGame",
         "Editorextension",
         "Ohashi",
-        "MaruokaTests"
+        "MaruokaTests",
+        "UniRx"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

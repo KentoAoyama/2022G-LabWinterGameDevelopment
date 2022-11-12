@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ObjectHolderに保持されるGameObjectのクラスに継承させる抽象クラス
+/// ObjectHolderに保持されるObjectのクラスに継承させる抽象クラス
 /// </summary>
-public class RetainedObjectBehavior : MonoBehaviour
+public abstract class RetainedHolderBehavior : MonoBehaviour
 {
     //ObjectHolderManagerに自身のインスタンスを登録
     protected virtual void Awake()
@@ -14,7 +14,7 @@ public class RetainedObjectBehavior : MonoBehaviour
     }
 
     //ObjectHolderManagerから自身のインスタンスを削除
-    protected virtual void OnDestroy()
+    public virtual void OnDisable()
     {
         ObjectHolderManager.Instance.RemoveHolder(gameObject);
     }
