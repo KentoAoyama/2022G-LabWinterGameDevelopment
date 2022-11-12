@@ -26,24 +26,14 @@ public class ObjectHolderManager
 
     //メンバー変数
     #region Member Variables
-    /// <summary>
-    /// RetainedObjectBehaviorを継承したクラスを持つオブジェクトのリスト
-    /// </summary>
-    private List<GameObject> _objectHolder = new();
 
-    /// <summary>
     /// PlayerのGameObjectを持つ変数
     /// </summary>
     private GameObject _playerHolder = null;
-
     #endregion
 
     //プロパティ
     #region Properties
-    /// <summary>
-    /// RetainedObjectBehaviorを継承したクラスを持つオブジェクトのリストのプロパティ
-    /// </summary>
-    public List<GameObject> ObjectHolder { get => _objectHolder; set => _objectHolder = value; }
 
     /// <summary>
     /// Playerの参照・取得を行うためのプロパティ
@@ -53,26 +43,25 @@ public class ObjectHolderManager
 
     //パブリックメソッド
     #region Public Methods
+
     /// <summary>
     /// ObjectHolderにオブジェクトを追加する際に呼び出すメソッド
     /// </summary>
     public void AddHolder(GameObject retainedObject)
     {
-        if (retainedObject.TryGetComponent(out IPause pause))
-        {
-            PauseManager.Instance.OnPause += pause.Pause;
-            PauseManager.Instance.OnResume += pause.Resume;
-        }
-
-        //if (retainedObject.TryGetComponent(out ))
+        //ポーズとDimentionのHolderに参照を渡す
+        PauseManager.Instance.AddPauseResume(retainedObject);
+        DimentionManager.Instance.AddDimentionHolder(retainedObject);
     }
 
     /// <summary>
     /// ObjectHolderからオブジェクトを削除する際に呼び出すメソッド
     /// </summary>
-    public void RemoveHolder(GameObject retainedObject)
+    public void RemoveHolder(GameObject removeObject)
     {
-
+        //ポーズとDimentionのHolderから参照を削除する
+        PauseManager.Instance.RemovePauseResume(removeObject);
+        DimentionManager.Instance.RemoveDimentionHolder(removeObject);
     }
     #endregion
 

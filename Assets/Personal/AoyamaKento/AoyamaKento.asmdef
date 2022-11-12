@@ -4,7 +4,9 @@
     "references": [
         "InGame",
         "Editorextension",
-        ""
+        "Ohashi",
+        "MaruokaTests",
+        "UniRx"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
