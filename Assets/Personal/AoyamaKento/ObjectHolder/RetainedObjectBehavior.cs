@@ -10,12 +10,12 @@ public class RetainedObjectBehavior : MonoBehaviour
     //ObjectHolderManagerに自身のインスタンスを登録
     protected virtual void Awake()
     {
-        ObjectHolderManager.Instance.ObjectHolder.Add(gameObject);
+        ObjectHolderManager.Instance.AddHolder(gameObject);
     }
 
     //ObjectHolderManagerから自身のインスタンスを削除
     protected virtual void OnDestroy()
     {
-        ObjectHolderManager.Instance.ObjectHolder.Remove(gameObject);
+        ObjectHolderManager.Instance.RemoveHolder(gameObject);
     }
 }

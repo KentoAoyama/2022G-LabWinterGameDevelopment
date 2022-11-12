@@ -3,65 +3,108 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Dimention‚ğŠÇ—‚·‚éstaticƒNƒ‰ƒX
-/// </summary>
 public class DimentionManager
 {
-    //ƒNƒ‰ƒX‚ğSingleton‚É‚·‚é
-    private static DimentionManager _instance = new ();
+    //ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³
+    #region Singleton
+    private static DimentionManager _instance = new DimentionManager();
     public static DimentionManager Instance
     {
         get
         {
-            if (_instance == null)
+            if(_instance == null)
             {
                 Debug.LogError($"Error! Please correct!");
             }
             return _instance;
         }
     }
-    private DimentionManager() { }
+    private DimentionManager(){}
+    #endregion
 
+    //ãƒ¡ãƒ³ãƒãƒ¼å¤‰æ•°
+    #region Member Variables
 
     /// <summary>
-    /// Dimention‚ğs‚¤ƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒg
+    /// Dimentionã‚’è¡Œã†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒªã‚¹ãƒˆ
     /// </summary>
-    private List<GameObject> _dimentionObjectHolder = new ();
-    /// <summary>
-    /// Dimention‚ğs‚¤ƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒg‚ÌƒvƒƒpƒeƒB
-    /// </summary>
-    public List<GameObject> DimentionObjectHolder { get => _dimentionObjectHolder; set => _dimentionObjectHolder = value; }
+    private List<GameObject> _dimentionObjectHolder = new();
 
     /// <summary>
-    /// Dimention‚ğs‚¤ƒLƒƒƒ‰ƒNƒ^[‚ÌƒŠƒXƒg
+    /// Dimentionã‚’è¡Œã†ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ãƒªã‚¹ãƒˆ
     /// </summary>
     private List<GameObject> _dimentionCharactorHolder = new();
-    /// <summary>
-    /// Dimention‚ğs‚¤ƒIƒuƒWƒFƒNƒg‚ÌƒŠƒXƒg‚ÌƒvƒƒpƒeƒB
-    /// </summary>
-    public List<GameObject> DimentionCharactorHolder { get => _dimentionCharactorHolder; set => _dimentionCharactorHolder = value; }
 
     /// <summary>
-    /// ƒV[ƒ“‚Ì‘JˆÚ‚ğs‚¤‘O‚ÌState‚ğ•Û‘¶‚µ‚Ä‚¨‚­—p‚Ì•Ï”
+    /// ã‚·ãƒ¼ãƒ³ã®é·ç§»ã‚’è¡Œã†å‰ã®Stateã‚’ä¿å­˜ã—ã¦ãŠãç”¨ã®å¤‰æ•°
     /// </summary>
     GameStateManager.InGameState _beforeState;
+    #endregion
+
+    //ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    #region Properties
+    #endregion
+
+    //ã‚¤ãƒ™ãƒ³ãƒˆ
+    #region Events
+    #endregion
+
+    //ãƒ‘ãƒ–ãƒªãƒƒã‚¯ãƒ¡ã‚½ãƒƒãƒ‰
+    #region Public Methods
 
     /// <summary>
-    /// ƒV[ƒ“‚Ì‘JˆÚ‚ğŠJn‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX
+    /// DimentionHolderã«GameObjectã‚’è¿½åŠ ã™ã‚‹ãŸã‚ã®ãƒ¡ã‚½ãƒƒãƒ‰
     /// </summary>
-    /// <param name="sceneName">‘JˆÚ‚·‚éƒV[ƒ“‚Ì–¼‘O</param>
-    /// <param name="changeInterval">ƒV[ƒ“‚Ì‘JˆÚ‚É‚©‚¯‚éŠÔ</param>
+    /// <param name="retainedObject">è¿½åŠ ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
+    public void AddDimentionHolder(GameObject retainedObject)
+    {
+        //æ•µã‚’DimenitonManagerã«ç™»éŒ²
+        if (retainedObject.TryGetComponent(out EnemyController _))
+        {
+            _dimentionCharactorHolder.Add(retainedObject);
+        }
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ»æ•µã®å¼¾ã‚’DimenitonManagerã«ç™»éŒ²
+        else if (retainedObject.TryGetComponent(out PlayerController _) ||            
+            retainedObject.TryGetComponent(out EnemyBulletController _))
+        {
+            _dimentionObjectHolder.Add(retainedObject);
+        }
+    }
+
+    /// <summary>
+    /// DimentionHolderã‹ã‚‰GameObjectã‚’å‰Šé™¤ã™ã‚‹ãŸã‚ã®ãƒ¡ã‚½ãƒƒãƒ‰
+    /// </summary>
+    /// <param name="removeObject">å‰Šé™¤ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ</param>
+    public void RemoveDimentionHolder(GameObject removeObject)
+    {
+        //æ•µã‚’CharactorHolderã«ç™»éŒ²
+        if (removeObject.TryGetComponent(out EnemyController _))
+        {
+            _dimentionCharactorHolder.Remove(removeObject);
+        }
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ»æ•µã®å¼¾ã‚’ObjectHolderã«ç™»éŒ²
+        else if (removeObject.TryGetComponent(out PlayerController _) ||
+            removeObject.TryGetComponent(out EnemyBulletController _))
+        {
+            _dimentionObjectHolder.Remove(removeObject);
+        }
+    }
+
+    /// <summary>
+    /// ã‚·ãƒ¼ãƒ³ã®é·ç§»ã‚’é–‹å§‹ã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹
+    /// </summary>
+    /// <param name="sceneName">é·ç§»ã™ã‚‹ã‚·ãƒ¼ãƒ³ã®åå‰</param>
+    /// <param name="changeInterval">ã‚·ãƒ¼ãƒ³ã®é·ç§»ã«ã‹ã‘ã‚‹æ™‚é–“</param>
     /// <returns></returns>
     public IEnumerator DimentionChangeStart(string sceneName, float changeInterval = 1.0f)
     {
-        Debug.Log("DimentionChangeƒXƒ^[ƒg");
+        Debug.Log("DimentionChangeã‚¹ã‚¿ãƒ¼ãƒˆ");
 
-        //Œ»İ‚ÌƒXƒe[ƒg‚ğ2D3DØ‚è‘Ö‚¦‚Ì‚½‚ß‚É•Û‘¶
+        //ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ãƒˆã‚’2D3Dåˆ‡ã‚Šæ›¿ãˆã®ãŸã‚ã«ä¿å­˜
         _beforeState = GameStateManager.Instance.GameState;
-        //ƒ|[ƒY‚Ìˆ—‚ğÀs
+        //ãƒãƒ¼ã‚ºã®å‡¦ç†ã‚’å®Ÿè¡Œ
         PauseManager.Instance.OnPause();
-        //ƒV[ƒ“‘JˆÚ‚Ìˆ—‚Ì‚½‚ßƒXƒe[ƒg‚ğ•ÏX
+        //ã‚·ãƒ¼ãƒ³é·ç§»å¾Œã®å‡¦ç†ã®ãŸã‚ã‚¹ãƒ†ãƒ¼ãƒˆã‚’å¤‰æ›´
         GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.DimentionChange);
 
         yield return new WaitForSeconds(changeInterval);
@@ -70,12 +113,12 @@ public class DimentionManager
     }
 
     /// <summary>
-    /// ƒV[ƒ“‚Ì•ÏXŠ®—¹Œã‚Ìˆ—
+    /// ã‚·ãƒ¼ãƒ³ã®å¤‰æ›´å®Œäº†å¾Œã®å‡¦ç†
     /// </summary>
-    /// <param name="finishInterval">ƒV[ƒ“‘JˆÚŒã‚Ì‰‰o‚É‚©‚¯‚éŠÔ</param>
+    /// <param name="finishInterval">ã‚·ãƒ¼ãƒ³é·ç§»å¾Œã®æ¼”å‡ºã«ã‹ã‘ã‚‹æ™‚é–“</param>
     public IEnumerator DimentionChangeFinish(float finishInterval = 1.0f)
     {
-        //GameState‚Ì3D2D‚ğØ‚è‘Ö‚¦‚é
+        //GameStateã®3D2Dã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
         if (_beforeState == GameStateManager.InGameState.Game2D)
         {
             GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.Game3D);
@@ -84,14 +127,19 @@ public class DimentionManager
         {
             GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.Game2D);
         }
-        //‘JˆÚ‚µ‚Ä‚·‚®ƒ|[ƒY‚ğÀs
+        //é·ç§»ã—ã¦ã™ããƒãƒ¼ã‚ºã‚’å®Ÿè¡Œ
         PauseManager.Instance.OnPause();
 
         yield return new WaitForSeconds(finishInterval);
 
-        //‰‰oI—¹Œãƒ|[ƒY‚ğ‰ğœ
+        //æ¼”å‡ºçµ‚äº†å¾Œãƒãƒ¼ã‚ºã‚’è§£é™¤
         PauseManager.Instance.OnResume();
 
-        Debug.Log("DimentionChangeI—¹");
+        Debug.Log("DimentionChangeçµ‚äº†");
     }
+    #endregion
+
+    //ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ¡ã‚½ãƒƒãƒ‰
+    #region Private Methods
+    #endregion
 }
