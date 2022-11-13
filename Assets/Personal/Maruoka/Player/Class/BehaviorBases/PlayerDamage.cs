@@ -8,6 +8,7 @@ public abstract class PlayerDamage
 {
     public bool IsKnockBackNow => _isKnockBackNow;
     public bool IsGodMode => _isGodMode;
+    public bool IsDamageNow => _isDamageNow;
 
     [SerializeField]
     protected bool _isTest = false;
@@ -19,11 +20,11 @@ public abstract class PlayerDamage
     protected float _testKnockBackPower = 1f;
     [SerializeField]
     protected int _testKnockBackTime = 1;
-
-
     [SerializeField]
     protected bool _isGodMode = false;
+
     private bool _isKnockBackNow = false;
+    private bool _isDamageNow = false;
 
 
     public virtual void OnDamage(int value,

@@ -25,6 +25,7 @@ public class Damage2D : PlayerDamage
                 knockBackTime = _testKnockBackTime;
             }
             // ノックバック処理
+            _rb2D.velocity = Vector3.zero;
             _rb2D.AddForce(knockBackDir.normalized * knockBackPower, ForceMode2D.Impulse);
             // 体力を減らす
             PlayerStatusManager.Instance.Damage(value);
