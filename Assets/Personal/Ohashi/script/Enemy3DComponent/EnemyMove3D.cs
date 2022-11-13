@@ -2,7 +2,7 @@ using UnityEngine;
 /// <summary>
 /// 3Dでのエネミーの移動処理が書かれたクラス。
 /// </summary>
-[RequireComponent(typeof(Rigidbody))]
+[System.Serializable]
 public class EnemyMove3D : EnemyMove
 {
     private Rigidbody _rb;
@@ -11,6 +11,13 @@ public class EnemyMove3D : EnemyMove
     {
         Vector3 target = (_playerTransform.position - _transform.position).normalized;
         _rb.velocity = new Vector3(target.x * _moveSpeed, 0, 0);
+    }
+    /// <summary>
+    /// Rigidbodyを参照するためのメソッド
+    /// </summary>
+    public void Set3D(Rigidbody rb)
+    {
+        _rb = rb;
     }
 
 }
