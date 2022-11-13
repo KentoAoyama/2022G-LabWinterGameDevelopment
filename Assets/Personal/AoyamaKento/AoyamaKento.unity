@@ -524,6 +524,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _changeSceneName: AoyamaKento 1
   _changeSceneTime: 1
+  _dimentionObjects2d:
+    Player: {fileID: 0}
+    Enemy:
+    - {fileID: 0}
+    - {fileID: 0}
+    EnemyBullet:
+    - {fileID: 0}
+    - {fileID: 0}
+  _dimentionObjects3d:
+    Player: {fileID: 0}
+    Enemy:
+    - {fileID: 0}
+    - {fileID: 0}
+    EnemyBullet:
+    - {fileID: 0}
+    - {fileID: 0}
 --- !u!1 &1682236158
 GameObject:
   m_ObjectHideFlags: 0

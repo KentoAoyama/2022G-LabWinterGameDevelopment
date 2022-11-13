@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class EnemyTest : RetainedHolderBehavior/*RetainedEnemyBehavior*/
+public class EnemyTest : RetainedEnemyBehavior
 {
-    [SerializeField] private int hp = 3;
-    [Range(1, 2), SerializeField] private int id = 1;
+    [SerializeField] private int _hp = 3;
+    [Range(1, 2), SerializeField] private int _id = 1;
 
-    //private IntReactiveProperty Hp => new(hp);
+    protected override int Id => _id;
+    protected override int Health => _hp;
 
-    //protected override IntReactiveProperty Health => Hp;
-    //protected override int Id => id;
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.K))
-    //    {
-    //        Hp.Value--;
-    //        Debug.Log(Hp.Value);
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            _hp--;
+            Debug.Log(_hp);
+        }
+    }
 }

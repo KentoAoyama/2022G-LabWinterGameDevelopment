@@ -22,38 +22,20 @@ public class DimentionManager
     private DimentionManager() { }
     #endregion
 
-    //パブリック変数
-    #region Public Variables
-
-    public enum ObjectType
-    {
-        Player,
-        Enemy,
-        EnemyBullet,
-
-        Others
-    }
-
-    //public struct EnemyStatus
-    //{
-    //    public int Health;
-    //    public int Id;
-    //}
-
-    #endregion
-
     //メンバー変数
-    #region Member Variables
+    #region Member Variables  
+
+    private Transform _playerPosition = ObjectHolderManager.Instance.PlayerHolder.transform;
+
+    /// <summary>
+    /// 敵のリスト
+    /// </summary>
+    private List<GameObject> _dimentionEnemyHolder = new();
 
     /// <summary>
     /// Dimentionを行うオブジェクトのリスト
     /// </summary>
     private List<GameObject> _dimentionObjectHolder = new();
-
-    /// <summary>
-    /// Dimentionを行うキャラクターのリスト
-    /// </summary>
-    private List<GameObject> _dimentionEnemyHolder = new();
 
     /// <summary>
     /// シーンの遷移を行う前のStateを保存しておく用の変数
@@ -80,8 +62,7 @@ public class DimentionManager
             _dimentionEnemyHolder.Add(retainedObject);
         }
         //プレイヤー・敵の弾をObjectHolderに登録
-        else if (retainedObject.TryGetComponent(out PlayerController _) ||
-            retainedObject.TryGetComponent(out EnemyBulletController _))
+        else if (retainedObject.TryGetComponent(out EnemyBulletController _))
         {
             _dimentionObjectHolder.Add(retainedObject);
         }
@@ -99,8 +80,7 @@ public class DimentionManager
             _dimentionEnemyHolder.Remove(removeObject);
         }
         //プレイヤー・敵の弾から削除
-        else if (removeObject.TryGetComponent(out PlayerController _) ||
-            removeObject.TryGetComponent(out EnemyBulletController _))
+        else if (removeObject.TryGetComponent(out EnemyBulletController _))
         {
             _dimentionObjectHolder.Remove(removeObject);
         }
@@ -115,7 +95,6 @@ public class DimentionManager
     public IEnumerator DimentionChangeStart(string sceneName, float changeInterval = 1.0f)
     {
         Debug.Log("DimentionChangeスタート");
-
 
         //現在のステートを2D3D切り替えのために保存
         _beforeState = GameStateManager.Instance.GameState;
@@ -135,9 +114,7 @@ public class DimentionManager
     /// <param name="finishInterval">シーン遷移後の演出にかける時間</param>
     public IEnumerator DimentionChangeFinish(float finishInterval = 1.0f)
     {
-
-
-        //GameStateの3D2Dを切り替える
+        //GameStateの3D2Dを判定
         if (_beforeState == GameStateManager.InGameState.Game2D)
         {
             GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.Game3D);
