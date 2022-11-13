@@ -12,6 +12,8 @@ public class PlayerMove3D : PlayerMove
     private Rigidbody _rb = default;
     private RailControl3D _railControler = default;
 
+    public bool IsStepNow => _railControler.IsStepNow;
+
     public void Init(Rigidbody rb, Transform transform,
         RailControl3D railControler)
     {

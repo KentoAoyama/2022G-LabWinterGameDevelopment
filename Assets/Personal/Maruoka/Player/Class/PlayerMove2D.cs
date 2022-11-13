@@ -4,8 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerMove2D : PlayerMove
 {
-    private GroundCheck _groundChecker = default;
-    private Rigidbody2D _rb2D = default;
+    public bool IsJump => _isJump;
 
     [InputName, SerializeField]
     private string _horizontalButtonName = default;
@@ -15,6 +14,11 @@ public class PlayerMove2D : PlayerMove
     private float _moveSpeed = default;
     [SerializeField]
     private float _jumpPower = default;
+
+    private GroundCheck _groundChecker = default;
+    private Rigidbody2D _rb2D = default;
+    private bool _isJump = false;
+
 
     public void Init(Rigidbody2D rb2D, GroundCheck groundChecker)
     {
@@ -33,6 +37,11 @@ public class PlayerMove2D : PlayerMove
         if (Input_InputManager.Instance.GetInputDown(_jumpButtonName) && _groundChecker.IsGround())
         {
             _rb2D.velocity = new Vector2(0f, _jumpPower);
+            _isJump = true;
+        }
+        else
+        {
+            _isJump = false;
         }
     }
 }

@@ -27,6 +27,8 @@ public class RailControl3D
     private bool _isReadyStep = true;
 
     private Transform _transform = default;
+    private bool _isStepNow = false;
+    public bool IsStepNow => _isStepNow;
 
     public bool IsReadyStep
     {
@@ -80,8 +82,7 @@ public class RailControl3D
             else
             {
                 _nowPos++;
-                Step(
-                     _transform.position + new Vector3(0, 0, _widthBetweenRails),
+                Step(_transform.position + new Vector3(0, 0, _widthBetweenRails),
                     _stepDuration);
             }
         }
@@ -95,8 +96,7 @@ public class RailControl3D
             else
             {
                 _nowPos--;
-                Step(
-                    _transform.position - new Vector3(0, 0, _widthBetweenRails),
+                Step(_transform.position - new Vector3(0, 0, _widthBetweenRails),
                     _stepDuration);
             }
         }
@@ -110,10 +110,12 @@ public class RailControl3D
     private void Step(Vector3 targetPos, float seconds)
     {
         _isReadyStep = false;
+        _isStepNow = true;
         _transform.DOJump(targetPos, _jumpPower, numJumps: 1, _stepDuration).
             OnComplete(() => 
             {
-                _isReadyStep = true; 
+                _isReadyStep = true;
+                _isStepNow = false;
             });
     }
 }
