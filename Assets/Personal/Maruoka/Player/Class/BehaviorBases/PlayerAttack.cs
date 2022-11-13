@@ -6,6 +6,7 @@ public abstract class PlayerAttack
 {
     protected PlayerStateController _stateController = default;
     protected Transform _transform = default;
+    public bool _isAttackNow = false;
 
     [InputName, SerializeField]
     protected string _fireButtonName = default;
@@ -24,6 +25,8 @@ public abstract class PlayerAttack
     public Vector3 FireSize => _fireSize;
     public Color GizmoColor => _gizmoColor;
     public bool IsDrawGizmo => _isDrawGizmo;
+    public bool IsAttackNow => _isAttackNow;
+
 
     public void Init(Transform transform,
         PlayerStateController stateController)

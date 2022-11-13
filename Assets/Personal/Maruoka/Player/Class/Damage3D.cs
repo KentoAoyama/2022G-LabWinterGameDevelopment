@@ -31,8 +31,9 @@ public class Damage3D : PlayerDamage
                 knockBackDir = _testKnockBackDir;
                 knockBackPower = _testKnockBackPower;
                 knockBackTime = _testKnockBackTime;
-            }            
+            }
             // ノックバック処理
+            _rb.velocity = Vector3.zero;
             _rb.AddForce(knockBackDir.normalized * knockBackPower, ForceMode.Impulse);
             // 体力を減らす
             PlayerStatusManager.Instance.Damage(value);
