@@ -20,3 +20,12 @@ public struct EnemyStatus
     public int Health;
     public Transform Position;
 }
+
+/// <summary>
+/// “G‚Ì’e‚Ìî•ñ‚Ì\‘¢‘Ì
+/// </summary>
+public struct EnemyBulletStatus
+{
+    public int Id;
+    public Transform Position;
+}

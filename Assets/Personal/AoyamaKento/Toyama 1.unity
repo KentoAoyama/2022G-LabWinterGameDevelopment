@@ -1471,6 +1471,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373268179}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &374872012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8063902652912937540, guid: c5c6b87ed4711f94898c3d08cefc28ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1214711984}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &407945376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,6 +1871,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1214711984}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &502441379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374872012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ab45e48e60c8443a313852c05edce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage:
+    _isTest: 0
+    _testDamageValue: 1
+    _testKnockBackDir: {x: 0, y: 0, z: 0}
+    _testKnockBackPower: 1
+    _testKnockBackTime: 1
+    _isGodMode: 0
+  _attacker:
+    _isAttackNow: 0
+    _fireButtonName: 
+    _firePosOffset: {x: 0, y: 0, z: 0}
+    _fireSize: {x: 0, y: 0, z: 0}
+    _targetLayer:
+      serializedVersion: 2
+      m_Bits: 0
+    _isDrawGizmo: 0
+    _gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  _mover:
+    _isMove: 1
+    _horizontalButtonName: Horizontal
+    _moveSpeed: 0
+  _railControl:
+    _maxRails: 1
+    _upStepButtonName: Horizontal
+    _downStepButtonName: Horizontal
+    _widthBetweenRails: 1
+    _jumpPower: 1
+    _stepDuration: 1.5
+    _isReadyStep: 1
+  _dimensionChanger:
+    _changeButton: 
+    _changeableAreaTagName: 
+    _isReadyDimensionChange: 0
 --- !u!1 &527267477
 GameObject:
   m_ObjectHideFlags: 0
@@ -5342,7 +5393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380028644}
   m_LocalRotation: {x: 0.24539198, y: 0, z: 0, w: 0.969424}
-  m_LocalPosition: {x: -0.45824385, y: 6, z: -9.540946}
+  m_LocalPosition: {x: 2.66, y: 4.06, z: -5.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
