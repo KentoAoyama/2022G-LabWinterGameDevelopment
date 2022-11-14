@@ -3,8 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyController3D : MonoBehaviour
 {
-    [SerializeField] private Transform _playerTransform = default;
-    [SerializeField] private EnemyMove3D _enemyMove = default;
+    [SerializeField] private Transform _playerTransform = default;//âºÅAå„Ç≈ïœÇ¶ÇÈÅB
+    [SerializeField] private EnemyMove3D _enemyMove = new EnemyMove3D();
 
     private Rigidbody _rb;
 
