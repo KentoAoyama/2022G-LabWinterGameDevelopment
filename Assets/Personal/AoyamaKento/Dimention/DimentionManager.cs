@@ -43,7 +43,7 @@ public class DimentionManager
     /// <summary>
     /// シーン遷移時に座標を保管しておくための変数
     /// </summary>
-    private List<EnemyStatus> _enemyStatus = new();
+    private List<EnemyStatus> _enemyStatuses = new();
 
     /// <summary>
     /// シーン遷移時に座標を保管しておくための変数
@@ -125,7 +125,7 @@ public class DimentionManager
     /// シーンの変更完了後の処理
     /// </summary>
     /// <param name="finishInterval">シーン遷移後の演出にかける時間</param>
-    public IEnumerator DimentionChangeFinish(float finishInterval = 1.0f)
+    public IEnumerator DimentionChangeFinish(DimentionPrefabs dimentionPrefabs, float finishInterval = 1.0f)
     {
         //GameStateの3D2Dを判定
         if (_beforeState == GameStateManager.InGameState.Game2D)
@@ -179,9 +179,13 @@ public class DimentionManager
     /// <summary>
     /// DimentionChange後にオブジェクトを前のシーンの位置に出す処理
     /// </summary>
-    private void DimenitonChangeObject()
+    private void DimenitonChangeEnemy(DimentionPrefabs dimentionPrefabs)
     {
-
+        foreach (EnemyStatus enemyStatus in _enemyStatuses)
+        {
+            var enemy = Object.Instantiate(dimentionPrefabs.Enemy[enemyStatus.Id]);
+            
+        }       
     }
     #endregion
 }
