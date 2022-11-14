@@ -6,7 +6,7 @@ public class PlayerController3D : MonoBehaviour
 {
     #region Inspector Variables
     [SerializeField]
-    private Damage3D _damage = default;
+    private PlayerDamage3D _damage = default;
     [SerializeField]
     private PlayerAction _actioner = default;
     [SerializeField]
@@ -33,10 +33,11 @@ public class PlayerController3D : MonoBehaviour
     }
     private void Update()
     {
-        _mover.IsMove = !_damage.IsKnockBackNow;
+        _mover.IsMove = !_damage.IsDamageNow;
         _mover.Update();
         _stateController.Update();
         _dimensionChanger.Update();
+        _attacker.Update();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -71,20 +72,56 @@ public class PlayerController3D : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void TestOnDamage()
+    /// <summary>
+    /// ギミックの開始処理。
+    /// ギミックから呼び出される。
+    /// </summary>
+    public void StartGimmick()
     {
-        _damage.OnDamage(0, Vector3.zero, 0, 0);
+        _actioner.StartAction();
+    }
+    /// <summary>
+    /// ダメージ処理。
+    /// 敵から呼び出される。
+    /// </summary>
+    public void OnDamage(int value,Vector3 knockBackDir,
+        float knockBackPower,int knockBackTime)
+    {
+        _damage.OnDamage(value, knockBackDir, 
+            knockBackPower, knockBackTime);
     }
     #endregion
+
 
     #region Animation Event
-    public void OnFire()
-    {
-        _attacker.Fire();
-    }
-    #endregion
+    // アニメーションイベントから呼び出す想定で作成されたメソッド群
 
-    #region Private Methods
+    /// <summary>
+    /// 攻撃処理 <br/>
+    /// 攻撃アニメーションから呼び出す。
+    /// </summary>
+    public void AttackProcess()
+    {
+        _attacker.AttackProcess();
+    }
+    /// <summary>
+    /// 攻撃の終了処理 <br/>
+    /// 攻撃アニメーション末尾の
+    /// アニメーションイベントから呼び出す
+    /// </summary>
+    public void EndAttack()
+    {
+        _attacker.EndAttack();
+    }
+    /// <summary>
+    /// ギミックアクションの終了処理 <br/>
+    /// アクションアニメーション末尾の
+    /// アニメーションイベントから呼び出す
+    /// </summary>
+    public void EndAction()
+    {
+        _actioner.EndAction();
+    }
     #endregion
 
     #region Debug
@@ -99,6 +136,41 @@ public class PlayerController3D : MonoBehaviour
             pos += transform.position;
             Gizmos.DrawCube(pos, _attacker.FireSize);
         }
+    }
+    #endregion
+
+    #region Tests
+    /// <summary>
+    /// ダメージ処理が上手く動作するか
+    /// どうかを確認するためのメソッド
+    /// </summary>
+    public void TestOnDamage()
+    {
+        _damage.OnDamage(0, Vector3.zero, 0, 0);
+    }
+    /// <summary>
+    /// 攻撃処理が上手く動作するか
+    /// どうかを確認するためのメソッド
+    /// </summary>
+    public void TestAttackProcess()
+    {
+        _attacker.AttackProcess();
+    }
+    /// <summary>
+    /// 攻撃の終了処理が動作しているか
+    /// どうか確認するためのメソッド
+    /// </summary>
+    public void TestAttackEnd()
+    {
+        _attacker.EndAttack();
+    }
+    public void TestStartGimmick()
+    {
+        _actioner.StartAction();
+    }
+    public void TestEndGimmick()
+    {
+        _actioner.EndAction();
     }
     #endregion
 }

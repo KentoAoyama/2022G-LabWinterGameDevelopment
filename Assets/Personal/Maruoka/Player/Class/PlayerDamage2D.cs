@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [System.Serializable]
-public class Damage2D : PlayerDamage
+public class PlayerDamage2D : PlayerDamage
 {
     private Rigidbody2D _rb2D = default;
 
