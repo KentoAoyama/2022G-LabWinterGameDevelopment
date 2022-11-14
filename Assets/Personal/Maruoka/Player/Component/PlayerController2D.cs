@@ -6,7 +6,7 @@ public class PlayerController2D : MonoBehaviour
 {
     #region Inspector Variables
     [SerializeField]
-    private Damage2D _damage = default;
+    private PlayerDamage2D _damage = default;
     [SerializeField]
     private PlayerAction _actioner = default;
     [SerializeField]
@@ -33,10 +33,11 @@ public class PlayerController2D : MonoBehaviour
     }
     private void Update()
     {
-        _mover.IsMove = !_damage.IsKnockBackNow;
+        _mover.IsMove = !_damage.IsDamageNow;
         _mover.Update();
         _stateController.Update();
         _dimensionChanger.Update();
+        _attacker.Update();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -48,6 +49,7 @@ public class PlayerController2D : MonoBehaviour
         if (collision.tag == _actioner.ActionableAreaTagName &&
             collision.TryGetComponent(out IGimmickEvent gimmick))
         {
+            // ギミック稼働可能にする
             _actioner.OnActionEnter(gimmick);
         }
     }
@@ -61,6 +63,7 @@ public class PlayerController2D : MonoBehaviour
         if (collision.tag == _actioner.ActionableAreaTagName &&
             collision.TryGetComponent(out IGimmickEvent gimmick))
         {
+            // ギミック稼働不可にする
             _actioner.OnActionExit(gimmick);
         }
     }
@@ -71,19 +74,53 @@ public class PlayerController2D : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void TestOnDamage()
+    // 外部から（他モジュールから）呼ばれることを想定して作成されたソッド群
+    /// <summary>
+    /// ダメージ処理 : <br/>
+    /// 「敵から呼び出されるを想定したメソッド」
+    /// </summary>
+    public void OnDamage(int value, Vector3 knockBackDir,
+        float knockBackPower, int knockBackTime)
     {
-        _damage.OnDamage(0, Vector3.zero, 0f, 0);
+        _damage.OnDamage(value, knockBackDir,
+            knockBackPower, knockBackTime);
+    }
+    /// <summary>
+    /// アクション開始処理 : <br/>
+    /// 「ギミックから呼び出されるを想定したメソッド」
+    /// </summary>
+    public void StartAction()
+    {
+        _actioner.StartAction();
     }
     #endregion
 
-    #region Private Methods
-    #endregion
-
     #region Animation Event
-    public void OnFire()
+    // アニメーションイベントで呼び出すことを想定して作成されたメソッド群
+    /// <summary>
+    /// 敵等に対する”攻撃処理”
+    /// </summary>
+    public void AttackProcess()
     {
-        _attacker.Fire();
+        _attacker.AttackProcess();
+    }
+    /// <summary>
+    /// 攻撃の終了処理 <br/>
+    /// 攻撃アニメーション”末尾”の
+    /// アニメーションイベントから呼び出す。
+    /// </summary>
+    public void EndAttack()
+    {
+        _attacker.EndAttack();
+    }
+    /// <summary>
+    /// アクションの終了処理 <br/>
+    /// アクションアニメーション”末尾”の
+    /// アニメーションイベントから呼び出す。
+    /// </summary>
+    public void EndAction()
+    {
+        _actioner.EndAction();
     }
     #endregion
 
@@ -101,4 +138,39 @@ public class PlayerController2D : MonoBehaviour
     }
     #endregion
 
+    #region Tests
+    /// <summary>
+    /// ダメージを受ける処理が上手く動作しているか
+    /// どうかを確認するためのメソッド
+    /// </summary>
+    public void TestOnDamage()
+    {
+        _damage.OnDamage(0, Vector3.zero, 0f, 0);
+    }
+    /// <summary>
+    /// 攻撃処理が上手く動作しているかどうかを
+    /// 確認するためのメソッド
+    /// </summary>
+    public void TestAttackProcess()
+    {
+        _attacker.AttackProcess();
+    }
+    /// <summary>
+    /// 攻撃の終了処理
+    /// （本来は攻撃アニメーション末尾のアニメーションイベント
+    /// 　から呼び出す。）
+    /// </summary>
+    public void TestEndAttack()
+    {
+        _attacker.EndAttack();
+    }
+    public void TestStartAction()
+    {
+        _actioner.StartAction();
+    }
+    public void TestEndAction()
+    {
+        _actioner.EndAction();
+    }
+    #endregion
 }

@@ -8,6 +8,7 @@ public abstract class PlayerStateController
     public FacingDirection FacingDirection { get; protected set; }
     /// <summary> 現在のステート </summary>
     public PlayerState NowState => _nowState;
+    [SerializeField]
     protected PlayerState _nowState;
 
     /// <summary> 更新処理 </summary>

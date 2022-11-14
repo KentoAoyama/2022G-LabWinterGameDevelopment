@@ -4,7 +4,10 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerAttack2D : PlayerAttack
 {
-    public override void Fire()
+    /// <summary>
+    /// UŒ‚ˆ—
+    /// </summary>
+    public override void AttackProcess()
     {
         // UŒ‚‘ÎÛ‚ğæ“¾‚·‚é
         var pos = GetFirePos();

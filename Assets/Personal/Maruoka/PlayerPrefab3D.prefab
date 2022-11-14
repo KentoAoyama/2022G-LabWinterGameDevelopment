@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8063902652912937545}
   - component: {fileID: 8063902652912937542}
   - component: {fileID: 1071217852}
+  - component: {fileID: 1909525410587915861}
   m_Layer: 0
   m_Name: PlayerPrefab3D
   m_TagString: Untagged
@@ -129,25 +130,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage:
+    _isTest: 1
+    _testDamageValue: 1
+    _testKnockBackDir: {x: 1, y: 1, z: 0}
+    _testKnockBackPower: 1
+    _testKnockBackTime: 1000
     _isGodMode: 0
   _attacker:
+    _isAttackNow: 0
     _fireButtonName: Fire1
     _firePosOffset: {x: 1.14, y: 0, z: 0}
     _fireSize: {x: 0.88, y: 1.29, z: 0.62}
     _targetLayer:
       serializedVersion: 2
-      m_Bits: 2147483647
+      m_Bits: 16
     _isDrawGizmo: 1
     _gizmoColor: {r: 1, g: 0, b: 0, a: 1}
   _mover:
     _isMove: 1
     _horizontalButtonName: Horizontal
-    _moveSpeed: 0
+    _moveSpeed: 1
+  _stateController:
+    _nowState: 0
   _railControl:
     _maxRails: 3
-    _upStepButtonName: Fire1
-    _downStepButtonName: Fire2
+    _upStepButtonName: Fire2
+    _downStepButtonName: Fire3
     _widthBetweenRails: 1
     _jumpPower: 0.8
     _stepDuration: 0.8
     _isReadyStep: 1
+  _dimensionChanger:
+    _changeButton: Fire1
+    _changeableAreaTagName: 
+    _isReadyDimensionChange: 0
+--- !u!114 &1909525410587915861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063902652912937540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ed9cb4454840a4f8ce56629510aaa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gizmosColor: {r: 1, g: 0, b: 0, a: 1}
+  _offset: {x: 0, y: 0, z: 0}
+  _size: {x: 0, y: 0, z: 0}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0

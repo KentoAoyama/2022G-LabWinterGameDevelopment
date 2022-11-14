@@ -8,11 +8,11 @@ public class PlayerStateController3D : PlayerStateController
     private GroundCheck _groundCheck = default;
     private PlayerAttack3D _playerAttack3D = default;
     private PlayerAction _playerAction = default;
-    private Damage3D _damage3D = default;
+    private PlayerDamage3D _damage3D = default;
 
     public void Init(Rigidbody rb, PlayerMove3D playerMove3D,
         GroundCheck groundCheck, PlayerAttack3D playerAttack3D,
-        PlayerAction playerAction, Damage3D damage3D)
+        PlayerAction playerAction, PlayerDamage3D damage3D)
     {
         _rb = rb;
         _playerMove3D = playerMove3D;
@@ -43,7 +43,15 @@ public class PlayerStateController3D : PlayerStateController
     }
     private void StateUpdate()
     {
-        // ここにステートを更新する処理を記述する
+        _nowState = PlayerState.IDLE;
+
+        StateUpdateMove();
+        StateUpdateStep();
+        StateUpdateRise();
+        StateUpdateFall();
+        StateUpdateAttack();
+        StateUpdateAction();
+        StateUpdateDamage();
     }
 
     private void StateUpdateMove()
@@ -64,7 +72,7 @@ public class PlayerStateController3D : PlayerStateController
     {
         // 接地しておらず、上昇中であれば、
         // 上昇ステートに変更する。
-        if (!_groundCheck.IsGround() &&
+        if (!_groundCheck.IsGround3D() &&
              _rb.velocity.y > 0.01f)
         {
             _nowState = PlayerState.RISE;
@@ -74,7 +82,7 @@ public class PlayerStateController3D : PlayerStateController
     {
         // 接地しておらず、落下であれば、
         // 落下ステートに変更する。
-        if (!_groundCheck.IsGround() &&
+        if (!_groundCheck.IsGround3D() &&
              _rb.velocity.y < 0.01f)
         {
             _nowState = PlayerState.FALL;
@@ -82,7 +90,6 @@ public class PlayerStateController3D : PlayerStateController
     }
     private void StateUpdateAttack()
     {
-        // 未解決 : IsAttackNowの変更/更新
         if (_playerAttack3D.IsAttackNow)
         {
             _nowState = PlayerState.ATTACK;
@@ -98,7 +105,6 @@ public class PlayerStateController3D : PlayerStateController
     }
     private void StateUpdateDamage()
     {
-        // 未解決 : IsDamageNowの変更/更新
         if (_damage3D.IsDamageNow)
         {
             _nowState = PlayerState.DAMAGE;
