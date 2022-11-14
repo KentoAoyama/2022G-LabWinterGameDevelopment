@@ -9,11 +9,11 @@ public class PlayerStateController2D : PlayerStateController
     private GroundCheck _groundCheck = default;
     private PlayerAttack2D _playerAttack2D = default;
     private PlayerAction _playerAction = default;
-    private Damage2D _damage2D = default;
+    private PlayerDamage2D _damage2D = default;
 
     public void Init(Rigidbody2D rb2D, PlayerMove2D playerMove2D,
         PlayerAttack2D playerAttack2D, PlayerAction playerAction,
-        Damage2D damage2D, GroundCheck groundCheck)
+        PlayerDamage2D damage2D, GroundCheck groundCheck)
     {
         _rb2D = rb2D;
         _playerMove2D = playerMove2D;
@@ -30,10 +30,15 @@ public class PlayerStateController2D : PlayerStateController
 
     private void StateUpdate()
     {
-        // ここにステートを更新する処理を記述する。
-        var state = PlayerState.IDLE;
+        _nowState = PlayerState.IDLE;
 
-        _nowState = state;
+        StateUpdateMove();
+        StateUpdateJump();
+        StateUpdateRise();
+        StateUpdateFall();
+        StateUpdateAttack();
+        StateUpdateAction();
+        StateUpdateDamage();
     }
 
     private void FacingDirectionUpdate()
@@ -71,7 +76,7 @@ public class PlayerStateController2D : PlayerStateController
     {
         // 接地しておらず、ジャンプ時でなく、上昇中であれば、
         // 上昇ステートに変更する。
-        if (!_groundCheck.IsGround() &&
+        if (!_groundCheck.IsGround2D() &&
             !_playerMove2D.IsJump &&
              _rb2D.velocity.y > 0.01f)
         {
@@ -82,7 +87,7 @@ public class PlayerStateController2D : PlayerStateController
     {
         // 接地しておらず、ジャンプ時でなく、落下中であれば、
         // 落下ステートに変更する。
-        if (!_groundCheck.IsGround() &&
+        if (!_groundCheck.IsGround2D() &&
             !_playerMove2D.IsJump &&
              _rb2D.velocity.y < 0.01f)
         {
@@ -91,7 +96,6 @@ public class PlayerStateController2D : PlayerStateController
     }
     private void StateUpdateAttack()
     {
-        // 未解決 : IsAttackNowの変更/更新
         if (_playerAttack2D.IsAttackNow)
         {
             _nowState = PlayerState.ATTACK;
@@ -107,7 +111,6 @@ public class PlayerStateController2D : PlayerStateController
     }
     private void StateUpdateDamage()
     {
-        // 未解決 : IsDamageNowの変更/更新
         if (_damage2D.IsDamageNow)
         {
             _nowState = PlayerState.DAMAGE;

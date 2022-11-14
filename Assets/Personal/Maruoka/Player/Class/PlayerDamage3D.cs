@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Threading;
 
 [System.Serializable]
-public class Damage3D : PlayerDamage
+public class PlayerDamage3D : PlayerDamage
 {
 
     private Rigidbody _rb = default;

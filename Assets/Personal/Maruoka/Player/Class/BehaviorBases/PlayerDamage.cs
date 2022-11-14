@@ -6,7 +6,6 @@ using UnityEngine;
 [System.Serializable]
 public abstract class PlayerDamage
 {
-    public bool IsKnockBackNow => _isKnockBackNow;
     public bool IsGodMode => _isGodMode;
     public bool IsDamageNow => _isDamageNow;
 
@@ -23,7 +22,6 @@ public abstract class PlayerDamage
     [SerializeField]
     protected bool _isGodMode = false;
 
-    private bool _isKnockBackNow = false;
     private bool _isDamageNow = false;
 
 
@@ -38,11 +36,11 @@ public abstract class PlayerDamage
     protected async Task KnockBackStart(int sleepTime)
     {
         Debug.Log("ノックバック開始");
-        _isKnockBackNow = true;
+        _isDamageNow = true;
         _isGodMode = true;
         await Task.Run(() => Thread.Sleep(sleepTime));
         Debug.Log("ノックバック終了");
-        _isKnockBackNow = false;
+        _isDamageNow = false;
         _isGodMode = false;
     }
 }

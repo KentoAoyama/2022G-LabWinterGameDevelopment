@@ -20,12 +20,20 @@ public class GroundCheck : MonoBehaviour
         Gizmos.DrawCube(transform.position + _offset, _size);
     }
 
-    public bool IsGround()
+    public bool IsGround2D()
     {
         var colliders =
             Physics2D.OverlapBoxAll(
                 transform.position + _offset,
                 _size, 0.0f, _layerMask);
+        return colliders.Length > 0;
+    }
+    public bool IsGround3D()
+    {
+        var colliders =
+            Physics.OverlapBox(
+                transform.position + _offset,
+                _size, Quaternion.identity, _layerMask);
         return colliders.Length > 0;
     }
 }

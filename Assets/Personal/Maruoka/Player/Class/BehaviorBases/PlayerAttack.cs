@@ -6,8 +6,10 @@ public abstract class PlayerAttack
 {
     protected PlayerStateController _stateController = default;
     protected Transform _transform = default;
-    public bool _isAttackNow = false;
+    private bool _isAttackNow = false;
 
+    [SerializeField]
+    private bool _isReadyAttack = false;
     [InputName, SerializeField]
     protected string _fireButtonName = default;
     [SerializeField]
@@ -34,8 +36,25 @@ public abstract class PlayerAttack
         _transform = transform;
         _stateController = stateController;
     }
+    public void Update()
+    {
+        // UŒ‚‰Â”\ó‘Ô‚©‚ÂAUŒ‚“ü—Í‚ª”­¶‚µ‚½UŒ‚‚ğŠJn‚·‚éB
+        if (_isReadyAttack &&
+            Input_InputManager.Instance.GetInputDown(_fireButtonName))
+        {
+            StartAttack();
+        }
+    }
+    public abstract void AttackProcess();
 
-    public abstract void Fire();
+    public void StartAttack()
+    {
+        _isAttackNow = true;
+    }
+    public void EndAttack()
+    {
+        _isAttackNow = false;
+    }
 
     public Vector3 GetFirePos()
     {

@@ -34,7 +34,7 @@ public class PlayerMove2D : PlayerMove
                 _moveSpeed * Input_InputManager.Instance.GetAxisRaw(_horizontalButtonName),
                 _rb2D.velocity.y);
         // ƒWƒƒƒ“ƒv
-        if (Input_InputManager.Instance.GetInputDown(_jumpButtonName) && _groundChecker.IsGround())
+        if (Input_InputManager.Instance.GetInputDown(_jumpButtonName) && _groundChecker.IsGround2D())
         {
             _rb2D.velocity = new Vector2(0f, _jumpPower);
             _isJump = true;
