@@ -9,7 +9,7 @@ public class EnemyTest : RetainedEnemyBehavior
     [Range(1, 2), SerializeField] private int _id = 1;
 
     protected override int Id => _id;
-    protected override int Health => _hp;
+    protected override int Health { get => _hp; set => _hp = value; }
 
     private void Update()
     {

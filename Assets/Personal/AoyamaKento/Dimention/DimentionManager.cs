@@ -53,11 +53,16 @@ public class DimentionManager
     /// <summary>
     /// シーンの遷移を行う前のStateを保存しておく用の変数
     /// </summary>
-    GameStateManager.InGameState _beforeState;
+    private GameStateManager.InGameState _beforeState;
     #endregion
 
     //プロパティ
     #region Properties
+
+    /// <summary>
+    /// シーンの遷移を行う前のStateのプロパティ
+    /// </summary>
+    public GameStateManager.InGameState BeforeState => _beforeState;
     #endregion
 
     //パブリックメソッド
