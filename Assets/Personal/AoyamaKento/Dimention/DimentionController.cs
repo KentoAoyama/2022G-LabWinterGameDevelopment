@@ -27,7 +27,14 @@ public class DimentionController : MonoBehaviour
     {
         if (GameStateManager.Instance.GameState == GameStateManager.InGameState.DimentionChange)
         {
-            StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_changeSceneTime));
+            if(DimentionManager.Instance.BeforeState == GameStateManager.InGameState.Game3D)
+            {
+                StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_dimentionObjects2d, _changeSceneTime));
+            }
+            else if (DimentionManager.Instance.BeforeState == GameStateManager.InGameState.Game2D)
+            {
+                StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_dimentionObjects3d, _changeSceneTime));
+            }
         }
     }
 
