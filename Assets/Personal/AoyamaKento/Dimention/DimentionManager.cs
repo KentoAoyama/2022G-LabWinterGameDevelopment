@@ -48,7 +48,7 @@ public class DimentionManager
     /// <summary>
     /// シーン遷移時に座標を保管しておくための変数
     /// </summary>
-    private List<EnemyBulletStatus> _enemyBulletStatus = new();
+    private List<EnemyBulletStatus> _enemyBulletStatuses = new();
 
     /// <summary>
     /// シーンの遷移を行う前のStateを保存しておく用の変数
@@ -114,6 +114,8 @@ public class DimentionManager
     {
         Debug.Log("DimentionChangeスタート");
 
+        //ゲームオブジェクトの状態を保存
+        SaveStatus();
         //現在のステートを2D3D切り替えのために保存
         _beforeState = GameStateManager.Instance.GameState;
         //ポーズの処理を実行
@@ -157,15 +159,31 @@ public class DimentionManager
     #region Private Methods
 
     /// <summary>
+    /// ゲームオブジェクトの状態の保存を行うクラス
+    /// </summary>
+    private void SaveStatus()
+    {
+        //Playerの座標を保存
+        _playerPosition = ObjectHolderManager.Instance.PlayerHolder.transform;
+        SaveEnemyStatus();
+        SaveEnemyBulletStatus();
+    }
+
+    /// <summary>
     /// Enemyの情報をEnemyStatus型のListに保存する処理
     /// </summary>
     private void SaveEnemyStatus() 
     {
         foreach (GameObject enemy in _enemyHolder)
         {
+            //敵のステータスをListに格納していく
             EnemyStatus enemyStatus = new();
-            EnemyTest enemyController = enemy.GetComponent<EnemyTest>();
-            enemyController.
+            RetainedEnemyBehavior enemyController = enemy.GetComponent<RetainedEnemyBehavior>();
+            enemyStatus.Id = enemyController.Id;
+            enemyStatus.Health = enemyController.Health;
+            enemyStatus.Position = enemy.transform;
+
+            _enemyStatuses.Add(enemyStatus);
         }
     }
 
@@ -176,8 +194,13 @@ public class DimentionManager
     {
         foreach (GameObject enemyBullet in _enemyBulletHolder)
         {
-            //EnemyBulletStatus enemyBulletStatus = new();
-            //EnemyBulletController enemyBulletController = enemyBullet.GetComponent<EnemyBulletController>();
+            //敵の弾のステータスをListに格納していく
+            EnemyBulletStatus enemyBulletStatus = new();
+            RetainedEnemyBulletBehavior enemyBulletController = enemyBullet.GetComponent<RetainedEnemyBulletBehavior>();
+            enemyBulletStatus.Id = enemyBulletController.Id;
+            enemyBulletStatus.Position = enemyBullet.transform;
+
+            _enemyBulletStatuses.Add(enemyBulletStatus);
         }
     }
 
