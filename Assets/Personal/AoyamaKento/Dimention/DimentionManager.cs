@@ -75,12 +75,12 @@ public class DimentionManager
     public void AddDimentionHolder(GameObject retainedObject)
     {
         //敵をEnemyHolderに登録
-        if (retainedObject.TryGetComponent(out RetainedEnemyBehavior _))
+        if (retainedObject.GetComponent<RetainedEnemyBehavior>())
         {
             _enemyHolder.Add(retainedObject);
         }
         //敵の弾をObjectHolderに登録
-        else if (retainedObject.TryGetComponent(out RetainedEnemyBulletBehavior _))
+        else if (retainedObject.GetComponent<RetainedEnemyBulletBehavior>())
         {
             _enemyBulletHolder.Add(retainedObject);
         }
@@ -93,12 +93,12 @@ public class DimentionManager
     public void RemoveDimentionHolder(GameObject removeObject)
     {
         //敵をEnemyHolderから削除
-        if (removeObject.TryGetComponent(out RetainedEnemyBehavior _))
+        if (removeObject.GetComponent<RetainedEnemyBehavior>())
         {
             _enemyHolder.Remove(removeObject);
         }
         //プレイヤー・敵の弾から削除
-        else if (removeObject.TryGetComponent(out RetainedEnemyBulletBehavior _))
+        else if (removeObject.GetComponent<RetainedEnemyBulletBehavior>())
         {
             _enemyBulletHolder.Remove(removeObject);
         }
@@ -163,9 +163,9 @@ public class DimentionManager
     {
         foreach (GameObject enemy in _enemyHolder)
         {
-            //EnemyStatus enemyStatus = new();
-            //EnemyController enemyController = enemy.GetComponent<EnemyController>();
-            
+            EnemyStatus enemyStatus = new();
+            EnemyTest enemyController = enemy.GetComponent<EnemyTest>();
+            enemyController.
         }
     }
 

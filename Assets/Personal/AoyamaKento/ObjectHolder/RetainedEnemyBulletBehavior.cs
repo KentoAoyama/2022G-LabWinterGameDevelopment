@@ -3,5 +3,5 @@
 /// </summary>
 public abstract class RetainedEnemyBulletBehavior : RetainedHolderBehavior
 {
-    protected abstract int Id { get; }
+    public abstract int Id { get; }
 }
