@@ -38,6 +38,7 @@ public class PlayerController3D : MonoBehaviour
         _stateController.Update();
         _dimensionChanger.Update();
         _attacker.Update();
+        _actioner.Update();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -49,6 +50,7 @@ public class PlayerController3D : MonoBehaviour
         if (other.tag == _actioner.ActionableAreaTagName &&
             other.TryGetComponent(out IGimmickEvent gimmick))
         {
+            // ギミック稼働可能にする
             _actioner.OnActionEnter(gimmick);
         }
     }
@@ -56,12 +58,13 @@ public class PlayerController3D : MonoBehaviour
     {
         if (other.tag == _dimensionChanger.ChangeableAreaTagName)
         {
-            //ディメンションチェンジ不可にする
+            // ディメンションチェンジ不可にする
             _dimensionChanger.CantChangeDimension();
         }
         if (other.tag == _actioner.ActionableAreaTagName &&
             other.TryGetComponent(out IGimmickEvent gimmick))
         {
+            // ギミック稼働不可にする
             _actioner.OnActionExit(gimmick);
         }
     }
@@ -73,14 +76,6 @@ public class PlayerController3D : MonoBehaviour
 
     #region Public Methods
     /// <summary>
-    /// ギミックの開始処理。
-    /// ギミックから呼び出される。
-    /// </summary>
-    public void StartGimmick()
-    {
-        _actioner.StartAction();
-    }
-    /// <summary>
     /// ダメージ処理。
     /// 敵から呼び出される。
     /// </summary>
@@ -91,7 +86,6 @@ public class PlayerController3D : MonoBehaviour
             knockBackPower, knockBackTime);
     }
     #endregion
-
 
     #region Animation Event
     // アニメーションイベントから呼び出す想定で作成されたメソッド群
@@ -120,7 +114,7 @@ public class PlayerController3D : MonoBehaviour
     /// </summary>
     public void EndAction()
     {
-        _actioner.EndAction();
+        _actioner.EndActionAnimation();
     }
     #endregion
 
@@ -164,13 +158,9 @@ public class PlayerController3D : MonoBehaviour
     {
         _attacker.EndAttack();
     }
-    public void TestStartGimmick()
-    {
-        _actioner.StartAction();
-    }
     public void TestEndGimmick()
     {
-        _actioner.EndAction();
+        _actioner.EndActionAnimation();
     }
     #endregion
 }
