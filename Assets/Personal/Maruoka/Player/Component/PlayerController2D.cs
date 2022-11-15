@@ -38,6 +38,7 @@ public class PlayerController2D : MonoBehaviour
         _stateController.Update();
         _dimensionChanger.Update();
         _attacker.Update();
+        _actioner.Update();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -77,21 +78,13 @@ public class PlayerController2D : MonoBehaviour
     // 外部から（他モジュールから）呼ばれることを想定して作成されたソッド群
     /// <summary>
     /// ダメージ処理 : <br/>
-    /// 「敵から呼び出されるを想定したメソッド」
+    /// 敵から呼び出されることを想定したメソッド
     /// </summary>
     public void OnDamage(int value, Vector3 knockBackDir,
         float knockBackPower, int knockBackTime)
     {
         _damage.OnDamage(value, knockBackDir,
             knockBackPower, knockBackTime);
-    }
-    /// <summary>
-    /// アクション開始処理 : <br/>
-    /// 「ギミックから呼び出されるを想定したメソッド」
-    /// </summary>
-    public void StartAction()
-    {
-        _actioner.StartAction();
     }
     #endregion
 
@@ -120,7 +113,7 @@ public class PlayerController2D : MonoBehaviour
     /// </summary>
     public void EndAction()
     {
-        _actioner.EndAction();
+        _actioner.EndActionAnimation();
     }
     #endregion
 
@@ -164,13 +157,9 @@ public class PlayerController2D : MonoBehaviour
     {
         _attacker.EndAttack();
     }
-    public void TestStartAction()
-    {
-        _actioner.StartAction();
-    }
     public void TestEndAction()
     {
-        _actioner.EndAction();
+        _actioner.EndActionAnimation();
     }
     #endregion
 }
