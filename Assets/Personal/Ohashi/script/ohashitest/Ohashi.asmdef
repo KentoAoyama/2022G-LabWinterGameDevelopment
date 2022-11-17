@@ -1,9 +1,7 @@
 {
     "name": "Ohashi",
     "rootNamespace": "",
-    "references": [
-        "GUID:e392069a339914740a943bf96cd8ed2f"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

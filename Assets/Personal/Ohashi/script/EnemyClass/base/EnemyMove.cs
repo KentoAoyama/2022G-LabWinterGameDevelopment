@@ -9,8 +9,10 @@ public abstract class EnemyMove
     [SerializeField, Tooltip("攻撃できるかどうかの距離")] 
     private float _attackDistance = 3.0f;
 
-    protected Transform _playerTransform;
+    protected GameObject _player;
     protected Transform _transform = default;
+
+    public float AttackDistance => _attackDistance;
     /// <summary>
     /// ディメンション別のエネミーの移動処理
     /// </summary>
@@ -19,17 +21,17 @@ public abstract class EnemyMove
     /// <summary>
     /// 参照用メソッド
     /// </summary>
-    public void SetBase(Transform enemyTransform, Transform playerTransform)
+    public void SetBase(Transform enemyTransform, GameObject player)
     {
         _transform = enemyTransform;
-        _playerTransform = playerTransform;
+        _player = player;
     }
     /// <summary>
     /// playerとenemyのX軸の二点間の差で距離を測る
     /// </summary>
     public bool PlayerSearch(float distance)
     {
-        float playerDistans = _playerTransform.position.x - _transform.position.x;
+        float playerDistans = _player.transform.position.x - _transform.position.x;
         //Debug.Log(playerDistans);
         if(distance > playerDistans && -distance < playerDistans)
         {

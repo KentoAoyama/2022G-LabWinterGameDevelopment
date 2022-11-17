@@ -9,7 +9,7 @@ public class EnemyMove3D : EnemyMove
 
     protected override void RbMove()
     {
-        Vector3 target = (_playerTransform.position - _transform.position).normalized;
+        Vector3 target = (_player.transform.position - _transform.position).normalized;
         _rb.velocity = new Vector3(target.x * _moveSpeed, 0, 0);
     }
     /// <summary>

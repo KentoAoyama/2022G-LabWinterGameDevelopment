@@ -389,7 +389,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e889a67eaa6e1504e8d4fd6dd1c5f0ec, type: 2}
+  - {fileID: 2100000, guid: 29b06e351a693784b9b3e40cd3215f79, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -446,7 +446,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1c707b3e298784898b25772c4c8b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTransform: {fileID: 1099935824}
+  _enemyMove:
+    _moveDistance: 5
+    _moveSpeed: 3
+    _attackDistance: 3
+  _enemyId: 0
 --- !u!54 &536040728
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -594,6 +598,7 @@ GameObject:
   - component: {fileID: 1099935822}
   - component: {fileID: 1099935821}
   - component: {fileID: 1099935825}
+  - component: {fileID: 1099935826}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -634,7 +639,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c9a3b2171ff58b747bf39dbe9be8bac5, type: 2}
+  - {fileID: 2100000, guid: 7395ea635b484bc419742c316b4bb0ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -695,3 +700,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1099935826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099935820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f619c3fc9deab04fb9c4da4e5549f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
