@@ -38,7 +38,7 @@ public class DimentionManager
     /// <summary>
     /// シーン遷移時に座標を保管しておくための変数
     /// </summary>
-    private Transform _playerPosition;
+    private Vector3 _playerPosition;
 
     /// <summary>
     /// シーン遷移時に座標を保管しておくための変数
@@ -134,7 +134,7 @@ public class DimentionManager
     /// <param name="finishInterval">シーン遷移後の演出にかける時間</param>
     public IEnumerator DimentionChangeFinish(DimentionPrefabs dimentionPrefabs, float finishInterval = 1.0f)
     {
-        //GameStateの3D2Dを判定
+        //GameStateの3D2Dを判定してStateを変更
         if (_beforeState == GameStateManager.InGameState.Game2D)
         {
             GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.Game3D);
@@ -143,6 +143,8 @@ public class DimentionManager
         {
             GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.Game2D);
         }
+        //オブジェクトを前のシーンのように配置
+        DimentionChange(dimentionPrefabs);
         //遷移してすぐポーズを実行
         PauseManager.Instance.OnPause();
 
@@ -150,7 +152,6 @@ public class DimentionManager
 
         //演出終了後ポーズを解除
         PauseManager.Instance.OnResume();
-
         Debug.Log("DimentionChange終了");
     }
     #endregion
@@ -164,7 +165,7 @@ public class DimentionManager
     private void SaveStatus()
     {
         //Playerの座標を保存
-        _playerPosition = ObjectHolderManager.Instance.PlayerHolder.transform;
+        _playerPosition = ObjectHolderManager.Instance.PlayerHolder.transform.position;
         SaveEnemyStatus();
         SaveEnemyBulletStatus();
     }
@@ -174,14 +175,19 @@ public class DimentionManager
     /// </summary>
     private void SaveEnemyStatus() 
     {
+        if (_enemyHolder == null)
+        {
+            return;
+        }
+
         foreach (GameObject enemy in _enemyHolder)
         {
             //敵のステータスをListに格納していく
             EnemyStatus enemyStatus = new();
-            RetainedEnemyBehavior enemyController = enemy.GetComponent<RetainedEnemyBehavior>();
-            enemyStatus.Id = enemyController.Id;
-            enemyStatus.Health = enemyController.Health;
-            enemyStatus.Position = enemy.transform;
+            RetainedEnemyBehavior enemyBehavior = enemy.GetComponent<RetainedEnemyBehavior>();
+            enemyStatus.Id = enemyBehavior.Id;
+            enemyStatus.Health = enemyBehavior.Health;
+            enemyStatus.Position = enemy.transform.position;
 
             _enemyStatuses.Add(enemyStatus);
         }
@@ -192,28 +198,70 @@ public class DimentionManager
     /// </summary>
     private void SaveEnemyBulletStatus()
     {
+        if (_enemyHolder == null)
+        {
+            return;
+        }
+
         foreach (GameObject enemyBullet in _enemyBulletHolder)
         {
             //敵の弾のステータスをListに格納していく
             EnemyBulletStatus enemyBulletStatus = new();
-            RetainedEnemyBulletBehavior enemyBulletController = enemyBullet.GetComponent<RetainedEnemyBulletBehavior>();
-            enemyBulletStatus.Id = enemyBulletController.Id;
-            enemyBulletStatus.Position = enemyBullet.transform;
+            RetainedEnemyBulletBehavior enemyBulletBehavior = enemyBullet.GetComponent<RetainedEnemyBulletBehavior>();
+            enemyBulletStatus.Id = enemyBulletBehavior.Id;
+            enemyBulletStatus.Position = enemyBullet.transform.position;
 
             _enemyBulletStatuses.Add(enemyBulletStatus);
         }
     }
 
     /// <summary>
-    /// DimentionChange後にオブジェクトを前のシーンの位置に出す処理
+    /// シーンの遷移後にオブジェクトを前の状態にする処理
     /// </summary>
-    private void DimenitonChangeEnemy(DimentionPrefabs dimentionPrefabs)
+    private void DimentionChange(DimentionPrefabs dimentionPrefabs)
     {
+        var player = Object.Instantiate(dimentionPrefabs.Player);
+        player.transform.position = _playerPosition;
+        DimentionChangeEnemy(dimentionPrefabs);
+        DimentionChangeEnemyBullet(dimentionPrefabs);
+    }
+
+    /// <summary>
+    /// DimentionChange後に敵に行う処理
+    /// </summary>
+    private void DimentionChangeEnemy(DimentionPrefabs dimentionPrefabs)
+    {
+        if (_enemyStatuses == null)
+        {
+            return;
+        }
+
         foreach (EnemyStatus enemyStatus in _enemyStatuses)
         {
+            //Idごとの敵を生成し、Hpと座標を変更する
             var enemy = Object.Instantiate(dimentionPrefabs.Enemy[enemyStatus.Id]);
-            
-        }       
+            enemy.GetComponent<RetainedEnemyBehavior>().Health = enemyStatus.Health;
+            enemy.transform.position = enemyStatus.Position;
+        }
+        _enemyStatuses.Clear();
+    }
+
+    /// <summary>
+    /// DimentionChange後に敵の弾に行う処理
+    /// </summary>
+    private void DimentionChangeEnemyBullet(DimentionPrefabs dimentionPrefabs)
+    {
+        if (_enemyBulletStatuses == null)
+        {
+            return;
+        }
+
+        foreach (EnemyBulletStatus enemyBulletStatus in _enemyBulletStatuses)
+        {
+            var enemyBullet = Object.Instantiate(dimentionPrefabs.EnemyBullet[enemyBulletStatus.Id]);
+            enemyBullet.transform.position = enemyBulletStatus.Position;
+        }
+        _enemyBulletStatuses.Clear();
     }
     #endregion
 }

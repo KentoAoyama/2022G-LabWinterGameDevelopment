@@ -18,7 +18,7 @@ public struct EnemyStatus
 {
     public int Id;
     public int Health;
-    public Transform Position;
+    public Vector3 Position;
 }
 
 /// <summary>
@@ -27,5 +27,5 @@ public struct EnemyStatus
 public struct EnemyBulletStatus
 {
     public int Id;
-    public Transform Position;
+    public Vector3 Position;
 }

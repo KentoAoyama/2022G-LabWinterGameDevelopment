@@ -36,6 +36,10 @@ public class DimentionController : MonoBehaviour
                 StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_dimentionObjects3d, _changeSceneTime));
             }
         }
+        else if (GameStateManager.Instance.GameState == GameStateManager.InGameState.Start)
+        {
+            GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.Game2D);
+        }
     }
 
     /// <summary>
