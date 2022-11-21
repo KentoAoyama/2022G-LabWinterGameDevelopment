@@ -2,7 +2,8 @@
     "name": "Watanabe",
     "rootNamespace": "",
     "references": [
-        "GUID:7e7e2620ad2c3f94b8a0e20609a11b8d"
+        "GUID:7e7e2620ad2c3f94b8a0e20609a11b8d",
+        "GUID:0a502f61f56802c4b8cb32906c6cc07a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
