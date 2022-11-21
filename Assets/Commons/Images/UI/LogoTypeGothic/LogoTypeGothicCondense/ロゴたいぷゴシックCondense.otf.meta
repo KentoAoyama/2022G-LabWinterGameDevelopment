@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 7ea206543d7d90c45b19ce465034e110
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - 07LogoTypeGothic-Condense
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8d7e41e7330def84d8babab428aa10f8, type: 3}
+  - {fileID: 12800000, guid: b23dab52e864d1f41bb29617ac7c4af5, type: 3}
+  - {fileID: 12800000, guid: 33f08140d104825438f3f9a58621d814, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
