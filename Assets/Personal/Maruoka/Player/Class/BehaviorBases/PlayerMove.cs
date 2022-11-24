@@ -24,12 +24,23 @@ public abstract class PlayerMove
         }
     }
 
-    public virtual void Update()
+    public virtual void Update(PlayerState _nowState)
     {
-        if (_isMove)
+        if (IsRun(_nowState))
         {
             Move();
         }
+    }
+
+    protected bool IsRun(PlayerState _nowState)
+    {
+        // èÁí∑Ç»ÇÃÇ≈Ç¢Ç¬Ç©èCê≥Ç∑ÇÈÅB
+        return _isMove =
+            _nowState == PlayerState.IDLE ||
+            _nowState == PlayerState.MOVE ||
+            _nowState == PlayerState.JUMP_2D ||
+            _nowState == PlayerState.FALL ||
+            _nowState == PlayerState.RISE;
     }
 
     protected abstract void Move();
