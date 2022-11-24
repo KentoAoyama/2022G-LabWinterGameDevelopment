@@ -4,9 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerAttack2D : PlayerAttack
 {
-    /// <summary>
-    /// UŒ‚ˆ—
-    /// </summary>
+    /// <summary> UŒ‚ˆ— </summary>
     public override void AttackProcess()
     {
         // UŒ‚‘ÎÛ‚ğæ“¾‚·‚é

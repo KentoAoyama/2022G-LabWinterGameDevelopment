@@ -36,16 +36,30 @@ public class PlayerAction
         _gimmickHolder = null;
         _isReadyAction = false;
     }
-    public void Update()
+    public void Update(PlayerState state)
     {
         // 入力が発生し、アクション可能かつ現在アクション中で無ければ
         // ギミックアクションを実行する。
-        if (Input_InputManager.Instance.GetInputDown(_actionButtonName) &&
-            _isReadyAction && !_isActionNow)
+        if (IsRun(state))
         {
             StartAction(_gimmickHolder);
         }
     }
+    private bool IsRun(PlayerState state)
+    {
+        bool result = false;
+
+        result =
+            Input_InputManager.Instance.
+            GetInputDown(_actionButtonName) &&
+            state == PlayerState.IDLE ||
+            state == PlayerState.MOVE ||
+            state == PlayerState.JUMP_2D;
+
+        return result;
+    }
+
+
     private void StartAction(IGimmickEvent gimmick)
     {
         Debug.Log("ギミック始動");

@@ -17,6 +17,23 @@ public class PlayerController2D : MonoBehaviour
     private PlayerStateController2D _stateController = default;
     [SerializeField]
     private PlayerDimensionChanger _dimensionChanger = default;
+
+    [SerializeField]
+    private Color _idleColor = Color.white;
+    [SerializeField]
+    private Color _moveColor = Color.white;
+    [SerializeField]
+    private Color _riseColor = Color.white;
+    [SerializeField]
+    private Color _fallColor = Color.white;
+    [SerializeField]
+    private Color _jumpColor = Color.white;
+    [SerializeField]
+    private Color _attackColor = Color.white;
+    [SerializeField]
+    private Color _actionColor = Color.white;
+    [SerializeField]
+    private Color _damageColor = Color.white;
     #endregion
 
     #region Unity Methods
@@ -33,12 +50,13 @@ public class PlayerController2D : MonoBehaviour
     }
     private void Update()
     {
-        _mover.IsMove = !_damage.IsDamageNow;
-        _mover.Update();
         _stateController.Update();
-        _dimensionChanger.Update();
-        _attacker.Update();
-        _actioner.Update();
+        _mover.Update(_stateController.NowState);
+        _attacker.Update(_stateController.NowState);
+        _actioner.Update(_stateController.NowState);
+        _dimensionChanger.Update(_stateController.NowState);
+
+        TestStateColorChange();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -160,6 +178,38 @@ public class PlayerController2D : MonoBehaviour
     public void TestEndAction()
     {
         _actioner.EndActionAnimation();
+    }
+
+    private void TestStateColorChange()
+    {
+        var _sprite = GetComponent<SpriteRenderer>();
+        switch (_stateController.NowState)
+        {
+            case PlayerState.IDLE:
+                _sprite.color = _idleColor;
+                break;
+            case PlayerState.MOVE:
+                _sprite.color = _moveColor;
+                break;
+            case PlayerState.DAMAGE:
+                _sprite.color = _damageColor;
+                break;
+            case PlayerState.ACTION:
+                _sprite.color = _actionColor;
+                break;
+            case PlayerState.RISE:
+                _sprite.color = _riseColor;
+                break;
+            case PlayerState.FALL:
+                _sprite.color = _fallColor;
+                break;
+            case PlayerState.ATTACK:
+                _sprite.color = _attackColor;
+                break;
+            case PlayerState.JUMP_2D:
+                _sprite.color = _jumpColor;
+                break;
+        }
     }
     #endregion
 }

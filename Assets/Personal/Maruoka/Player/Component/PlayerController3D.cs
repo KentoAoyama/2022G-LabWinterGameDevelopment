@@ -33,12 +33,11 @@ public class PlayerController3D : MonoBehaviour
     }
     private void Update()
     {
-        _mover.IsMove = !_damage.IsDamageNow;
-        _mover.Update();
         _stateController.Update();
-        _dimensionChanger.Update();
-        _attacker.Update();
-        _actioner.Update();
+        _mover.Update(_stateController.NowState);
+        _dimensionChanger.Update(_stateController.NowState);
+        _attacker.Update(_stateController.NowState);
+        _actioner.Update(_stateController.NowState);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -79,10 +78,10 @@ public class PlayerController3D : MonoBehaviour
     /// ダメージ処理。
     /// 敵から呼び出される。
     /// </summary>
-    public void OnDamage(int value,Vector3 knockBackDir,
-        float knockBackPower,int knockBackTime)
+    public void OnDamage(int value, Vector3 knockBackDir,
+        float knockBackPower, int knockBackTime)
     {
-        _damage.OnDamage(value, knockBackDir, 
+        _damage.OnDamage(value, knockBackDir,
             knockBackPower, knockBackTime);
     }
     #endregion
