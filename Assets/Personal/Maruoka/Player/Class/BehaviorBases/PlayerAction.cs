@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -14,7 +15,7 @@ public class PlayerAction
     private string _actionableAreaTagName = default;
 
 
-    private IGimmickEvent _gimmickHolder = null;
+    private List<IGimmickEvent> _gimmickHolder = new();
 
     public bool IsReadyAction => _isReadyAction;
     public string ActionableAreaTagName => _actionableAreaTagName;
@@ -25,7 +26,7 @@ public class PlayerAction
     /// </summary>
     public void OnActionEnter(IGimmickEvent gimmick)
     {
-        _gimmickHolder = gimmick;
+        _gimmickHolder.Add(gimmick);
         _isReadyAction = true;
     }
     /// <summary>
@@ -33,7 +34,7 @@ public class PlayerAction
     /// </summary>
     public void OnActionExit(IGimmickEvent gimmick)
     {
-        _gimmickHolder = null;
+        _gimmickHolder.Remove(gimmick);
         _isReadyAction = false;
     }
     public void Update(PlayerState state)
@@ -42,7 +43,7 @@ public class PlayerAction
         // ギミックアクションを実行する。
         if (IsRun(state))
         {
-            StartAction(_gimmickHolder);
+            StartAction();
         }
     }
     private bool IsRun(PlayerState state)
@@ -50,25 +51,33 @@ public class PlayerAction
         bool result = false;
 
         result =
-            Input_InputManager.Instance.
+            Input_InputManager.Instance.       // 入力があり
             GetInputDown(_actionButtonName) &&
-            state == PlayerState.IDLE ||
-            state == PlayerState.MOVE ||
-            state == PlayerState.JUMP_2D;
+            _isReadyAction &&                  // 実行可能な状態であり
+            state == PlayerState.IDLE ||       // 実行可能なステートであればtrueを返す。
+            state == PlayerState.MOVE;
 
         return result;
     }
 
 
-    private void StartAction(IGimmickEvent gimmick)
+    private void StartAction()
     {
         Debug.Log("ギミック始動");
         // ギミックに実装されたメソッドを実行し
         // アニメーションを再生する必要があればステートを変更する
-        if (_gimmickHolder != null)
+        if (_gimmickHolder.Count != 0)
         {
-            gimmick.GimmickEvent();
-            _isActionNow = gimmick.IsPlayAnimation;
+            for (int i = 0; i < _gimmickHolder.Count; i++)
+            {
+                _gimmickHolder[i].GimmickEvent();
+                if (_gimmickHolder[i].IsPlayAnimation)
+                {
+                    // ホールド中のギミックがアニメーションを再生するタイプであれば
+                    // ステートをアクションに変更する。
+                    _isActionNow = true; 
+                }
+            }
         }
         else
         {

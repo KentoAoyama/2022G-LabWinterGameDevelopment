@@ -27,6 +27,7 @@ public class PlayerDimensionChanger
         bool result = false;
 
         result =
+            _isReadyDimensionChange &&
             Input_InputManager.Instance.
             GetInputDown(_changeButton) &&
             state == PlayerState.IDLE ||
@@ -42,6 +43,8 @@ public class PlayerDimensionChanger
 
     /// <summary>
     /// ディメンションチェンジを可能にする
+    /// ディメンションチェンジ可能なエリアに侵入した時に
+    /// 実行される想定で作成したメソッド。
     /// </summary>
     public void CanChangeDimension()
     {
@@ -49,6 +52,8 @@ public class PlayerDimensionChanger
     }
     /// <summary>
     /// ディメンションチェンジを不可にする
+    /// ディメンションチェンジ可能なエリアから退去した時に
+    /// 実行される想定で作成したメソッド。
     /// </summary>
     public void CantChangeDimension()
     {
