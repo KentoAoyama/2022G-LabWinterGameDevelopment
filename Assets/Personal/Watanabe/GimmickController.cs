@@ -28,6 +28,9 @@ public abstract class GimmickController : MonoBehaviour, IGimmickEvent
     /// <summary> レバーのオブジェクト </summary>
     public GameObject Lever { get; set; }
 
+    //IGimmickEvent -> IsPlayAnimation { get; }
+    public bool IsPlayAnimation => throw new System.NotImplementedException();
+
     private void Update()
     {
         //焚火に接触している
@@ -82,6 +85,7 @@ public abstract class GimmickController : MonoBehaviour, IGimmickEvent
         Debug.Log("レバーによるイベント実行中...");
     }
 
+    //IGimmickEvent -> GimmickEvent
     void IGimmickEvent.GimmickEvent()
     {
         throw new System.NotImplementedException();
