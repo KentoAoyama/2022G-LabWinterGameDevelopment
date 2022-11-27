@@ -82,8 +82,8 @@ public abstract class GimmickController : MonoBehaviour//, IGimmickEvent
         Debug.Log("レバーによるイベント実行中...");
     }
 
-    void IGimmickEvent.GimmickEvent()
-    {
-        throw new System.NotImplementedException();
-    }
+    //void IGimmickEvent.GimmickEvent()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 }
