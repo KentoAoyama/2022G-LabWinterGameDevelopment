@@ -1,4 +1,8 @@
 using UnityEngine;
+using DG.Tweening;
+using System.Collections;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// MonoBehaviorを継承した値などを定義するクラス
@@ -9,8 +13,12 @@ public class DimentionController : MonoBehaviour
 
     [Tooltip("遷移するシーン")]
     [SceneName, SerializeField] private string _changeSceneName;
+
     [Tooltip("遷移にかかる時間")]
     [SerializeField] private float _changeSceneTime = 1.0f;
+
+    [Tooltip("変化させるGlovalVolume")]
+    [SerializeField] private Volume _glovalVolume;
 
     [Header("遷移時に出すプレハブ")]
 
@@ -22,18 +30,26 @@ public class DimentionController : MonoBehaviour
     [Tooltip("3Dのプレハブをまとめて持つ構造体")]
     [SerializeField] private DimentionPrefabs _dimentionObjects3d;
 
+    /// <summary>
+    /// GlovalVolumeのweightを変化させる値
+    /// </summary>
+    private const float WEIGHT_VALUE = 1.0f;
+
 
     private void Start()
     {
         if (GameStateManager.Instance.GameState == GameStateManager.InGameState.DimentionChange)
         {
-            if(DimentionManager.Instance.BeforeState == GameStateManager.InGameState.Game3D)
+            //weightの値を1.0にしておく
+            _glovalVolume.weight = WEIGHT_VALUE;
+
+            if (DimentionManager.Instance.BeforeState == GameStateManager.InGameState.Game3D)
             {
-                StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_dimentionObjects2d, _changeSceneTime));
+                StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_dimentionObjects2d, FadeDimention(0f)));
             }
             else if (DimentionManager.Instance.BeforeState == GameStateManager.InGameState.Game2D)
             {
-                StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_dimentionObjects3d, _changeSceneTime));
+                StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_dimentionObjects3d, FadeDimention(0f)));
             }
         }
         else if (GameStateManager.Instance.GameState == GameStateManager.InGameState.Start)
@@ -47,6 +63,19 @@ public class DimentionController : MonoBehaviour
     /// </summary>
     public void DimentionChange()
     {
-        StartCoroutine(DimentionManager.Instance.DimentionChangeStart(_changeSceneName, _changeSceneTime));        
+        if (GameStateManager.Instance.GameState != GameStateManager.InGameState.DimentionChange)
+        {
+            StartCoroutine(DimentionManager.Instance.DimentionChangeStart(_changeSceneName, FadeDimention(WEIGHT_VALUE)));
+        }
+    }
+
+    private IEnumerator FadeDimention(float _changeValue)
+    {
+        yield return DOTween.To(
+            () => _glovalVolume.weight,
+            (x) => _glovalVolume.weight = x, 
+            _changeValue, 
+            _changeSceneTime)
+            .WaitForCompletion();       
     }
 }
