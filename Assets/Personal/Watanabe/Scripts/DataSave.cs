@@ -13,25 +13,36 @@ public class DataSave : MonoBehaviour
 
     [SerializeField] GimmickController _gimmick;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// ファイルへの保存(出力)
+    /// </summary>
     public void Save()
     {
+        StreamWriter writer;
+        //string json = JsonUtility.ToJson();
+
         //このタイミングでデータセーブを行う
         if (_gimmick.AreaCheck == true)
         {
+            writer = new StreamWriter(Application.dataPath + "/savedata.json", false);
+            //writer.Write(json);
+            writer.Flush();
+            writer.Close();
             Debug.Log("ギミックをクリアしたため、データセーブを行います");
             _gimmick.AreaCheck = false;
         }
+    }
+
+    /// <summary>
+    /// ファイルからデータを読み込む
+    /// </summary>
+    public void Load()
+    {
+        string data = "";
+        StreamReader reader;
+
+        reader = new StreamReader(Application.dataPath + "/savedata.json");
+        data = reader.ReadToEnd();
+        reader.Close();
     }
 }
