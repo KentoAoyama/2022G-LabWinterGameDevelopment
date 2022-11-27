@@ -14,14 +14,26 @@ public class PlayerDimensionChanger
     protected bool _isReadyDimensionChange = false;
     public string ChangeableAreaTagName => _changeableAreaTagName;
 
-    public void Update()
+    public void Update(PlayerState state)
     {
-        if (Input_InputManager.Instance.GetInputDown(_changeButton)
-            && _isReadyDimensionChange)
+        if (IsRun(state))
         {
             Debug.Log("ディメンションを変更します");
             DimensionChange();
         }
+    }
+    private bool IsRun(PlayerState state)
+    {
+        bool result = false;
+
+        result =
+            _isReadyDimensionChange &&
+            Input_InputManager.Instance.
+            GetInputDown(_changeButton) &&
+            state == PlayerState.IDLE ||
+            state == PlayerState.MOVE;
+
+        return result;
     }
     private void DimensionChange()
     {
@@ -31,6 +43,8 @@ public class PlayerDimensionChanger
 
     /// <summary>
     /// ディメンションチェンジを可能にする
+    /// ディメンションチェンジ可能なエリアに侵入した時に
+    /// 実行される想定で作成したメソッド。
     /// </summary>
     public void CanChangeDimension()
     {
@@ -38,6 +52,8 @@ public class PlayerDimensionChanger
     }
     /// <summary>
     /// ディメンションチェンジを不可にする
+    /// ディメンションチェンジ可能なエリアから退去した時に
+    /// 実行される想定で作成したメソッド。
     /// </summary>
     public void CantChangeDimension()
     {

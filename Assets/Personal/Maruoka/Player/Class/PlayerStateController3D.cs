@@ -97,7 +97,6 @@ public class PlayerStateController3D : PlayerStateController
     }
     private void StateUpdateAction()
     {
-        // –¢‰ğŒˆ : IsActionNow‚Ì•ÏX/XV
         if (_playerAction.IsActionNow)
         {
             _nowState = PlayerState.ACTION;

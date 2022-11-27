@@ -36,14 +36,25 @@ public abstract class PlayerAttack
         _transform = transform;
         _stateController = stateController;
     }
-    public void Update()
+    public void Update(PlayerState state)
     {
         // UŒ‚‰Â”\ó‘Ô‚©‚ÂAUŒ‚“ü—Í‚ª”­¶‚µ‚½UŒ‚‚ğŠJn‚·‚éB
-        if (_isReadyAttack &&
-            Input_InputManager.Instance.GetInputDown(_fireButtonName))
+        if (IsRun(state))
         {
             StartAttack();
         }
+    }
+    private bool IsRun(PlayerState state)
+    {
+        bool result = false;
+
+        result =
+            Input_InputManager.Instance.
+            GetInputDown(_fireButtonName) &&
+            state == PlayerState.IDLE ||
+            state == PlayerState.MOVE;
+
+        return result;
     }
     public abstract void AttackProcess();
 

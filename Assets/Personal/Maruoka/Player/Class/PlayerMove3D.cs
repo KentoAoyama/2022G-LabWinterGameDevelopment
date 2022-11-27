@@ -32,9 +32,12 @@ public class PlayerMove3D : PlayerMove
                 0.0f
                 );
     }
-    public override void Update()
+    public override void Update(PlayerState state)
     {
-        base.Update();
-        _railControler.Update();
+        if (IsRun(state))
+        {
+            Move();
+            _railControler.Update();
+        }
     }
 }
