@@ -5,7 +5,7 @@ using UnityEngine;
 /// 通知が入ったらGimmickが持っているイベントを実行する
 /// イベントが実行された時セーブを実行する(DataSave.csで実行)?
 /// </summary>
-public abstract class GimmickController : MonoBehaviour, IGimmickEvent
+public abstract class GimmickController : MonoBehaviour//, IGimmickEvent
 {
     [Header("体温関連")]
     [Tooltip("テスト用の体温")]
