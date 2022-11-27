@@ -272,11 +272,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-<<<<<<< HEAD
-    spriteID: 2e495c820a3155944a03c91070af7d51
-=======
-    spriteID: f8d42ffc4a373d541823fd0a17891d23
->>>>>>> master
+    spriteID: edb837a5af0512a44bc64614f1d531d8
     layerID: 0
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
@@ -286,11 +282,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 0
-<<<<<<< HEAD
-    spriteID: 474669fda200b6d46b3dc15bb02ff24d
-=======
-    spriteID: 67257e696ff84a64fbd944dd6c0e0791
->>>>>>> master
+    spriteID: e7c0e10643d3de64d8330621371e9c26
     layerID: 1107524059
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
@@ -330,11 +322,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 0
     parentIndex: 1
-<<<<<<< HEAD
-    spriteID: 0bdee101e5f30554597bd66a9b5ea466
-=======
-    spriteID: c546a76158592304d8bfe9ba675e8933
->>>>>>> master
+    spriteID: b9815c8ebf9a1394bb613f06488ba165
     layerID: 1891629285
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
@@ -344,11 +332,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 0
     parentIndex: 1
-<<<<<<< HEAD
-    spriteID: 680511b49009e11408fc9bae936f8c19
-=======
-    spriteID: eefd04e25ef587e49890524a570e3a44
->>>>>>> master
+    spriteID: da74e7136b2c30b4994e129d70d02def
     layerID: 1441486835
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
@@ -358,11 +342,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 0
     parentIndex: 1
-<<<<<<< HEAD
-    spriteID: 887f3ae667ac57e49aacefeb92be66b2
-=======
-    spriteID: b7ab4192d926866409a9a44a595a4553
->>>>>>> master
+    spriteID: 924529f4e9829834882ed8fa0a7ee61c
     layerID: -1654555643
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
@@ -412,11 +392,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 0
     parentIndex: -1
-<<<<<<< HEAD
-    spriteID: bb8ecbc7048fe5944b64bb1cc41b120e
-=======
-    spriteID: 7494597a896665f48835cfbc45cef7a4
->>>>>>> master
+    spriteID: 0a3d865a7bb6fe04fb73d78eea49c38e
     layerID: -793114951
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
