@@ -110,7 +110,7 @@ public class DimentionManager
     /// <param name="sceneName">遷移するシーンの名前</param>
     /// <param name="changeInterval">シーンの遷移にかける時間</param>
     /// <returns></returns>
-    public IEnumerator DimentionChangeStart(string sceneName, float changeInterval = 1.0f)
+    public IEnumerator DimentionChangeStart(string sceneName, IEnumerator fadeDimention)
     {
         Debug.Log("DimentionChangeスタート");
 
@@ -122,8 +122,8 @@ public class DimentionManager
         PauseManager.Instance.OnPause();
         //シーン遷移後の処理のためステートを変更
         GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.DimentionChange);
-
-        yield return new WaitForSeconds(changeInterval);
+        //遷移演出が終わるまで待機
+        yield return fadeDimention;
 
         SceneManager.LoadScene(sceneName);
     }
@@ -132,8 +132,15 @@ public class DimentionManager
     /// シーンの変更完了後の処理
     /// </summary>
     /// <param name="finishInterval">シーン遷移後の演出にかける時間</param>
-    public IEnumerator DimentionChangeFinish(DimentionPrefabs dimentionPrefabs, float finishInterval = 1.0f)
+    public IEnumerator DimentionChangeFinish(DimentionPrefabs dimentionPrefabs, IEnumerator fadeDimention)
     {
+        //遷移してすぐポーズを実行
+        PauseManager.Instance.OnPause();
+        //オブジェクトを前のシーンのように配置
+        DimentionChange(dimentionPrefabs);
+
+        yield return fadeDimention;
+
         //GameStateの3D2Dを判定してStateを変更
         if (_beforeState == GameStateManager.InGameState.Game2D)
         {
@@ -143,12 +150,6 @@ public class DimentionManager
         {
             GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.Game2D);
         }
-        //オブジェクトを前のシーンのように配置
-        DimentionChange(dimentionPrefabs);
-        //遷移してすぐポーズを実行
-        PauseManager.Instance.OnPause();
-
-        yield return new WaitForSeconds(finishInterval);
 
         //演出終了後ポーズを解除
         PauseManager.Instance.OnResume();
