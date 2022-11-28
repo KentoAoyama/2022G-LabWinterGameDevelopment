@@ -41,20 +41,21 @@ public class PlayerController2D : MonoBehaviour
     {
         var rb2D = GetComponent<Rigidbody2D>();
         var groundChecker = GetComponent<GroundCheck>();
-        _damage.Init(rb2D);
+        _damage.Init(rb2D,_stateController);
         _attacker.Init(transform, _stateController);
-        _mover.Init(rb2D, groundChecker);
+        _mover.Init(rb2D, groundChecker, _stateController);
         _stateController.Init(rb2D, _mover, _attacker,
             _actioner, _damage, groundChecker);
+        _actioner.Init(_stateController);
 
     }
     private void Update()
     {
         _stateController.Update();
-        _mover.Update(_stateController.NowState);
-        _attacker.Update(_stateController.NowState);
-        _actioner.Update(_stateController.NowState);
-        _dimensionChanger.Update(_stateController.NowState);
+        _mover.Update();
+        _attacker.Update();
+        _actioner.Update();
+        _dimensionChanger.Update();
 
         TestStateColorChange();
     }
@@ -183,7 +184,7 @@ public class PlayerController2D : MonoBehaviour
     private void TestStateColorChange()
     {
         var _sprite = GetComponent<SpriteRenderer>();
-        switch (_stateController.NowState)
+        switch (_stateController.CurrentState)
         {
             case PlayerState.IDLE:
                 _sprite.color = _idleColor;

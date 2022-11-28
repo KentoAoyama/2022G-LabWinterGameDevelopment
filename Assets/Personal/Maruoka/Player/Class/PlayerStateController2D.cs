@@ -40,6 +40,11 @@ public class PlayerStateController2D : PlayerStateController
         StateUpdateAction();
         StateUpdateDamage();
     }
+    public override void ResetState()
+    {
+        _playerAttack2D.IsAttackNow = false;
+        _playerAction.IsActionNow = false;
+    }
 
     private void FacingDirectionUpdate()
     {

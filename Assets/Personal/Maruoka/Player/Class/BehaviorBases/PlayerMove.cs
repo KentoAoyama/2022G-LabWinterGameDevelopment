@@ -7,6 +7,8 @@ public abstract class PlayerMove
     [SerializeField]
     private bool _isMove = true;
 
+    protected PlayerStateController _stateController = null;
+
     public bool IsMove
     {
         get => _isMove;
@@ -24,23 +26,26 @@ public abstract class PlayerMove
         }
     }
 
-    public virtual void Update(PlayerState _nowState)
+    protected void Init(PlayerStateController stateController)
     {
-        if (IsRun(_nowState))
+        _stateController = stateController;
+    }
+    public virtual void Update()
+    {
+        if (IsRun())
         {
             Move();
         }
     }
 
-    protected bool IsRun(PlayerState _nowState)
+    protected bool IsRun()
     {
-        // èÁí∑Ç»ÇÃÇ≈Ç¢Ç¬Ç©èCê≥Ç∑ÇÈÅB
         return _isMove =
-            _nowState == PlayerState.IDLE ||
-            _nowState == PlayerState.MOVE ||
-            _nowState == PlayerState.JUMP_2D ||
-            _nowState == PlayerState.FALL ||
-            _nowState == PlayerState.RISE;
+            _stateController.CurrentState == PlayerState.IDLE ||
+            _stateController.CurrentState == PlayerState.MOVE ||
+            _stateController.CurrentState == PlayerState.JUMP_2D ||
+            _stateController.CurrentState == PlayerState.FALL ||
+            _stateController.CurrentState == PlayerState.RISE;
     }
 
     protected abstract void Move();

@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -7,7 +6,7 @@ using UnityEngine;
 public abstract class PlayerDamage
 {
     public bool IsGodMode => _isGodMode;
-    public bool IsDamageNow => _isDamageNow;
+    public bool IsDamageNow { get => _isDamageNow; set => _isDamageNow = value; }
 
     [SerializeField]
     protected bool _isTest = false;
@@ -24,11 +23,16 @@ public abstract class PlayerDamage
 
     private bool _isDamageNow = false;
 
+    protected PlayerStateController _stateController = null;
 
+    protected void Init(PlayerStateController stateController)
+    {
+        _stateController = stateController;
+    }
     public virtual void OnDamage(int value,
         Vector3 knockBackDir, float knockBackPower,
         int knockBackTime)
-    { 
+    {
     }
 
     // 指定秒ノックバック状態にする。（指定時間はﾐﾘsecond）
@@ -36,6 +40,7 @@ public abstract class PlayerDamage
     protected async Task KnockBackStart(int sleepTime)
     {
         Debug.Log("ノックバック開始");
+        _stateController.CurrentState = PlayerState.DAMAGE;
         _isDamageNow = true;
         _isGodMode = true;
         await Task.Run(() => Thread.Sleep(sleepTime));
