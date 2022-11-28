@@ -27,7 +27,7 @@ public abstract class PlayerAttack
     public Vector3 FireSize => _fireSize;
     public Color GizmoColor => _gizmoColor;
     public bool IsDrawGizmo => _isDrawGizmo;
-    public bool IsAttackNow => _isAttackNow;
+    public bool IsAttackNow { get => _isAttackNow; set => _isAttackNow = value; }
 
 
     public void Init(Transform transform,
@@ -36,23 +36,23 @@ public abstract class PlayerAttack
         _transform = transform;
         _stateController = stateController;
     }
-    public void Update(PlayerState state)
+    public void Update()
     {
         // UŒ‚‰Â”\ó‘Ô‚©‚ÂAUŒ‚“ü—Í‚ª”­¶‚µ‚½UŒ‚‚ğŠJn‚·‚éB
-        if (IsRun(state))
+        if (IsRun())
         {
             StartAttack();
         }
     }
-    private bool IsRun(PlayerState state)
+    private bool IsRun()
     {
         bool result = false;
 
         result =
             Input_InputManager.Instance.
             GetInputDown(_fireButtonName) &&
-            state == PlayerState.IDLE ||
-            state == PlayerState.MOVE;
+            (_stateController.CurrentState == PlayerState.IDLE ||
+            _stateController.CurrentState == PlayerState.MOVE);
 
         return result;
     }
@@ -61,6 +61,7 @@ public abstract class PlayerAttack
     public void StartAttack()
     {
         _isAttackNow = true;
+        _stateController.CurrentState = PlayerState.ATTACK;
     }
     public void EndAttack()
     {

@@ -30,6 +30,8 @@ public class RailControl3D
     private bool _isStepNow = false;
     public bool IsStepNow => _isStepNow;
 
+    private PlayerStateController _stateController = null;
+
     public bool IsReadyStep
     {
         get => _isReadyStep;
@@ -52,13 +54,14 @@ public class RailControl3D
     /// </summary>
     private int _nowPos = 0;
 
-    public void Init(Transform transform)
+    public void Init(Transform transform, PlayerStateController stateController)
     {
         _transform = transform;
+        _stateController = stateController;
     }
     public void Update()
     {
-        if (_isReadyStep)
+        if (IsRun())
         {
             if (Input.GetButtonDown(_upStepButtonName))
             {
@@ -72,6 +75,7 @@ public class RailControl3D
     }
     private void MovementOrder(MovementDirection direction)
     {
+        _stateController.CurrentState = PlayerState.STEP_3D;
         if (direction == MovementDirection.MOVE_UP)
         {
             Debug.Log("uãv‚ÌƒŒ[ƒ‹‚ÖˆÚ“®‚µ‚Ü‚·");
@@ -111,12 +115,23 @@ public class RailControl3D
     {
         _isReadyStep = false;
         _isStepNow = true;
-        _transform.DOJump(targetPos, _jumpPower, numJumps: 1, _stepDuration).
-            OnComplete(() => 
+        _transform.DOJump(targetPos, _jumpPower, 1, _stepDuration).
+            OnComplete(() =>
             {
                 _isReadyStep = true;
                 _isStepNow = false;
             });
+    }
+    private bool IsRun()
+    {
+        bool result = false;
+
+        result =
+            _isReadyStep &&
+            _stateController.CurrentState == PlayerState.IDLE ||
+            _stateController.CurrentState == PlayerState.MOVE;
+
+        return result;
     }
 }
 public enum MovementDirection

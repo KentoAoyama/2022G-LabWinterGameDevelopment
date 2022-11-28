@@ -15,11 +15,13 @@ public class PlayerMove3D : PlayerMove
     public bool IsStepNow => _railControler.IsStepNow;
 
     public void Init(Rigidbody rb, Transform transform,
-        RailControl3D railControler)
+        RailControl3D railControler, PlayerStateController stateController)
     {
+        base.Init(stateController);
         _rb = rb;
         _railControler = railControler;
-        _railControler.Init(transform);
+        _stateController = stateController;
+        _railControler.Init(transform, stateController);
     }
 
     protected override void Move()
@@ -31,10 +33,14 @@ public class PlayerMove3D : PlayerMove
                 _rb.velocity.y,
                 0.0f
                 );
+        if (!Mathf.Approximately(_rb.velocity.x, 0f))
+        {
+            _stateController.CurrentState = PlayerState.MOVE;
+        }
     }
-    public override void Update(PlayerState state)
+    public override void Update()
     {
-        if (IsRun(state))
+        if (IsRun())
         {
             Move();
             _railControler.Update();

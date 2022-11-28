@@ -14,15 +14,22 @@ public class PlayerDimensionChanger
     protected bool _isReadyDimensionChange = false;
     public string ChangeableAreaTagName => _changeableAreaTagName;
 
-    public void Update(PlayerState state)
+    private PlayerStateController _stateController = null;
+
+    private void Init(PlayerStateController stateController)
     {
-        if (IsRun(state))
+        _stateController = stateController;
+    }
+
+    public void Update()
+    {
+        if (IsRun())
         {
             Debug.Log("ディメンションを変更します");
             DimensionChange();
         }
     }
-    private bool IsRun(PlayerState state)
+    private bool IsRun()
     {
         bool result = false;
 
@@ -30,8 +37,8 @@ public class PlayerDimensionChanger
             _isReadyDimensionChange &&
             Input_InputManager.Instance.
             GetInputDown(_changeButton) &&
-            state == PlayerState.IDLE ||
-            state == PlayerState.MOVE;
+            (_stateController.CurrentState == PlayerState.IDLE ||
+            _stateController.CurrentState == PlayerState.MOVE);
 
         return result;
     }

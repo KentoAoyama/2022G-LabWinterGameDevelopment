@@ -7,12 +7,13 @@ public abstract class PlayerStateController
     /// <summary> プレイヤーが現在向いている方向 </summary>
     public FacingDirection FacingDirection { get; protected set; }
     /// <summary> 現在のステート </summary>
-    public PlayerState NowState => _nowState;
+    public PlayerState CurrentState { get => _nowState; set => _nowState = value; }
     [SerializeField]
     protected PlayerState _nowState;
 
     /// <summary> 更新処理 </summary>
     public abstract void Update();
+    public abstract void ResetState();
 }
 
 /// <summary>

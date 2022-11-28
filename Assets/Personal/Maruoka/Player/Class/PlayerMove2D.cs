@@ -20,8 +20,9 @@ public class PlayerMove2D : PlayerMove
     private bool _isJump = false;
 
 
-    public void Init(Rigidbody2D rb2D, GroundCheck groundChecker)
+    public void Init(Rigidbody2D rb2D, GroundCheck groundChecker, PlayerStateController stateController)
     {
+        base.Init(stateController);
         _rb2D = rb2D;
         _groundChecker = groundChecker;
     }
@@ -33,11 +34,18 @@ public class PlayerMove2D : PlayerMove
             new Vector2(
                 _moveSpeed * Input_InputManager.Instance.GetAxisRaw(_horizontalButtonName),
                 _rb2D.velocity.y);
+        if (!Mathf.Approximately(_rb2D.velocity.x, 0f))
+        {
+            _stateController.CurrentState = PlayerState.MOVE;
+        }
+
         // ƒWƒƒƒ“ƒv
         if (Input_InputManager.Instance.GetInputDown(_jumpButtonName) && _groundChecker.IsGround2D())
         {
             _rb2D.velocity = new Vector2(0f, _jumpPower);
+
             _isJump = true;
+            _stateController.CurrentState = PlayerState.JUMP_2D;
         }
         else
         {
