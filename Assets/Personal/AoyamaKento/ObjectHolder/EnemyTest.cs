@@ -13,10 +13,10 @@ public class EnemyTest : RetainedEnemyBehavior
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            _hp--;
-            Debug.Log(_hp);
-        }
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    _hp--;
+        //    Debug.Log(_hp);
+        //}
     }
 }
