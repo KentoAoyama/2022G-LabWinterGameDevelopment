@@ -5,7 +5,8 @@ using UnityEngine;
 public class HelpController : MonoBehaviour
 {
     [SerializeField] GameObject helpMenu;
-    [SerializeField] GameObject cursor;
+    [SerializeField] GameObject helpOptions;
+    [SerializeField] GameObject helpCursor;
 
     int counter = 0;
     // Start is called before the first frame update
@@ -17,14 +18,9 @@ public class HelpController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ヘルプボタンを押したら
-        //ヘルプの画面の操作
-        //キーの移動　
-        //選択後の動
-
         if (helpMenu.activeSelf)
         {
-            if(Input.GetKeyDown(KeyCode.S) && counter < helpMenu.transform.childCount-1)
+            if(Input.GetKeyDown(KeyCode.S) && counter < helpOptions.transform.childCount-1)
             {
                 counter++;
             }
@@ -32,13 +28,33 @@ public class HelpController : MonoBehaviour
             {
                 counter--;
             }
-            cursor.transform.position = helpMenu.transform.GetChild(counter).position;
+            helpCursor.transform.position = helpOptions.transform.GetChild(counter).position;
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                //ヘルプ画面表示
                 helpMenu.SetActive(false);
-                cursor.SetActive(false);
+                helpCursor.SetActive(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                switch (counter)
+                {
+                    case 0://ゲームを続ける
+                        helpMenu.SetActive(false);
+                        helpCursor.SetActive(false);
+                        break;
+                    case 1://ゲームをやめる
+                        break;
+                    case 2://ヘルプ
+                        break;
+                    case 3://タイトルに戻る
+                        break;
+                    case 4://操作説明
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         else if (!helpMenu.activeSelf)
@@ -46,9 +62,8 @@ public class HelpController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 counter = 0;
-                //ヘルプ画面表示
                 helpMenu.SetActive(true);
-                cursor.SetActive(true);
+                helpCursor.SetActive(true);
             }
         }
     }
