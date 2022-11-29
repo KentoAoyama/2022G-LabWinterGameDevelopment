@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Elevator : MonoBehaviour, ISwitchable
 {
+    [Tooltip("エレベーターが動くAnimation")]
+    [SerializeField] private Animation _anim;
+
     /// <summary> アクティブか、非アクティブか </summary>
     private bool _isActive;
     /// <summary> アクティブか、非アクティブか </summary>
@@ -12,7 +15,8 @@ public class Elevator : MonoBehaviour, ISwitchable
     public void Active()
     {
         _isActive = true;
-        //Animation等の実際の処理を実行する
+        //Animationを実行する
+        _anim.Play();
     }
 
     public void InActive()
