@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6724141094472780431}
   - component: {fileID: 6724141094472780429}
-  - component: {fileID: 6724141094472780428}
   m_Layer: 0
   m_Name: DimentionController
   m_TagString: Untagged
@@ -47,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _changeSceneName: AoyamaKento
-  _changeSceneTime: 1
+  _changeSceneTime: 2.5
   _glovalVolume: {fileID: 6724141094313824613}
   _dimentionObjects2d:
     Player: {fileID: 3523931881859063084, guid: 2e94037d359d6a24ead02c5705267950,
@@ -67,20 +66,6 @@ MonoBehaviour:
     EnemyBullet:
     - {fileID: 863112421887709402, guid: 17d255b73f961b44c9625bed80f9f688, type: 3}
     - {fileID: 9082631833421959540, guid: 5cc77cd502394594087f34d9b364d513, type: 3}
---- !u!114 &6724141094472780428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6724141094472780430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c3e0a8204bf5b349ab839aecde5c545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dimentionController: {fileID: 6724141094472780429}
-  _inputName: Jump
 --- !u!1001 &5284012187635813422
 PrefabInstance:
   m_ObjectHideFlags: 0
