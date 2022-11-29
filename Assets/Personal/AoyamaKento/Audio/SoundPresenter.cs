@@ -9,8 +9,7 @@ public class SoundPresenter : MonoBehaviour
     [SerializeField] SoundScriptableObject _soundScriptableObj;
 
     private void Awake()
-    {
-        
+    {       
         if (SoundManager.Instance.SoundScriptable == null)
         {
             SoundManager.Instance.SoundScriptable = _soundScriptableObj;

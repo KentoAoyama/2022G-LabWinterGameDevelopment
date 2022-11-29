@@ -1,9 +1,9 @@
 /// <summary>
 /// サウンドのタイプを選択
 /// </summary>
-public enum SoundType : int
+public enum SoundType
 {
-    SE = 1,
-    ME = 2,
-    BGM = 3
+    SE,
+    ME,
+    BGM
 }
