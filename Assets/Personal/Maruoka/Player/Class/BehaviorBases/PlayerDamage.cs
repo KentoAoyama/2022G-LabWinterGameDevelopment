@@ -24,10 +24,16 @@ public abstract class PlayerDamage
     private bool _isDamageNow = false;
 
     protected PlayerStateController _stateController = null;
+    protected PlayerMove _playerMove = null;
 
-    protected void Init(PlayerStateController stateController)
+    protected void Init(PlayerStateController stateController, PlayerMove playerMover)
     {
         _stateController = stateController;
+        _playerMove = playerMover;
+    }
+    public void Update()
+    {
+        StateUpdate();
     }
     public virtual void OnDamage(int value,
         Vector3 knockBackDir, float knockBackPower,
@@ -41,11 +47,20 @@ public abstract class PlayerDamage
     {
         Debug.Log("ノックバック開始");
         _stateController.CurrentState = PlayerState.DAMAGE;
+        _playerMove.IsKnockBackNow = true;
         _isDamageNow = true;
         _isGodMode = true;
         await Task.Run(() => Thread.Sleep(sleepTime));
         Debug.Log("ノックバック終了");
+        _playerMove.IsKnockBackNow = false;
         _isDamageNow = false;
         _isGodMode = false;
+    }
+    protected void StateUpdate()
+    {
+        if (_isDamageNow)
+        {
+            _stateController.CurrentState = PlayerState.DAMAGE;
+        }
     }
 }

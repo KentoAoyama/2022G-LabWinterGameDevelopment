@@ -16,11 +16,10 @@ public class PlayerDimensionChanger
 
     private PlayerStateController _stateController = null;
 
-    private void Init(PlayerStateController stateController)
+    public void Init(PlayerStateController stateController)
     {
         _stateController = stateController;
     }
-
     public void Update()
     {
         if (IsRun())

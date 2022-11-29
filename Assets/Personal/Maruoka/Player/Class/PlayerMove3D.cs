@@ -33,10 +33,10 @@ public class PlayerMove3D : PlayerMove
                 _rb.velocity.y,
                 0.0f
                 );
-        if (!Mathf.Approximately(_rb.velocity.x, 0f))
-        {
-            _stateController.CurrentState = PlayerState.MOVE;
-        }
+    }
+    protected override void StopMove()
+    {
+        _rb.velocity = new Vector3(0.0f, _rb.velocity.y, 0.0f);
     }
     public override void Update()
     {
@@ -44,6 +44,23 @@ public class PlayerMove3D : PlayerMove
         {
             Move();
             _railControler.Update();
+        }
+        else
+        {
+            StopMove();
+        }
+        StateUpdate();
+    }
+
+    protected override void StateUpdate()
+    {
+        if (!Mathf.Approximately(_rb.velocity.x, 0f))
+        {
+            _stateController.CurrentState = PlayerState.MOVE;
+        }
+        if (_railControler.IsStepNow)
+        {
+            _stateController.CurrentState = PlayerState.STEP_3D;
         }
     }
 }

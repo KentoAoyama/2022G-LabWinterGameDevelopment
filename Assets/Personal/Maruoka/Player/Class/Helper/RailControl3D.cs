@@ -75,7 +75,6 @@ public class RailControl3D
     }
     private void MovementOrder(MovementDirection direction)
     {
-        _stateController.CurrentState = PlayerState.STEP_3D;
         if (direction == MovementDirection.MOVE_UP)
         {
             Debug.Log("uãv‚ÌƒŒ[ƒ‹‚ÖˆÚ“®‚µ‚Ü‚·");

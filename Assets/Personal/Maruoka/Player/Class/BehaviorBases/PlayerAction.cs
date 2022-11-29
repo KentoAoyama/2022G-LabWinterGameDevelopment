@@ -32,7 +32,6 @@ public class PlayerAction
     public void OnActionEnter(IGimmickEvent gimmick)
     {
         _gimmickHolder.Add(gimmick);
-        _isReadyAction = true;
     }
     /// <summary>
     /// ギミック稼働不可にする。
@@ -40,31 +39,35 @@ public class PlayerAction
     public void OnActionExit(IGimmickEvent gimmick)
     {
         _gimmickHolder.Remove(gimmick);
-        _isReadyAction = false;
     }
     public void Update()
     {
-        // 入力が発生し、アクション可能かつ現在アクション中で無ければ
-        // ギミックアクションを実行する。
         if (IsRun())
         {
             StartAction();
         }
+        StateUpdate();
     }
     private bool IsRun()
     {
         bool result = false;
 
         result =
-            Input_InputManager.Instance.       // 入力があり
+            Input_InputManager.Instance.                          // 入力があり
             GetInputDown(_actionButtonName) &&
-            _isReadyAction &&                  // 実行可能な状態であり
-            (_stateController.CurrentState == PlayerState.IDLE ||       // 実行可能なステートであればtrueを返す。
+            _gimmickHolder.Count != 0 &&                          // ギミックがホールドされており
+            (_stateController.CurrentState == PlayerState.IDLE || // 実行可能なステートであればtrueを返す。
             _stateController.CurrentState == PlayerState.MOVE);
 
         return result;
     }
-
+    private void StateUpdate()
+    {
+        if (_isActionNow)
+        {
+            _stateController.CurrentState = PlayerState.ACTION;
+        }
+    }
 
     private void StartAction()
     {
