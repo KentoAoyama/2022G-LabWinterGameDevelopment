@@ -8,8 +8,6 @@ public abstract class PlayerAttack
     protected Transform _transform = default;
     private bool _isAttackNow = false;
 
-    [SerializeField]
-    private bool _isReadyAttack = false;
     [InputName, SerializeField]
     protected string _fireButtonName = default;
     [SerializeField]
@@ -43,6 +41,7 @@ public abstract class PlayerAttack
         {
             StartAttack();
         }
+        StateUpdate();
     }
     private bool IsRun()
     {
@@ -56,15 +55,24 @@ public abstract class PlayerAttack
 
         return result;
     }
+    protected void StateUpdate()
+    {
+        if (_isAttackNow)
+        {
+            _stateController.CurrentState = PlayerState.ATTACK;
+        }
+    }
     public abstract void AttackProcess();
 
     public void StartAttack()
     {
+        // アタックアニメーション再生開始
         _isAttackNow = true;
         _stateController.CurrentState = PlayerState.ATTACK;
     }
     public void EndAttack()
     {
+        // 攻撃アニメーション再生終了
         _isAttackNow = false;
     }
 

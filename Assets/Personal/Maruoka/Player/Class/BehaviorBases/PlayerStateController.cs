@@ -13,7 +13,7 @@ public abstract class PlayerStateController
 
     /// <summary> XVˆ— </summary>
     public abstract void Update();
-    public abstract void ResetState();
+    public abstract void StateClear();
 }
 
 /// <summary>

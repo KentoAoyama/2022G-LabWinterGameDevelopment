@@ -34,22 +34,40 @@ public class PlayerMove2D : PlayerMove
             new Vector2(
                 _moveSpeed * Input_InputManager.Instance.GetAxisRaw(_horizontalButtonName),
                 _rb2D.velocity.y);
-        if (!Mathf.Approximately(_rb2D.velocity.x, 0f))
-        {
-            _stateController.CurrentState = PlayerState.MOVE;
-        }
-
         // ジャンプ
         if (Input_InputManager.Instance.GetInputDown(_jumpButtonName) && _groundChecker.IsGround2D())
         {
             _rb2D.velocity = new Vector2(0f, _jumpPower);
-
             _isJump = true;
-            _stateController.CurrentState = PlayerState.JUMP_2D;
         }
-        else
+        else { _isJump = false; }
+        // ステート更新
+        StateUpdate();
+    }
+    protected override void StopMove()
+    {
+        _rb2D.velocity = new Vector2(0.0f, _rb2D.velocity.y);
+    }
+
+    protected override void StateUpdate()
+    {
+        if (!Mathf.Approximately(_rb2D.velocity.x, 0f))
         {
-            _isJump = false;
+            _stateController.CurrentState = PlayerState.MOVE;
+        }
+        if (!_groundChecker.IsGround3D() &&
+             _rb2D.velocity.y > 0.01f)
+        {
+            _stateController.CurrentState = PlayerState.RISE;
+        }
+        if (!_groundChecker.IsGround2D() &&
+             _rb2D.velocity.y < 0.01f)
+        {
+            _stateController.CurrentState = PlayerState.FALL;
+        }
+        if (_isJump)
+        {
+            _stateController.CurrentState = PlayerState.JUMP_2D;
         }
     }
 }

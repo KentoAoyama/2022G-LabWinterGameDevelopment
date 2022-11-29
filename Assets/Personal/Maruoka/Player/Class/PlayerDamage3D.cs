@@ -10,9 +10,9 @@ public class PlayerDamage3D : PlayerDamage
 
     private Rigidbody _rb = default;
 
-    public void Init(Rigidbody rb, PlayerStateController stateController)
+    public void Init(Rigidbody rb, PlayerStateController stateController,PlayerMove playerMove)
     {
-        base.Init(stateController);
+        base.Init(stateController, playerMove);
         _rb = rb;
 
         // UniRx Test Code
@@ -37,7 +37,7 @@ public class PlayerDamage3D : PlayerDamage
             _rb.AddForce(knockBackDir.normalized * knockBackPower, ForceMode.Impulse);
             // 体力を減らす
             PlayerStatusManager.Instance.Damage(value);
-            _stateController.ResetState();
+            _stateController.StateClear();
             // ノックバック中、RigidBody Velocity の更新を止める
             await KnockBackStart(knockBackTime);
         }

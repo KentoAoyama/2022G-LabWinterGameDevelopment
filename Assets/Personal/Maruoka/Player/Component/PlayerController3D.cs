@@ -42,12 +42,11 @@ public class PlayerController3D : MonoBehaviour
     private void Start()
     {
         var rb = GetComponent<Rigidbody>();
-        _damage.Init(rb, _stateController);
+        _damage.Init(rb, _stateController, _mover);
         _attacker.Init(transform, _stateController);
         _mover.Init(rb, transform, _railControl, _stateController);
         _stateController.Init(rb, _mover, GetComponent<GroundCheck>(),
             _attacker, _actioner, _damage);
-        _damage.Init(rb, _stateController);
         _actioner.Init(_stateController);
         // Test
         _renderer = GetComponent<Renderer>();
@@ -55,10 +54,10 @@ public class PlayerController3D : MonoBehaviour
     private void Update()
     {
         _stateController.Update();
-        _mover.Update();
         _dimensionChanger.Update();
         _attacker.Update();
         _actioner.Update();
+        _mover.Update();
         // Test
         TestStateColorChange();
     }
