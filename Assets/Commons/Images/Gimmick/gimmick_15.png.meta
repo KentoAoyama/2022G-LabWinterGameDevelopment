@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,9 +100,42 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: gimmick_15_15
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 34
+        width: 64
+        height: 445
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1826e52db1115346b1e11f813acead8
+      internalID: 834580945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -113,7 +146,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gimmick_15_9: 1494488826
+      gimmick_15_15: 834580945
+      gimmick_15_10: -562876547
+      gimmick_15_2: -891851829
+      gimmick_15_5: 2130856684
+      gimmick_15_6: -1815331154
+      gimmick_15_13: -1368132074
+      gimmick_15_14: -224877167
+      gimmick_15_7: -243724725
+      gimmick_15_1: 1454443926
+      gimmick_15_8: 768334141
+      gimmick_15_4: 1064496979
+      gimmick_15_12: -1424086518
+      gimmick_15_11: 1047468612
+      gimmick_15_3: -1927424605
+      gimmick_15_0: -1060497294
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
