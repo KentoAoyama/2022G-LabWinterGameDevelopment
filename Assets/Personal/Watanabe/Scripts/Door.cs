@@ -15,7 +15,7 @@ public class Door : MonoBehaviour, ISwitchable
     public void Active()
     {
         _isActive = true;
-        //Animation‚ğÀs‚·‚é
+        //Animation“™‚ÌÀÛ‚Ìˆ—‚ğÀs‚·‚é
         _anim.Play();
     }
 
