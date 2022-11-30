@@ -19,25 +19,47 @@ public class PlayerController3D : MonoBehaviour
     private RailControl3D _railControl = default;
     [SerializeField]
     private PlayerDimensionChanger _dimensionChanger = default;
+
+    [SerializeField]
+    private Color _idleColor = Color.white;
+    [SerializeField]
+    private Color _moveColor = Color.white;
+    [SerializeField]
+    private Color _riseColor = Color.white;
+    [SerializeField]
+    private Color _fallColor = Color.white;
+    [SerializeField]
+    private Color _attackColor = Color.white;
+    [SerializeField]
+    private Color _actionColor = Color.white;
+    [SerializeField]
+    private Color _damageColor = Color.white;
+    [SerializeField]
+    private Color _stepColor = Color.white;
     #endregion
 
     #region Unity Methods
     private void Start()
     {
         var rb = GetComponent<Rigidbody>();
-        _damage.Init(rb);
+        _damage.Init(rb, _stateController, _mover);
         _attacker.Init(transform, _stateController);
-        _mover.Init(rb, transform, _railControl);
+        _mover.Init(rb, transform, _railControl, _stateController);
         _stateController.Init(rb, _mover, GetComponent<GroundCheck>(),
             _attacker, _actioner, _damage);
+        _actioner.Init(_stateController);
+        // Test
+        _renderer = GetComponent<Renderer>();
     }
     private void Update()
     {
         _stateController.Update();
-        _mover.Update(_stateController.NowState);
-        _dimensionChanger.Update(_stateController.NowState);
-        _attacker.Update(_stateController.NowState);
-        _actioner.Update(_stateController.NowState);
+        _dimensionChanger.Update();
+        _attacker.Update();
+        _actioner.Update();
+        _mover.Update();
+        // Test
+        TestStateColorChange();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -160,6 +182,40 @@ public class PlayerController3D : MonoBehaviour
     public void TestEndGimmick()
     {
         _actioner.EndActionAnimation();
+    }
+    /// <summary>
+    /// ステート遷移が問題ないか確認する為のメソッド
+    /// </summary>
+    private Renderer _renderer = null;
+    private void TestStateColorChange()
+    {
+        switch (_stateController.CurrentState)
+        {
+            case PlayerState.IDLE:
+                _renderer.material.color = _idleColor;
+                break;
+            case PlayerState.MOVE:
+                _renderer.material.color = _moveColor;
+                break;
+            case PlayerState.DAMAGE:
+                _renderer.material.color = _damageColor;
+                break;
+            case PlayerState.ACTION:
+                _renderer.material.color = _actionColor;
+                break;
+            case PlayerState.RISE:
+                _renderer.material.color = _riseColor;
+                break;
+            case PlayerState.FALL:
+                _renderer.material.color = _fallColor;
+                break;
+            case PlayerState.ATTACK:
+                _renderer.material.color = _attackColor;
+                break;
+            case PlayerState.STEP_3D:
+                _renderer.material.color = _stepColor;
+                break;
+        }
     }
     #endregion
 }

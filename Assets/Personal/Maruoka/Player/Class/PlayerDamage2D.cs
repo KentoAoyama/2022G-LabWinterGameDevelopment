@@ -6,8 +6,10 @@ public class PlayerDamage2D : PlayerDamage
 {
     private Rigidbody2D _rb2D = default;
 
-    public void Init(Rigidbody2D rb2D)
+
+    public void Init(Rigidbody2D rb2D,PlayerStateController stateController,PlayerMove playerMove)
     {
+        base.Init(stateController, playerMove);
         _rb2D = rb2D;
     }
 
@@ -29,7 +31,7 @@ public class PlayerDamage2D : PlayerDamage
             _rb2D.AddForce(knockBackDir.normalized * knockBackPower, ForceMode2D.Impulse);
             // 体力を減らす
             PlayerStatusManager.Instance.Damage(value);
-
+            _stateController.StateClear();
             // ノックバック中、RigidBody Velocity の更新を止める
             await KnockBackStart(knockBackTime);
         }

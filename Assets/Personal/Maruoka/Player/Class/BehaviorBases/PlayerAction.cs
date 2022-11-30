@@ -19,15 +19,19 @@ public class PlayerAction
 
     public bool IsReadyAction => _isReadyAction;
     public string ActionableAreaTagName => _actionableAreaTagName;
-    public bool IsActionNow => _isActionNow;
+    public bool IsActionNow { get => _isActionNow; set => _isActionNow = value; }
+    private PlayerStateController _stateController;
 
+    public void Init(PlayerStateController stateController)
+    {
+        _stateController = stateController;
+    }
     /// <summary>
     /// ギミック稼働可能にする。
     /// </summary>
     public void OnActionEnter(IGimmickEvent gimmick)
     {
         _gimmickHolder.Add(gimmick);
-        _isReadyAction = true;
     }
     /// <summary>
     /// ギミック稼働不可にする。
@@ -35,31 +39,35 @@ public class PlayerAction
     public void OnActionExit(IGimmickEvent gimmick)
     {
         _gimmickHolder.Remove(gimmick);
-        _isReadyAction = false;
     }
-    public void Update(PlayerState state)
+    public void Update()
     {
-        // 入力が発生し、アクション可能かつ現在アクション中で無ければ
-        // ギミックアクションを実行する。
-        if (IsRun(state))
+        if (IsRun())
         {
             StartAction();
         }
+        StateUpdate();
     }
-    private bool IsRun(PlayerState state)
+    private bool IsRun()
     {
         bool result = false;
 
         result =
-            Input_InputManager.Instance.       // 入力があり
+            Input_InputManager.Instance.                          // 入力があり
             GetInputDown(_actionButtonName) &&
-            _isReadyAction &&                  // 実行可能な状態であり
-            state == PlayerState.IDLE ||       // 実行可能なステートであればtrueを返す。
-            state == PlayerState.MOVE;
+            _gimmickHolder.Count != 0 &&                          // ギミックがホールドされており
+            (_stateController.CurrentState == PlayerState.IDLE || // 実行可能なステートであればtrueを返す。
+            _stateController.CurrentState == PlayerState.MOVE);
 
         return result;
     }
-
+    private void StateUpdate()
+    {
+        if (_isActionNow)
+        {
+            _stateController.CurrentState = PlayerState.ACTION;
+        }
+    }
 
     private void StartAction()
     {
@@ -75,7 +83,7 @@ public class PlayerAction
                 {
                     // ホールド中のギミックがアニメーションを再生するタイプであれば
                     // ステートをアクションに変更する。
-                    _isActionNow = true; 
+                    _isActionNow = true;
                 }
             }
         }

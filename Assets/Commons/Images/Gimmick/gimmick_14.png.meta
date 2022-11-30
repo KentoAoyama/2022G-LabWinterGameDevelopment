@@ -36,13 +36,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
+    wrapU: 0
+    wrapV: 0
     wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,9 +100,42 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: gimmick_14_15
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 228
+        width: 446
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8afdf2c7c59cd0e49bcd2642ee345fad
+      internalID: 1820387383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -113,7 +146,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gimmick_14_9: -1618844566
+      gimmick_14_12: -656573720
+      gimmick_14_11: -537791936
+      gimmick_14_3: -1379848625
+      gimmick_14_10: 1096500402
+      gimmick_14_4: 1494323690
+      gimmick_14_13: -987456740
+      gimmick_14_8: 1661864342
+      gimmick_14_2: -819929072
+      gimmick_14_0: 923071487
+      gimmick_14_15: 1820387383
+      gimmick_14_7: -1577735720
+      gimmick_14_6: 1220553489
+      gimmick_14_14: 1227272566
+      gimmick_14_5: -1880055953
+      gimmick_14_1: -320557964
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

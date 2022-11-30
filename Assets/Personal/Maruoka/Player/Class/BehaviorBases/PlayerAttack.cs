@@ -8,8 +8,6 @@ public abstract class PlayerAttack
     protected Transform _transform = default;
     private bool _isAttackNow = false;
 
-    [SerializeField]
-    private bool _isReadyAttack = false;
     [InputName, SerializeField]
     protected string _fireButtonName = default;
     [SerializeField]
@@ -27,7 +25,7 @@ public abstract class PlayerAttack
     public Vector3 FireSize => _fireSize;
     public Color GizmoColor => _gizmoColor;
     public bool IsDrawGizmo => _isDrawGizmo;
-    public bool IsAttackNow => _isAttackNow;
+    public bool IsAttackNow { get => _isAttackNow; set => _isAttackNow = value; }
 
 
     public void Init(Transform transform,
@@ -36,34 +34,45 @@ public abstract class PlayerAttack
         _transform = transform;
         _stateController = stateController;
     }
-    public void Update(PlayerState state)
+    public void Update()
     {
         // 攻撃可能状態かつ、攻撃入力が発生した時攻撃を開始する。
-        if (IsRun(state))
+        if (IsRun())
         {
             StartAttack();
         }
+        StateUpdate();
     }
-    private bool IsRun(PlayerState state)
+    private bool IsRun()
     {
         bool result = false;
 
         result =
             Input_InputManager.Instance.
             GetInputDown(_fireButtonName) &&
-            state == PlayerState.IDLE ||
-            state == PlayerState.MOVE;
+            (_stateController.CurrentState == PlayerState.IDLE ||
+            _stateController.CurrentState == PlayerState.MOVE);
 
         return result;
+    }
+    protected void StateUpdate()
+    {
+        if (_isAttackNow)
+        {
+            _stateController.CurrentState = PlayerState.ATTACK;
+        }
     }
     public abstract void AttackProcess();
 
     public void StartAttack()
     {
+        // アタックアニメーション再生開始
         _isAttackNow = true;
+        _stateController.CurrentState = PlayerState.ATTACK;
     }
     public void EndAttack()
     {
+        // 攻撃アニメーション再生終了
         _isAttackNow = false;
     }
 

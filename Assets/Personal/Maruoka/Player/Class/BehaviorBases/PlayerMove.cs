@@ -7,6 +7,10 @@ public abstract class PlayerMove
     [SerializeField]
     private bool _isMove = true;
 
+    public bool IsKnockBackNow { get; set; }
+
+    protected PlayerStateController _stateController = null;
+
     public bool IsMove
     {
         get => _isMove;
@@ -24,24 +28,35 @@ public abstract class PlayerMove
         }
     }
 
-    public virtual void Update(PlayerState _nowState)
+    protected void Init(PlayerStateController stateController)
     {
-        if (IsRun(_nowState))
+        _stateController = stateController;
+    }
+    public virtual void Update()
+    {
+        if (IsKnockBackNow) { } // ノックバック中は、Velocityの上書きは行わない。（物理挙動に任せる）
+        else if (IsRun())
         {
             Move();
         }
+        else
+        {
+            StopMove();
+        }
+        StateUpdate();
     }
 
-    protected bool IsRun(PlayerState _nowState)
+    protected bool IsRun()
     {
-        // 冗長なのでいつか修正する。
         return _isMove =
-            _nowState == PlayerState.IDLE ||
-            _nowState == PlayerState.MOVE ||
-            _nowState == PlayerState.JUMP_2D ||
-            _nowState == PlayerState.FALL ||
-            _nowState == PlayerState.RISE;
+            _stateController.CurrentState == PlayerState.IDLE ||
+            _stateController.CurrentState == PlayerState.MOVE ||
+            _stateController.CurrentState == PlayerState.JUMP_2D ||
+            _stateController.CurrentState == PlayerState.FALL ||
+            _stateController.CurrentState == PlayerState.RISE;
     }
 
     protected abstract void Move();
+    protected abstract void StopMove();
+    protected abstract void StateUpdate();
 }

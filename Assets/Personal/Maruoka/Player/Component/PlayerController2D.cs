@@ -6,13 +6,13 @@ public class PlayerController2D : MonoBehaviour
 {
     #region Inspector Variables
     [SerializeField]
-    private PlayerDamage2D _damage = default;
-    [SerializeField]
-    private PlayerAction _actioner = default;
+    private PlayerMove2D _mover = default;
     [SerializeField]
     private PlayerAttack2D _attacker = default;
     [SerializeField]
-    private PlayerMove2D _mover = default;
+    private PlayerDamage2D _damage = default;
+    [SerializeField]
+    private PlayerAction _actioner = default;
     [SerializeField]
     private PlayerStateController2D _stateController = default;
     [SerializeField]
@@ -41,20 +41,23 @@ public class PlayerController2D : MonoBehaviour
     {
         var rb2D = GetComponent<Rigidbody2D>();
         var groundChecker = GetComponent<GroundCheck>();
-        _damage.Init(rb2D);
+        _mover.Init(rb2D, groundChecker, _stateController);
         _attacker.Init(transform, _stateController);
-        _mover.Init(rb2D, groundChecker);
+        _damage.Init(rb2D, _stateController,_mover);
         _stateController.Init(rb2D, _mover, _attacker,
             _actioner, _damage, groundChecker);
+        _actioner.Init(_stateController);
+        _dimensionChanger.Init(_stateController);
 
     }
     private void Update()
     {
         _stateController.Update();
-        _mover.Update(_stateController.NowState);
-        _attacker.Update(_stateController.NowState);
-        _actioner.Update(_stateController.NowState);
-        _dimensionChanger.Update(_stateController.NowState);
+        _attacker.Update();
+        _actioner.Update();
+        _dimensionChanger.Update();
+        _damage.Update();
+        _mover.Update();
 
         TestStateColorChange();
     }
@@ -179,11 +182,10 @@ public class PlayerController2D : MonoBehaviour
     {
         _actioner.EndActionAnimation();
     }
-
     private void TestStateColorChange()
     {
         var _sprite = GetComponent<SpriteRenderer>();
-        switch (_stateController.NowState)
+        switch (_stateController.CurrentState)
         {
             case PlayerState.IDLE:
                 _sprite.color = _idleColor;

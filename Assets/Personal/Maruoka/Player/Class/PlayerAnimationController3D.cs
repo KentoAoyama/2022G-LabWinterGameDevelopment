@@ -17,7 +17,7 @@ public class PlayerAnimationController3D : PlayerAnimationController
     }
     protected override void UpdateValue()
     {
-        switch (_stateController.NowState)
+        switch (_stateController.CurrentState)
         {
             case PlayerState.IDLE:
                 _isIdle = true;

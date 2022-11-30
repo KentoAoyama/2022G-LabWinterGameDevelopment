@@ -53,6 +53,11 @@ public class PlayerStateController3D : PlayerStateController
         StateUpdateAction();
         StateUpdateDamage();
     }
+    public override void StateClear()
+    {
+        _playerAttack3D.IsAttackNow = false;
+        _playerAction.IsActionNow = false;
+    }
 
     private void StateUpdateMove()
     {
