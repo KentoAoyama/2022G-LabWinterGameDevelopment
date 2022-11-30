@@ -1,33 +1,35 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class EnemyController3D : RetainedEnemyBehavior, IAddDamage
+[RequireComponent(typeof(Rigidbody2D))]
+public class EnemyController2D : RetainedEnemyBehavior, IAddDamage
 {
-    [SerializeField, Tooltip("移動")]
-    private EnemyMove3D _enemyMove = new EnemyMove3D();
-    [SerializeField, Tooltip("近距離攻撃")]
-    private EnemyShortAttack3D _enemyShortAttack3D = new EnemyShortAttack3D();
-    [SerializeField, Tooltip("遠距離攻撃")]
+    [SerializeField]
+    private EnemyMove2D _enemyMove = new EnemyMove2D();
+    [SerializeField]
+    private EnemyShortAttack2D _enemyShortAttack2D = new EnemyShortAttack2D();
+    [SerializeField]
     private EnemyLongAttack _enemyLongAttack = new EnemyLongAttack();
-    [SerializeField, Tooltip("ヒットポイントを管理しているクラス")]
+    [SerializeField]
     private EnemyHealth _enemyHealth = new EnemyHealth();
-    [SerializeField, Tooltip("エネミーのタイプ")]
+    [SerializeField]
     private EnemyId _enemyId;
 
-    private Rigidbody _rb;
+
+    private ObjectHolderManager _objectHolderManager;
+    private Rigidbody2D _rb2D;
     private int _id;
 
-    public EnemyMove3D EnemyMove => _enemyMove;
     protected override int Id => _id;
 
     protected override int Health { get => _enemyHealth.Health; set => _enemyHealth.Health = value; }
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
-        _enemyMove.SetBase(transform, ObjectHolderManager.Instance.PlayerHolder);
-        _enemyMove.Set3D(_rb);
-        _enemyShortAttack3D.AttackSet(_enemyMove, _rb);
+        _rb2D = GetComponent<Rigidbody2D>();
+        _objectHolderManager = ObjectHolderManager.Instance;
+        _enemyMove.SetBase(transform, _objectHolderManager.PlayerHolder);
+        _enemyMove.Set2D(_rb2D);
+        _enemyShortAttack2D.AttackSet(_enemyMove, _rb2D);
         _enemyLongAttack.LongAttackSet(_enemyMove);
         _id = (int)_enemyId;
     }
@@ -43,9 +45,9 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage
     /// </summary>
     private void Attack()
     {
-        if(_enemyId == EnemyId.Short)
+        if (_enemyId == EnemyId.Short)
         {
-            _enemyShortAttack3D.EnemyAttack();
+            _enemyShortAttack2D.EnemyAttack();
         }
         else
         {
@@ -58,10 +60,10 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage
         _enemyHealth.EnemyDamage(damage);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         //IAddDamageを継承しているクラスのオブジェクトに接触したとき以下を実行する
-        if (other.TryGetComponent(out IAddDamage addDamage))
+        if (collision.TryGetComponent(out IAddDamage addDamage))
         {
             Debug.Log("攻撃が当たった");
         }
