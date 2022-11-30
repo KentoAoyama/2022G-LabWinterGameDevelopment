@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class EnemyController2D : RetainedEnemyBehavior, IAddDamage
+public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
 {
     [SerializeField]
     private EnemyMove2D _enemyMove = new EnemyMove2D();
@@ -14,10 +14,10 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage
     [SerializeField]
     private EnemyId _enemyId;
 
-
     private ObjectHolderManager _objectHolderManager;
     private Rigidbody2D _rb2D;
     private int _id;
+    private bool _isPause = false;
 
     protected override int Id => _id;
 
@@ -36,8 +36,11 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage
 
     private void Update()
     {
-        _enemyMove.Move();
-        Attack();
+        if(!_isPause)
+        {
+            _enemyMove.Move();
+            Attack();
+        }
     }
 
     /// <summary>
@@ -58,6 +61,16 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage
     void IAddDamage.AddDamage(int damage)
     {
         _enemyHealth.EnemyDamage(damage);
+    }
+
+    public void Pause()
+    {
+        _isPause = true;
+    }
+
+    public void Resume()
+    {
+        _isPause = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

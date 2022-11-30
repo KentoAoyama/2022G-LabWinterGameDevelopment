@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class EnemyController3D : RetainedEnemyBehavior, IAddDamage
+public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
 {
     [SerializeField, Tooltip("ˆÚ“®")]
     private EnemyMove3D _enemyMove = new EnemyMove3D();
@@ -16,6 +16,7 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage
 
     private Rigidbody _rb;
     private int _id;
+    private bool _isPause = false;
 
     public EnemyMove3D EnemyMove => _enemyMove;
     protected override int Id => _id;
@@ -34,8 +35,11 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage
 
     private void Update()
     {
-        _enemyMove.Move();
-        Attack();
+        if(!_isPause)
+        {
+            _enemyMove.Move();
+            Attack();
+        }
     }
 
     /// <summary>
@@ -56,6 +60,16 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage
     void IAddDamage.AddDamage(int damage)
     {
         _enemyHealth.EnemyDamage(damage);
+    }
+
+    public void Pause()
+    {
+        _isPause = true;
+    }
+
+    public void Resume()
+    {
+        _isPause = false;
     }
 
     private void OnTriggerEnter(Collider other)
