@@ -1,4 +1,5 @@
 using UnityEngine;
+
 /// <summary>
 /// 3Dでのエネミーの移動処理が書かれたクラス。
 /// </summary>
@@ -12,6 +13,7 @@ public class EnemyMove3D : EnemyMove
         Vector3 target = (_player.transform.position - _transform.position).normalized;
         _rb.velocity = new Vector3(target.x * _moveSpeed, 0, 0);
     }
+
     /// <summary>
     /// Rigidbodyを参照するためのメソッド
     /// </summary>
@@ -19,5 +21,4 @@ public class EnemyMove3D : EnemyMove
     {
         _rb = rb;
     }
-
 }
