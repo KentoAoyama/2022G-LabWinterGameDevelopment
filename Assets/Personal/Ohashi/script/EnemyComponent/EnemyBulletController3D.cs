@@ -9,8 +9,15 @@ public class EnemyBulletController3D : RetainedEnemyBulletBehavior
     private Rigidbody _rb;
     private EnemyBulletId _enemyBulletId;
     private int _bulletId;
+    private GameObject _player;
+    private EnemyMove _enemyMove;
 
     protected override int Id => _bulletId;
+
+    public void Set(EnemyMove enemyMove)
+    {
+        _enemyMove = enemyMove;
+    }
 
     private void Start()
     {
@@ -24,8 +31,7 @@ public class EnemyBulletController3D : RetainedEnemyBulletBehavior
     /// </summary>
     private void BulletMove()
     {
-        float _distans = ObjectHolderManager.Instance.PlayerHolder.transform.position.x - transform.position.x;
-        if (_distans < 0)
+        if (_enemyMove.EnemyDistance < 0)
         {
             _rb.AddForce(-Vector3.right * _bulletSpeed, ForceMode.Impulse);
         }

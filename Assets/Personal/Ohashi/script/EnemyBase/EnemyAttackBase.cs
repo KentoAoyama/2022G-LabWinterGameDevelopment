@@ -6,6 +6,8 @@ public abstract class EnemyAttackBase
     private const int MilliSecond = 1000;
     protected bool _isAttack = false;
 
+    public bool IsAttack => _isAttack;
+
     /// <summary>
     /// エネミーの攻撃処理
     /// </summary>

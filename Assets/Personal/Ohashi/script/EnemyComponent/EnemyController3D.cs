@@ -13,10 +13,11 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     private EnemyHealth _enemyHealth = new EnemyHealth();
     [SerializeField, Tooltip("エネミーのタイプ")]
     private EnemyId _enemyId;
+    [SerializeField, Tooltip("ポーズ中かどうか")]
+    private bool _isPause = false;
 
     private Rigidbody _rb;
     private int _id;
-    private bool _isPause = false;
 
     public EnemyMove3D EnemyMove => _enemyMove;
     protected override int Id => _id;
@@ -26,8 +27,7 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _enemyMove.SetBase(transform, ObjectHolderManager.Instance.PlayerHolder);
-        _enemyMove.Set3D(_rb);
+        _enemyMove.Set3D(_rb, transform, ObjectHolderManager.Instance.PlayerHolder);
         _enemyShortAttack3D.AttackSet(_enemyMove, _rb);
         _enemyLongAttack.LongAttackSet(_enemyMove);
         _id = (int)_enemyId;
@@ -51,9 +51,10 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
         {
             _enemyShortAttack3D.EnemyAttack();
         }
-        else
+        else if(_enemyMove.PlayerSearch(_enemyMove.AttackDistance) && !_enemyLongAttack.IsAttack)
         {
             _enemyLongAttack.EnemyAttack();
+            _enemyLongAttack.Bullet.GetComponent<EnemyBulletController3D>().Set(_enemyMove);
         }
     }
 
