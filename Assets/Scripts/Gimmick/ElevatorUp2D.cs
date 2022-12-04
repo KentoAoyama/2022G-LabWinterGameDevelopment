@@ -23,6 +23,7 @@ public class ElevatorUp2D : MonoBehaviour, ISwitchable
         _anim = GetComponent<Animator>();
     }
 
+    //レバーを動かしたら、エレベーターに乗れるようになるもの(Colliderを消す等)
     public void Active()
     {
         _isActive = true;
@@ -34,17 +35,16 @@ public class ElevatorUp2D : MonoBehaviour, ISwitchable
         _isActive = false;
     }
 
-    //レバーを動かしたら、エレベーターに乗れるようになるもの(Colliderを消す等)
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("上昇します");
-        collision.gameObject.transform.SetParent(gameObject.transform);
+        col.gameObject.transform.SetParent(gameObject.transform);
         _anim.Play("ElevatorMove");
+        SoundManager.Instance.AudioPlay(SoundType.SE, 0);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D col)
     {
-        collision.gameObject.transform.parent = null;
+        col.gameObject.transform.parent = null;
     }
 }

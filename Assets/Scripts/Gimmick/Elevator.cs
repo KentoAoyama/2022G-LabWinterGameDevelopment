@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, ISwitchable
+public class Elevator : MonoBehaviour, ISwitchable
 {
-    /// <summary> ドアが開くAnimation </summary>
+    /// <summary> エレベーターが動くAnimation </summary>
     private Animator _anim;
 
     /// <summary> アクティブか、非アクティブか </summary>
     private bool _isActive;
     /// <summary> アクティブか、非アクティブか </summary>
     public bool IsActive => _isActive;
-    // { get; } のみのプロパティは、上記のような書き方で出来る
 
     private void Start()
     {
@@ -21,7 +20,8 @@ public class Door : MonoBehaviour, ISwitchable
     public void Active()
     {
         _isActive = true;
-        _anim.Play("Open");
+        _anim.Play("ElevatorMove");
+        SoundManager.Instance.AudioPlay(SoundType.SE, 0);
     }
 
     public void InActive()
