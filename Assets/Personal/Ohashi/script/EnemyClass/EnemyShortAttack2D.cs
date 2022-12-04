@@ -32,7 +32,7 @@ public class EnemyShortAttack2D : EnemyAttackBase
     /// </summary>
     private void AttackDirection()
     {
-        if (_enemyMove2D.EnemyDistans < 0)
+        if (_enemyMove2D.EnemyDistance < 0)
         {
             _rb2D.AddForce(-Vector3.right * _attackSpeed, ForceMode2D.Impulse);
         }

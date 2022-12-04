@@ -11,11 +11,11 @@ public abstract class EnemyMove
 
     protected GameObject _player;
     protected Transform _transform;
-    private float _enemyDistans;
+    private float _enemyDistansce;
     private const int RotationY = 180;
 
     public float AttackDistance => _attackDistance;
-    public float EnemyDistans => _enemyDistans;
+    public float EnemyDistance => _enemyDistansce;
 
     /// <summary>
     /// ディメンション別のエネミーの移動処理
@@ -23,23 +23,14 @@ public abstract class EnemyMove
     protected abstract void RbMove();
 
     /// <summary>
-    /// 参照用メソッド
-    /// </summary>
-    public void SetBase(Transform enemyTransform, GameObject player)
-    {
-        _transform = enemyTransform;
-        _player = player;
-    }
-
-    /// <summary>
     /// playerとenemyのX軸の二点間の差で距離を測る
     /// </summary>
     public bool PlayerSearch(float distance)
     {
-        _enemyDistans = _player.transform.position.x - _transform.position.x;
-        if (distance > _enemyDistans)
+        _enemyDistansce = _player.transform.position.x - _transform.position.x;
+        if (distance > _enemyDistansce)
         {
-            if (-distance < _enemyDistans)
+            if (-distance < _enemyDistansce)
             {
                 return true;
             }
@@ -49,7 +40,7 @@ public abstract class EnemyMove
 
     private void Rotation()
     {
-        if (_enemyDistans < 0)
+        if (_enemyDistansce < 0)
         {
             _transform.rotation = new Quaternion(0, 0, 0, 0);
         }
