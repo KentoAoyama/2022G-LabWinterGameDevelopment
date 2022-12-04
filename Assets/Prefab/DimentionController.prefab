@@ -45,27 +45,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a31bad590b00f468d0bf0f1222ba5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _changeSceneName: AoyamaKento
+  _changeSceneName: GameScene3D
   _changeSceneTime: 2.5
   _glovalVolume: {fileID: 6724141094313824613}
   _dimentionObjects2d:
     Player: {fileID: 4074260259602323776, guid: 53c15ef2bf9a2a440b0653b0d3aea5aa,
       type: 3}
     Enemy:
-    - {fileID: 8499059976695379367, guid: c9a16365f1b80824488d1f98fac6ea40, type: 3}
-    - {fileID: 4210137658930797124, guid: 04e9c67c9558e9443b76633a312a3972, type: 3}
+    - {fileID: 4364132567490265731, guid: bf666aa43aad32644b22d5df69ca6b0d, type: 3}
+    - {fileID: 726310085270087608, guid: 41eb8c0e569d8504e8192255a55dd865, type: 3}
     EnemyBullet:
-    - {fileID: 5111138627880333127, guid: f0f5019c10dbc404986660f014ab93df, type: 3}
-    - {fileID: 3874519633635162492, guid: 3ecca6381c9627c43acafed008c0b1e5, type: 3}
+    - {fileID: 614891172947649630, guid: 796ecc2564eba3549ba268f8f1e007cd, type: 3}
+    - {fileID: 5257820586062109293, guid: 8d07046b68f2f284cb96d8c56a7cc6a5, type: 3}
   _dimentionObjects3d:
     Player: {fileID: 8063902652912937540, guid: 4c9443f4e42605247ad0ec59907698dd,
       type: 3}
     Enemy:
-    - {fileID: 5371350632816975128, guid: fcfbd96301d28b7438af296162144d8e, type: 3}
-    - {fileID: 321412856708410772, guid: 3e50b4b31cb002f4b9573328a03a33d6, type: 3}
+    - {fileID: 2937442763090210261, guid: 147d2200da406e0479b4f3f32cc2ac5c, type: 3}
+    - {fileID: 3961470655678139237, guid: ffa2d9d88c2178846859a7d48bbe4f45, type: 3}
     EnemyBullet:
-    - {fileID: 863112421887709402, guid: 17d255b73f961b44c9625bed80f9f688, type: 3}
-    - {fileID: 9082631833421959540, guid: 5cc77cd502394594087f34d9b364d513, type: 3}
+    - {fileID: 2184208299946647746, guid: b848129bc75dfd1409eafa43e36130d1, type: 3}
+    - {fileID: 4329564474116404131, guid: 5df27cd7a1d753642894729271192091, type: 3}
 --- !u!1001 &5284012187635813422
 PrefabInstance:
   m_ObjectHideFlags: 0
