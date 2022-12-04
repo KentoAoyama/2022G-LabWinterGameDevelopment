@@ -28,9 +28,9 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
     private void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
-        _stateController.InIt(_enemyMove, _enemyLongAttack, _enemyHealth,
+        _stateController.Init(_enemyMove, _enemyLongAttack, _enemyHealth,
             _enemyShortAttack2D, _enemyId);
-        _enemyHealth.InIt(gameObject, _stateController);
+        _enemyHealth.Init(gameObject, _stateController);
         _enemyMove.InIt(_rb2D, transform,
             ObjectHolderManager.Instance.PlayerHolder, _stateController);
         _enemyShortAttack2D.InIt(_enemyMove, _rb2D, _stateController);
@@ -59,7 +59,7 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
         else if(_stateController.EnemyState == EnemyState.LongAttack)
         {
             _enemyLongAttack.EnemyAttack();
-            _enemyLongAttack.Bullet.GetComponent<EnemyBulletController2D>().Set(_enemyMove);
+            _enemyLongAttack.Bullet.GetComponent<EnemyBulletController2D>().Init(_enemyMove);
         }
     }
 
