@@ -22,6 +22,7 @@ public class Door : MonoBehaviour, ISwitchable
     {
         _isActive = true;
         _anim.Play("Open");
+        SoundManager.Instance.AudioPlay(SoundType.SE, 1);
     }
 
     public void InActive()

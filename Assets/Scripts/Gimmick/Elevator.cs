@@ -21,6 +21,7 @@ public class Elevator : MonoBehaviour, ISwitchable
     {
         _isActive = true;
         _anim.Play("ElevatorMove");
+        SoundManager.Instance.AudioPlay(SoundType.SE, 0);
     }
 
     public void InActive()
