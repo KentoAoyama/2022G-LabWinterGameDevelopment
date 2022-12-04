@@ -2,7 +2,9 @@ public enum EnemyState
 {
     Idle,
     Move,
-    Attack,
+    LongAttack,
+    ShotAttack,
     Damage,
     Death,
+
 }

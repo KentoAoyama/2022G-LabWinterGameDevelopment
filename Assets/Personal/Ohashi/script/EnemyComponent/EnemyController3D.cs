@@ -11,8 +11,8 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     private EnemyLongAttack _enemyLongAttack = new();
     [SerializeField, Tooltip("ヒットポイントを管理しているクラス")]
     private EnemyHealth _enemyHealth = new();
-    [SerializeField]
-    private EnemyStateController3D _enemyStateController = new();
+    [SerializeField, Tooltip("状態管理")]
+    private EnemyStateController _stateController = new();
     [SerializeField, Tooltip("エネミーのタイプ")]
     private EnemyId _enemyId;
     [SerializeField, Tooltip("ポーズ中かどうか")]
@@ -29,10 +29,12 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _enemyStateController.InIt(EnemyMove, _enemyLongAttack, _enemyHealth);
-        _enemyMove.Set3D(_rb, transform, ObjectHolderManager.Instance.PlayerHolder, _enemyStateController);
-        _enemyShortAttack3D.AttackSet(_enemyMove, _rb);
-        _enemyLongAttack.LongAttackSet(_enemyMove);
+        _stateController.InIt(EnemyMove, _enemyLongAttack, _enemyHealth,
+            _enemyShortAttack3D, _enemyId);
+        _enemyHealth.InIt(gameObject, _stateController);
+        _enemyMove.InIt(_rb, transform,
+            ObjectHolderManager.Instance.PlayerHolder, _stateController);
+        _enemyShortAttack3D.InIt(_enemyMove, _rb, _stateController);
         _id = (int)_enemyId;
     }
 
@@ -40,7 +42,7 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     {
         if(!_isPause)
         {
-            _enemyStateController.State();
+            _stateController.State();
             _enemyMove.Move();
             Attack();
         }
@@ -51,11 +53,11 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     /// </summary>
     private void Attack()
     {
-        if(_enemyId == EnemyId.Short)
+        if(_stateController.EnemyState == EnemyState.ShotAttack)
         {
             _enemyShortAttack3D.EnemyAttack();
         }
-        else if(_enemyStateController.EnemyState == EnemyState.Attack)
+        else if(_stateController.EnemyState == EnemyState.LongAttack)
         {
             _enemyLongAttack.EnemyAttack();
             _enemyLongAttack.Bullet.GetComponent<EnemyBulletController3D>().Set(_enemyMove);

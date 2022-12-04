@@ -5,6 +5,7 @@ public abstract class EnemyAttackBase
 {
     private const int MilliSecond = 1000;
     protected bool _isAttack = false;
+    protected EnemyStateController _stateController;
 
     public bool IsAttack => _isAttack;
 
@@ -18,9 +19,10 @@ public abstract class EnemyAttackBase
     protected async Task EnemyAttackInterval(int attackInterval)
     {
         _isAttack = true;
-        Debug.Log("attack");
+        
         //w’è‚µ‚½ƒ~ƒŠ•bŒã‚ÉÀs‚·‚é
         await Task.Delay(MilliSecond * attackInterval);
+        Debug.Log("attack");
         _isAttack = false;
     }
 }

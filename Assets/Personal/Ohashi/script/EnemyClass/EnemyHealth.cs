@@ -4,17 +4,25 @@ using UnityEngine;
 public class EnemyHealth
 {
    [SerializeField, Tooltip("ヒットポイント")]
-    private int health;
+    private int _health;
 
-    public int Health { get => health; set => health = value; }
+    private GameObject _gameObject;
+    private EnemyStateController _StateController;
 
+    public int Health { get => _health; set => _health = value; }
+
+    public void InIt(GameObject enemy, EnemyStateController stateController)
+    {
+        _gameObject = enemy;
+        _StateController = stateController;
+    }
     /// <summary>
     /// ダメージ処理
     /// </summary>
     public void EnemyDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        _health -= damage;
+        if (_StateController.EnemyState == EnemyState.Death)
         {
             EnemyDestroy();
         }
@@ -26,5 +34,6 @@ public class EnemyHealth
     private void EnemyDestroy()
     {
         //やられアニメーションを出したりする。
+        Object.Destroy(_gameObject);
     }
 }

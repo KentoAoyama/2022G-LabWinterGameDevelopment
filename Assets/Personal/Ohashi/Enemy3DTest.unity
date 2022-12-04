@@ -659,6 +659,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3961470655678139235, guid: ffa2d9d88c2178846859a7d48bbe4f45,
         type: 3}
+      propertyPath: _enemyHealth._health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961470655678139235, guid: ffa2d9d88c2178846859a7d48bbe4f45,
+        type: 3}
       propertyPath: _enemyBulletController3D
       value: 
       objectReference: {fileID: 7159830448154138803, guid: b848129bc75dfd1409eafa43e36130d1,

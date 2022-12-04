@@ -137,6 +137,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 726310085270087609, guid: 41eb8c0e569d8504e8192255a55dd865,
         type: 3}
+      propertyPath: _enemyId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 726310085270087609, guid: 41eb8c0e569d8504e8192255a55dd865,
+        type: 3}
       propertyPath: _enemyMove._moveDistance
       value: 10
       objectReference: {fileID: 0}
