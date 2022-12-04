@@ -13,16 +13,10 @@ public class EnemyLongAttack : EnemyAttackBase
     [SerializeField, Tooltip("‰¡‚ÌƒoƒŒƒbƒg")]
     private GameObject _horizontalBullet;
 
-    private EnemyMove _enemyMove;
     private EnemyBulletId _enemyBulletId;
     private GameObject _bullet;
 
     public GameObject Bullet => _bullet;
-
-    public void LongAttackSet(EnemyMove enemyMove)
-    {
-        _enemyMove = enemyMove;
-    }
 
     public override void EnemyAttack()
     {

@@ -4,18 +4,25 @@ using UnityEngine;
 public class EnemyBulletController2D : RetainedEnemyBulletBehavior
 {
     [SerializeField, Tooltip("弾のスピード")]
-    private float _bulletSpeed;
+    private float _bulletSpeed = 2f;
 
     private EnemyBulletId _enemyBulletId;
     private int _bulletId;
     private Rigidbody2D _rb2D;
+    private EnemyMove _enemyMove;
 
     public override int Id => _bulletId;
+
+    public void Set(EnemyMove enemyMove)
+    {
+        _enemyMove = enemyMove;
+    }
 
     private void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
         _bulletId = (int)_enemyBulletId;
+        BulletMove();
     }
 
     /// <summary>
@@ -23,8 +30,7 @@ public class EnemyBulletController2D : RetainedEnemyBulletBehavior
     /// </summary>
     private void BulletMove()
     {
-        float _distans = ObjectHolderManager.Instance.PlayerHolder.transform.position.x - transform.position.x;
-        if (_distans < 0)
+        if (_enemyMove.EnemyDistance < 0)
         {
             _rb2D.AddForce(-Vector3.right * _bulletSpeed, ForceMode2D.Impulse);
         }

@@ -11,20 +11,19 @@ public class EnemyShortAttack3D : EnemyAttackBase
 
     private EnemyMove3D _enemyMove3D;
     private Rigidbody _rb;
-    
-    public void AttackSet(EnemyMove3D enemyMove3D, Rigidbody rb)
+
+    public void InIt(EnemyMove3D enemyMove3D, Rigidbody rb,
+        EnemyStateController stateController)
     {
         _enemyMove3D = enemyMove3D;
         _rb = rb;
+        _stateController = stateController;
     }
 
     public override void EnemyAttack()
     {
-        if (_enemyMove3D.PlayerSearch(_enemyMove3D.AttackDistance) && !_isAttack)
-        {
-            AttackDirection();
-            Task.Run(() => EnemyAttackInterval(_attackInterval));
-        }
+        AttackDirection();
+        Task.Run(() => EnemyAttackInterval(_attackInterval));
     }
 
     /// <summary>

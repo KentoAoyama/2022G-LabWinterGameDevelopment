@@ -11,6 +11,8 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
     private EnemyLongAttack _enemyLongAttack = new EnemyLongAttack();
     [SerializeField, Tooltip("ヒットポイントを管理しているクラス")]
     private EnemyHealth _enemyHealth = new EnemyHealth();
+    [SerializeField, Tooltip("状態管理")]
+    private EnemyStateController _stateController;
     [SerializeField, Tooltip("エネミーのタイプ")]
     private EnemyId _enemyId;
     [SerializeField, Tooltip("ポーズ中かどうか")]
@@ -26,10 +28,12 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
     private void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
-        //_enemyStateController.InIt(_enemyMove, _enemyLongAttack, _enemyHealth)
-        _enemyMove.Set2D(_rb2D, transform, ObjectHolderManager.Instance.PlayerHolder);
-        _enemyShortAttack2D.AttackSet(_enemyMove, _rb2D);
-        _enemyLongAttack.LongAttackSet(_enemyMove);
+        _stateController.InIt(_enemyMove, _enemyLongAttack, _enemyHealth,
+            _enemyShortAttack2D, _enemyId);
+        _enemyHealth.InIt(gameObject, _stateController);
+        _enemyMove.InIt(_rb2D, transform,
+            ObjectHolderManager.Instance.PlayerHolder, _stateController);
+        _enemyShortAttack2D.InIt(_enemyMove, _rb2D, _stateController);
         _id = (int)_enemyId;
     }
 
@@ -37,6 +41,7 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
     {
         if(!_isPause)
         {
+            _stateController.State();
             _enemyMove.Move();
             Attack();
         }
@@ -47,13 +52,14 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
     /// </summary>
     private void Attack()
     {
-        if (_enemyId == EnemyId.Short)
+        if (_stateController.EnemyState == EnemyState.ShotAttack)
         {
             _enemyShortAttack2D.EnemyAttack();
         }
-        else if(_enemyMove.PlayerSearch(_enemyMove.AttackDistance) && !_enemyLongAttack.IsAttack)
+        else if(_stateController.EnemyState == EnemyState.LongAttack)
         {
             _enemyLongAttack.EnemyAttack();
+            _enemyLongAttack.Bullet.GetComponent<EnemyBulletController2D>().Set(_enemyMove);
         }
     }
 

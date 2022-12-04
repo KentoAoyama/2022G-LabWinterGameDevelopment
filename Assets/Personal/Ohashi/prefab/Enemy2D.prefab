@@ -261,6 +261,7 @@ MonoBehaviour:
     _attackDistance: 3
   _enemyShortAttack2D:
     _attackInterval: 3
+    _attackSpeed: 6
   _enemyLongAttack:
     _attackInterval: 3
     _muzzle: {fileID: 384003735}
@@ -269,5 +270,8 @@ MonoBehaviour:
     _horizontalBullet: {fileID: 614891172947649630, guid: 796ecc2564eba3549ba268f8f1e007cd,
       type: 3}
   _enemyHealth:
-    health: 0
+    _health: 5
+  _stateController:
+    _enemyState: 0
   _enemyId: 0
+  _isPause: 0

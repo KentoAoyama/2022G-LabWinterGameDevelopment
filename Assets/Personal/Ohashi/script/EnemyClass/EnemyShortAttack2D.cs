@@ -12,19 +12,18 @@ public class EnemyShortAttack2D : EnemyAttackBase
     private EnemyMove2D _enemyMove2D;
     private Rigidbody2D _rb2D;
 
-    public void AttackSet(EnemyMove2D enemyMove2D, Rigidbody2D rb2D)
+    public void InIt(EnemyMove2D enemyMove2D, Rigidbody2D rb2D,
+        EnemyStateController stateController)
     {
         _enemyMove2D = enemyMove2D;
         _rb2D = rb2D;
+        _stateController = stateController;
     }
 
     public override void EnemyAttack()
     {
-        if (_enemyMove2D.PlayerSearch(_enemyMove2D.AttackDistance) && !_isAttack)
-        {
-            AttackDirection();
-            Task.Run(() => EnemyAttackInterval(_attackInterval));
-        }
+        AttackDirection();
+        Task.Run(() => EnemyAttackInterval(_attackInterval));
     }
 
     /// <summary>

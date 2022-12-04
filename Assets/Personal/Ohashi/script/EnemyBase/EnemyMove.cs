@@ -9,6 +9,7 @@ public abstract class EnemyMove
     [SerializeField, Tooltip("UŒ‚‚Å‚«‚é‚©‚Ç‚¤‚©‚Ì‹——£")]
     private float _attackDistance = 3.0f;
 
+    protected EnemyStateController _stateController;
     protected GameObject _player;
     protected Transform _transform;
     private float _enemyDistansce;
