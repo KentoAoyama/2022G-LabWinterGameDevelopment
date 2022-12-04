@@ -9,7 +9,6 @@ public class EnemyBulletController3D : RetainedEnemyBulletBehavior
     private Rigidbody _rb;
     private EnemyBulletId _enemyBulletId;
     private int _bulletId;
-    private GameObject _player;
     private EnemyMove _enemyMove;
 
     public override int Id => _bulletId;
