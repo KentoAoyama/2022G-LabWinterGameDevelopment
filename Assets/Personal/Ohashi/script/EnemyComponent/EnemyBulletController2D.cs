@@ -10,7 +10,7 @@ public class EnemyBulletController2D : RetainedEnemyBulletBehavior
     private int _bulletId;
     private Rigidbody2D _rb2D;
 
-    protected override int Id => _bulletId;
+    public override int Id => _bulletId;
 
     private void Start()
     {

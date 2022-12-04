@@ -16,6 +16,7 @@ public abstract class EnemyMove
 
     public float AttackDistance => _attackDistance;
     public float EnemyDistance => _enemyDistansce;
+    public float MoveDistansce => _moveDistance;
 
     /// <summary>
     /// ディメンション別のエネミーの移動処理
@@ -51,15 +52,11 @@ public abstract class EnemyMove
     }
 
     /// <summary>
-    /// エネミーの移動判定
+    /// アップデートで使用クラス
     /// </summary>
     public void Move()
     {
         Rotation();
-        if (PlayerSearch(_moveDistance) && !PlayerSearch(_attackDistance))
-        {
-            RbMove();
-        }
+        RbMove();
     }
-
 }
