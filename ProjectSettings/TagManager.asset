@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bonfire
   - Lever
+  - Dimention
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Ground
   - 
   - 
   - 

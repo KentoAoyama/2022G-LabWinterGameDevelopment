@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController2D : MonoBehaviour
+public class PlayerController2D : RetainedPlayerBehavior
 {
     #region Inspector Variables
     [SerializeField]
@@ -59,7 +59,7 @@ public class PlayerController2D : MonoBehaviour
         _damage.Update();
         _mover.Update();
 
-        TestStateColorChange();
+        //TestStateColorChange();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

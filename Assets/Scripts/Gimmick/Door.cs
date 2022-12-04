@@ -27,6 +27,8 @@ public class Door : MonoBehaviour, ISwitchable
         _anim.Play("Open");
         _collider2D.isTrigger = true;
         SoundManager.Instance.AudioPlay(SoundType.SE, 15);
+
+        Debug.Log("Door");
     }
 
     public void InActive()

@@ -49,7 +49,7 @@ MonoBehaviour:
   _changeSceneTime: 2.5
   _glovalVolume: {fileID: 6724141094313824613}
   _dimentionObjects2d:
-    Player: {fileID: 3523931881859063084, guid: 2e94037d359d6a24ead02c5705267950,
+    Player: {fileID: 4074260259602323776, guid: 53c15ef2bf9a2a440b0653b0d3aea5aa,
       type: 3}
     Enemy:
     - {fileID: 8499059976695379367, guid: c9a16365f1b80824488d1f98fac6ea40, type: 3}
@@ -58,7 +58,7 @@ MonoBehaviour:
     - {fileID: 5111138627880333127, guid: f0f5019c10dbc404986660f014ab93df, type: 3}
     - {fileID: 3874519633635162492, guid: 3ecca6381c9627c43acafed008c0b1e5, type: 3}
   _dimentionObjects3d:
-    Player: {fileID: 2253775901065263776, guid: c1ae788eb3c01904b909b0c5b8708f40,
+    Player: {fileID: 8063902652912937540, guid: 4c9443f4e42605247ad0ec59907698dd,
       type: 3}
     Enemy:
     - {fileID: 5371350632816975128, guid: fcfbd96301d28b7438af296162144d8e, type: 3}
