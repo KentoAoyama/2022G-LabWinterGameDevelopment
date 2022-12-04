@@ -2,7 +2,8 @@
     "name": "Ume",
     "rootNamespace": "",
     "references": [
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:64180535209c8434f9343577a816e573"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
