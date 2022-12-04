@@ -11,7 +11,7 @@ public class EnemyMove3D : EnemyMove
     /// <summary>
     /// Rigidbodyを参照するためのメソッド
     /// </summary>
-    public void InIt(Rigidbody rb, Transform enemyTransform, 
+    public void Init(Rigidbody rb, Transform enemyTransform, 
         GameObject player, EnemyStateController enemyStateController)
     {
         _rb = rb;

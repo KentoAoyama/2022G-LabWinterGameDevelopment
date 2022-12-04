@@ -11,7 +11,7 @@ public class EnemyHealth
 
     public int Health { get => _health; set => _health = value; }
 
-    public void InIt(GameObject enemy, EnemyStateController stateController)
+    public void Init(GameObject enemy, EnemyStateController stateController)
     {
         _gameObject = enemy;
         _StateController = stateController;

@@ -29,12 +29,12 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _stateController.InIt(EnemyMove, _enemyLongAttack, _enemyHealth,
+        _stateController.Init(EnemyMove, _enemyLongAttack, _enemyHealth,
             _enemyShortAttack3D, _enemyId);
-        _enemyHealth.InIt(gameObject, _stateController);
-        _enemyMove.InIt(_rb, transform,
+        _enemyHealth.Init(gameObject, _stateController);
+        _enemyMove.Init(_rb, transform,
             ObjectHolderManager.Instance.PlayerHolder, _stateController);
-        _enemyShortAttack3D.InIt(_enemyMove, _rb, _stateController);
+        _enemyShortAttack3D.Init(_enemyMove, _rb, _stateController);
         _id = (int)_enemyId;
     }
 
@@ -60,7 +60,7 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
         else if(_stateController.EnemyState == EnemyState.LongAttack)
         {
             _enemyLongAttack.EnemyAttack();
-            _enemyLongAttack.Bullet.GetComponent<EnemyBulletController3D>().Set(_enemyMove);
+            _enemyLongAttack.Bullet.GetComponent<EnemyBulletController3D>().Init(_enemyMove);
         }
     }
 

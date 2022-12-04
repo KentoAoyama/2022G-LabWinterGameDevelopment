@@ -12,7 +12,7 @@ public class EnemyShortAttack3D : EnemyAttackBase
     private EnemyMove3D _enemyMove3D;
     private Rigidbody _rb;
 
-    public void InIt(EnemyMove3D enemyMove3D, Rigidbody rb,
+    public void Init(EnemyMove3D enemyMove3D, Rigidbody rb,
         EnemyStateController stateController)
     {
         _enemyMove3D = enemyMove3D;

@@ -14,7 +14,7 @@ public class EnemyStateController
 
     public EnemyState EnemyState => _enemyState;
 
-    public void InIt(EnemyMove enemyMove, EnemyAttackBase enemyLongAttack,
+    public void Init(EnemyMove enemyMove, EnemyAttackBase enemyLongAttack,
         EnemyHealth enemyHealth, EnemyAttackBase enemyShotAttack, EnemyId enemyId)
     {
         _enemyMove = enemyMove;
