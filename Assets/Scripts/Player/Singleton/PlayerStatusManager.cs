@@ -29,10 +29,10 @@ public class PlayerStatusManager
     #endregion
 
     #region Constants
-    private const int MAX_PLAYER_LIFE = 100;
-    private const int MAX_BODY_TEMPERATURE = 100;
-    private const int MAX_TORCH_LIFE = 100;
-    private const int MAX_TORCH_STATE = 3;
+    public const int MAX_PLAYER_LIFE = 100;
+    public const int MAX_BODY_TEMPERATURE = 100;
+    public const int MAX_TORCH_LIFE = 100;
+    public const int MAX_TORCH_STATE = 3;
     #endregion
 
     #region Properties
