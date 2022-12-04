@@ -1,5 +1,5 @@
 [System.Serializable]
-public enum Action
+public enum PAction
 {
     None,
     /// <summary> 松明に火をつける </summary>

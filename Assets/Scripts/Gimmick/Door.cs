@@ -7,6 +7,8 @@ public class Door : MonoBehaviour, ISwitchable
     /// <summary> ドアが開くAnimation </summary>
     private Animator _anim;
 
+    private BoxCollider2D _collider2D;
+
     /// <summary> アクティブか、非アクティブか </summary>
     private bool _isActive;
     /// <summary> アクティブか、非アクティブか </summary>
@@ -16,13 +18,15 @@ public class Door : MonoBehaviour, ISwitchable
     private void Start()
     {
         _anim = GetComponent<Animator>();
+        _collider2D = GetComponent<BoxCollider2D>();
     }
 
     public void Active()
     {
         _isActive = true;
         _anim.Play("Open");
-        SoundManager.Instance.AudioPlay(SoundType.SE, 1);
+        _collider2D.isTrigger = true;
+        SoundManager.Instance.AudioPlay(SoundType.SE, 15);
     }
 
     public void InActive()
