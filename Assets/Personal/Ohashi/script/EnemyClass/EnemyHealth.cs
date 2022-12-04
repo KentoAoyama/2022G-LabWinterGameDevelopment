@@ -14,7 +14,7 @@ public class EnemyHealth
     public void EnemyDamage(int damage)
     {
         health -= damage;
-        if (health < 1)
+        if (health <= 0)
         {
             EnemyDestroy();
         }

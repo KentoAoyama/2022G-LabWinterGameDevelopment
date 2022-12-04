@@ -19,13 +19,14 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
     private Rigidbody2D _rb2D;
     private int _id;
 
-    protected override int Id => _id;
+    public override int Id => _id;
 
-    protected override int Health { get => _enemyHealth.Health; set => _enemyHealth.Health = value; }
+    public override int Health { get => _enemyHealth.Health; set => _enemyHealth.Health = value; }
 
     private void Start()
     {
         _rb2D = GetComponent<Rigidbody2D>();
+        //_enemyStateController.InIt(_enemyMove, _enemyLongAttack, _enemyHealth)
         _enemyMove.Set2D(_rb2D, transform, ObjectHolderManager.Instance.PlayerHolder);
         _enemyShortAttack2D.AttackSet(_enemyMove, _rb2D);
         _enemyLongAttack.LongAttackSet(_enemyMove);
