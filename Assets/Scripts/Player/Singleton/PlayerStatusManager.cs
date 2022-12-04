@@ -23,16 +23,16 @@ public class PlayerStatusManager
     #endregion
 
     #region Member Variables
-    private readonly IntReactiveProperty _playerLife = new IntReactiveProperty();
-    private readonly IntReactiveProperty _bodyTemperature = new IntReactiveProperty();
-    private readonly IntReactiveProperty _torchLife = new IntReactiveProperty();
+    private readonly IntReactiveProperty _playerLife = new IntReactiveProperty(MAX_PLAYER_LIFE);
+    private readonly IntReactiveProperty _bodyTemperature = new IntReactiveProperty(MAX_BODY_TEMPERATURE);
+    private readonly IntReactiveProperty _torchLife = new IntReactiveProperty(MAX_TORCH_LIFE);
     #endregion
 
     #region Constants
-    public const int MAX_PLAYER_LIFE = 100;
-    public const int MAX_BODY_TEMPERATURE = 100;
-    public const int MAX_TORCH_LIFE = 100;
-    public const int MAX_TORCH_STATE = 3;
+    private const int MAX_PLAYER_LIFE = 100;
+    private const int MAX_BODY_TEMPERATURE = 100;
+    private const int MAX_TORCH_LIFE = 100;
+    private const int MAX_TORCH_STATE = 3;
     #endregion
 
     #region Properties
