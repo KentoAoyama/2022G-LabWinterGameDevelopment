@@ -3221,6 +3221,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6724141094472780429, guid: 2be19640767aac647a7d99b1b563a150,
+        type: 3}
+      propertyPath: _changeSceneName
+      value: GameScene2D
+      objectReference: {fileID: 0}
     - target: {fileID: 6724141094472780430, guid: 2be19640767aac647a7d99b1b563a150,
         type: 3}
       propertyPath: m_Name
@@ -3919,7 +3924,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0

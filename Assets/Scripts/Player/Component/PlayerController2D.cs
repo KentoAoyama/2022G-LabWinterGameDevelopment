@@ -47,7 +47,10 @@ public class PlayerController2D : RetainedPlayerBehavior
         _stateController.Init(rb2D, _mover, _attacker,
             _actioner, _damage, groundChecker);
         _actioner.Init(_stateController);
-        _dimensionChanger.Init(_stateController);
+        _dimensionChanger.Init(
+            _stateController,
+            FindObjectOfType<DimentionController>()
+            .GetComponent<DimentionController>());
 
     }
     private void Update()

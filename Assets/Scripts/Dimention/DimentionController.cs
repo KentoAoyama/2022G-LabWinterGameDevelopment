@@ -45,16 +45,30 @@ public class DimentionController : MonoBehaviour
 
             if (DimentionManager.Instance.BeforeState == GameStateManager.InGameState.Game3D)
             {
-                StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_dimentionObjects2d, FadeDimention(0f)));
+                StartCoroutine
+                    (DimentionManager
+                    .Instance
+                    .DimentionChangeFinish(
+                        _dimentionObjects2d, 
+                        FadeDimention(0f)));
             }
             else if (DimentionManager.Instance.BeforeState == GameStateManager.InGameState.Game2D)
             {
-                StartCoroutine(DimentionManager.Instance.DimentionChangeFinish(_dimentionObjects3d, FadeDimention(0f)));
+                StartCoroutine(
+                    DimentionManager.
+                    Instance.
+                    DimentionChangeFinish(
+                        _dimentionObjects3d,
+                        FadeDimention(0f)));
             }
         }
         else if (GameStateManager.Instance.GameState == GameStateManager.InGameState.Start)
         {
-            GameStateManager.Instance.GameStateChange(GameStateManager.InGameState.Game2D);
+            GameStateManager.
+                Instance.
+                GameStateChange(
+                GameStateManager.
+                InGameState.Game2D);
         }
     }
 
@@ -65,7 +79,12 @@ public class DimentionController : MonoBehaviour
     {
         if (GameStateManager.Instance.GameState != GameStateManager.InGameState.DimentionChange)
         {
-            StartCoroutine(DimentionManager.Instance.DimentionChangeStart(_changeSceneName, FadeDimention(WEIGHT_VALUE)));
+            StartCoroutine(
+                DimentionManager.
+                Instance.
+                DimentionChangeStart(
+                    _changeSceneName, 
+                    FadeDimention(WEIGHT_VALUE)));
         }
     }
 

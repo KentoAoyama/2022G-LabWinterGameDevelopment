@@ -12,15 +12,17 @@ public class PlayerDimensionChanger
     private string _changeableAreaTagName = default;
     [SerializeField]
     protected bool _isReadyDimensionChange = false;
-    [SerializeField]
-    protected DimentionController _dimentionController = default;
+    
     public string ChangeableAreaTagName => _changeableAreaTagName;
 
     private PlayerStateController _stateController = null;
 
-    public void Init(PlayerStateController stateController)
+    private DimentionController _dimentionController = default;
+
+    public void Init(PlayerStateController stateController, DimentionController dimentionController)
     {
         _stateController = stateController;
+        _dimentionController = dimentionController;
     }
     public void Update()
     {

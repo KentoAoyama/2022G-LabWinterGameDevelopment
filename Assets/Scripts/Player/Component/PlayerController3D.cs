@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController3D : MonoBehaviour
+public class PlayerController3D : RetainedPlayerBehavior
 {
     #region Inspector Variables
     [SerializeField]
@@ -41,6 +41,11 @@ public class PlayerController3D : MonoBehaviour
     #region Unity Methods
     private void Start()
     {
+        if (FindObjectsOfType<PlayerController2D>().Length > 0)
+        {
+            Destroy(gameObject);
+        }
+
         var rb = GetComponent<Rigidbody>();
         _damage.Init(rb, _stateController, _mover);
         _attacker.Init(transform, _stateController);
@@ -48,6 +53,10 @@ public class PlayerController3D : MonoBehaviour
         _stateController.Init(rb, _mover, GetComponent<GroundCheck>(),
             _attacker, _actioner, _damage);
         _actioner.Init(_stateController);
+        _dimensionChanger.Init(
+            _stateController,
+            FindObjectOfType<DimentionController>()
+            .GetComponent<DimentionController>());
         // Test
         _renderer = GetComponent<Renderer>();
     }
