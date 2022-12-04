@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bffbdc4fefc99f4fa999df2b6d841b4, type: 3}
+  m_Name: SoundScriptableObject
+  m_EditorClassIdentifier: 
+  _audioPrefab: {fileID: 6305770634903884276, guid: 59006a69025cb9f48ab463dcf3845640,
+    type: 3}
+  _soundsData:
+    Se:
+    - Clip: {fileID: 8300000, guid: 8fc18234708375642ae4df9bcb1ab5b0, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: 962b4d0da045d1943b5fcf0fdadf8a7f, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: a11a22e5b883cb24db9ce284aa296e91, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: 8e5394410c119ca4ea94d62d561a987b, type: 3}
+      Volume: 1
+      IsLoop: 1
+    - Clip: {fileID: 8300000, guid: 03ef4feb610ed8048b11bcca9501db04, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: 872338892bfb90f47bca0681c2a561c8, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: 2e704879ee6d6cb4c80450f7df698f78, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: d6827d436c895b247b0264e6d6cc51d2, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: e7aa152756442cb4a83cbe3b338526b5, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: e7aa152756442cb4a83cbe3b338526b5, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: deff24529e0bbb142b279a797ca5a67e, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: 160d0a36adee6a940b3ed30c135487d7, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: 160d0a36adee6a940b3ed30c135487d7, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: 04f75e753dfa792438631fae6999d776, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: 69c915e50f6d96a40a3ad738787ba00c, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: 60e25d473381dd04abbfcf0c67c4b240, type: 3}
+      Volume: 1
+      IsLoop: 0
+    Me: []
+    Bgm:
+    - Clip: {fileID: 8300000, guid: 9171d74ecde536a4f8108143145a6b96, type: 3}
+      Volume: 1
+      IsLoop: 1
+  _destroyIntereval: 2
