@@ -4,15 +4,15 @@ using UnityEngine;
 public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
 {
     [SerializeField, Tooltip("移動")]
-    private EnemyMove3D _enemyMove = new();
+    private EnemyMove3D _enemyMove;
     [SerializeField, Tooltip("近距離攻撃")]
-    private EnemyShortAttack3D _enemyShortAttack3D = new();
+    private EnemyShortAttack3D _enemyShortAttack3D;
     [SerializeField, Tooltip("遠距離攻撃")]
-    private EnemyLongAttack _enemyLongAttack = new();
+    private EnemyLongAttack _enemyLongAttack;
     [SerializeField, Tooltip("ヒットポイントを管理しているクラス")]
-    private EnemyHealth _enemyHealth = new();
+    private EnemyHealth _enemyHealth;
     [SerializeField, Tooltip("状態管理")]
-    private EnemyStateController _stateController = new();
+    private EnemyStateController _stateController;
     [SerializeField, Tooltip("エネミーのタイプ")]
     private EnemyId _enemyId;
     [SerializeField, Tooltip("ポーズ中かどうか")]
@@ -32,9 +32,9 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
         _stateController.Init(EnemyMove, _enemyLongAttack, _enemyHealth,
             _enemyShortAttack3D, _enemyId);
         _enemyHealth.Init(gameObject, _stateController);
-        _enemyMove.Init(_rb, transform,
+        _enemyMove.InIt(_rb, transform,
             ObjectHolderManager.Instance.PlayerHolder, _stateController);
-        _enemyShortAttack3D.Init(_enemyMove, _rb, _stateController);
+        _enemyShortAttack3D.InIt(_enemyMove, _rb, _stateController);
         _id = (int)_enemyId;
     }
 
@@ -60,7 +60,7 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
         else if(_stateController.EnemyState == EnemyState.LongAttack)
         {
             _enemyLongAttack.EnemyAttack();
-            _enemyLongAttack.Bullet.GetComponent<EnemyBulletController3D>().Init(_enemyMove);
+            _enemyLongAttack.Bullet.GetComponent<EnemyBulletController3D>().Set(_enemyMove);
         }
     }
 
@@ -84,6 +84,7 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
         //IAddDamageを継承しているクラスのオブジェクトに接触したとき以下を実行する
         if (other.TryGetComponent(out IAddDamage addDamage))
         {
+            addDamage.AddDamage(_enemyShortAttack3D.AttackPower);
             Debug.Log("攻撃が当たった");
         }
     }
