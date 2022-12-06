@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Threading.Tasks;
 
 public abstract class EnemyAttackBase
@@ -10,17 +10,17 @@ public abstract class EnemyAttackBase
     public bool IsAttack => _isAttack;
 
     /// <summary>
-    /// ƒGƒlƒ~[‚ÌUŒ‚ˆ—
+    /// ã‚¨ãƒãƒŸãƒ¼ã®æ”»æ’ƒå‡¦ç†
     /// </summary>
     public abstract void EnemyAttack();
     /// <summary>
-    /// ƒGƒlƒ~[‚ÌUŒ‚‚ÌƒCƒ“ƒ^[ƒoƒ‹
+    /// ã‚¨ãƒãƒŸãƒ¼ã®æ”»æ’ƒã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«
     /// </summary>
     protected async Task EnemyAttackInterval(int attackInterval)
     {
         _isAttack = true;
         
-        //w’è‚µ‚½ƒ~ƒŠ•bŒã‚ÉÀs‚·‚é
+        //æŒ‡å®šã—ãŸãƒŸãƒªç§’å¾Œã«å®Ÿè¡Œã™ã‚‹
         await Task.Delay(MilliSecond * attackInterval);
         Debug.Log("attack");
         _isAttack = false;

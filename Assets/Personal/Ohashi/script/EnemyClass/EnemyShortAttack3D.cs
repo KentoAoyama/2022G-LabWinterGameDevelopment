@@ -1,18 +1,22 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Threading.Tasks;
 
 [System.Serializable]
 public class EnemyShortAttack3D : EnemyAttackBase
 {
-    [SerializeField, Tooltip("UŒ‚‚ÌƒCƒ“ƒ^[ƒoƒ‹(3D)")]
+    [SerializeField, Tooltip("æ”»æ’ƒã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«(3D)")]
     private int _attackInterval = 3;
-    [SerializeField, Tooltip("UŒ‚‚ÌƒXƒs[ƒh")]
+    [SerializeField, Tooltip("æ”»æ’ƒã®ã‚¹ãƒ”ãƒ¼ãƒ‰")]
     private float _attackSpeed = 6f;
+    [SerializeField]
+    private int _attackPower = 1;
 
     private EnemyMove3D _enemyMove3D;
     private Rigidbody _rb;
 
-    public void Init(EnemyMove3D enemyMove3D, Rigidbody rb,
+    public int AttackPower => _attackPower;
+
+    public void InIt(EnemyMove3D enemyMove3D, Rigidbody rb,
         EnemyStateController stateController)
     {
         _enemyMove3D = enemyMove3D;
@@ -27,7 +31,7 @@ public class EnemyShortAttack3D : EnemyAttackBase
     }
 
     /// <summary>
-    /// UŒ‚‚Ì•ûŒü‚Ì¯•Ê
+    /// æ”»æ’ƒã®æ–¹å‘ã®è­˜åˆ¥
     /// </summary>
     private void AttackDirection()
     {

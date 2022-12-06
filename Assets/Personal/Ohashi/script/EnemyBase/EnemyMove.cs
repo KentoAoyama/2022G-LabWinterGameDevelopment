@@ -1,12 +1,12 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public abstract class EnemyMove
 {
-    [SerializeField, Tooltip("ˆÚ“®‚·‚é‚©‚Ç‚¤‚©‚Ì‹——£")]
+    [SerializeField, Tooltip("ç§»å‹•ã™ã‚‹ã‹ã©ã†ã‹ã®è·é›¢")]
     protected float _moveDistance = 5.0f;
-    [SerializeField, Tooltip("ˆÚ“®‚Ì‘¬‚³")]
+    [SerializeField, Tooltip("ç§»å‹•ã®é€Ÿã•")]
     protected float _moveSpeed = 3.0f;
-    [SerializeField, Tooltip("UŒ‚‚Å‚«‚é‚©‚Ç‚¤‚©‚Ì‹——£")]
+    [SerializeField, Tooltip("æ”»æ’ƒã§ãã‚‹ã‹ã©ã†ã‹ã®è·é›¢")]
     private float _attackDistance = 3.0f;
 
     protected EnemyStateController _stateController;
@@ -20,12 +20,12 @@ public abstract class EnemyMove
     public float MoveDistansce => _moveDistance;
 
     /// <summary>
-    /// ƒfƒBƒƒ“ƒVƒ‡ƒ“•Ê‚ÌƒGƒlƒ~[‚ÌˆÚ“®ˆ—
+    /// ãƒ‡ã‚£ãƒ¡ãƒ³ã‚·ãƒ§ãƒ³åˆ¥ã®ã‚¨ãƒãƒŸãƒ¼ã®ç§»å‹•å‡¦ç†
     /// </summary>
     protected abstract void RbMove();
 
     /// <summary>
-    /// player‚Æenemy‚ÌX²‚Ì“ñ“_ŠÔ‚Ì·‚Å‹——£‚ğ‘ª‚é
+    /// playerã¨enemyã®Xè»¸ã®äºŒç‚¹é–“ã®å·®ã§è·é›¢ã‚’æ¸¬ã‚‹
     /// </summary>
     public bool PlayerSearch(float distance)
     {
@@ -53,7 +53,7 @@ public abstract class EnemyMove
     }
 
     /// <summary>
-    /// ƒAƒbƒvƒf[ƒg‚Åg—pƒNƒ‰ƒX
+    /// ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã§ä½¿ç”¨ã‚¯ãƒ©ã‚¹
     /// </summary>
     public void Move()
     {

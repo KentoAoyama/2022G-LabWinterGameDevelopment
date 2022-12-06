@@ -1,21 +1,21 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
 {
-    [SerializeField, Tooltip("ˆÚ“®")]
+    [SerializeField, Tooltip("ç§»å‹•")]
     private EnemyMove3D _enemyMove;
-    [SerializeField, Tooltip("‹ß‹——£UŒ‚")]
+    [SerializeField, Tooltip("è¿‘è·é›¢æ”»æ’ƒ")]
     private EnemyShortAttack3D _enemyShortAttack3D;
-    [SerializeField, Tooltip("‰“‹——£UŒ‚")]
+    [SerializeField, Tooltip("é è·é›¢æ”»æ’ƒ")]
     private EnemyLongAttack _enemyLongAttack;
-    [SerializeField, Tooltip("ƒqƒbƒgƒ|ƒCƒ“ƒg‚ğŠÇ—‚µ‚Ä‚¢‚éƒNƒ‰ƒX")]
+    [SerializeField, Tooltip("ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆã‚’ç®¡ç†ã—ã¦ã„ã‚‹ã‚¯ãƒ©ã‚¹")]
     private EnemyHealth _enemyHealth;
-    [SerializeField, Tooltip("ó‘ÔŠÇ—")]
+    [SerializeField, Tooltip("çŠ¶æ…‹ç®¡ç†")]
     private EnemyStateController _stateController;
-    [SerializeField, Tooltip("ƒGƒlƒ~[‚Ìƒ^ƒCƒv")]
+    [SerializeField, Tooltip("ã‚¨ãƒãƒŸãƒ¼ã®ã‚¿ã‚¤ãƒ—")]
     private EnemyId _enemyId;
-    [SerializeField, Tooltip("ƒ|[ƒY’†‚©‚Ç‚¤‚©")]
+    [SerializeField, Tooltip("ãƒãƒ¼ã‚ºä¸­ã‹ã©ã†ã‹")]
     private bool _isPause = false;
 
     private Rigidbody _rb;
@@ -49,7 +49,7 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     }
 
     /// <summary>
-    /// ƒ^ƒCƒv•Ê‚ÅUŒ‚‚ğ¯•Ê
+    /// ã‚¿ã‚¤ãƒ—åˆ¥ã§æ”»æ’ƒã‚’è­˜åˆ¥
     /// </summary>
     private void Attack()
     {
@@ -81,11 +81,11 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
 
     private void OnTriggerEnter(Collider other)
     {
-        //IAddDamage‚ğŒp³‚µ‚Ä‚¢‚éƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ÉÚG‚µ‚½‚Æ‚«ˆÈ‰º‚ğÀs‚·‚é
+        //IAddDamageã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«æ¥è§¦ã—ãŸã¨ãä»¥ä¸‹ã‚’å®Ÿè¡Œã™ã‚‹
         if (other.TryGetComponent(out IAddDamage addDamage))
         {
             addDamage.AddDamage(_enemyShortAttack3D.AttackPower);
-            Debug.Log("UŒ‚‚ª“–‚½‚Á‚½");
+            Debug.Log("æ”»æ’ƒãŒå½“ãŸã£ãŸ");
         }
     }
 }
