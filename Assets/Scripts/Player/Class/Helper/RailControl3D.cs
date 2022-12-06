@@ -52,7 +52,7 @@ public class RailControl3D
     /// <summary>
     /// Œ»İ‚¢‚éƒŒ[ƒ‹‚ÌˆÊ’u
     /// </summary>
-    private int _nowPos = 0;
+    private static int _nowPos = 1;
 
     public void Init(Transform transform, PlayerStateController stateController)
     {

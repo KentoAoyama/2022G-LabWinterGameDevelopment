@@ -88,6 +88,18 @@ public class PlayerStatusManager
         _bodyTemperature.Value = MAX_BODY_TEMPERATURE;
         _torchLife.Value = MAX_TORCH_LIFE;
     }
+    public void PlayerLifeUp(int value)
+    {
+        _playerLife.Value += value;
+    }
+    public void BodyTemperatureUp(int value)
+    {
+        _bodyTemperature.Value += value;
+    }
+    public void TorchLifeUp(int value)
+    {
+        _torchLife.Value += value;
+    }
     #endregion
 
     #region Private Methods
