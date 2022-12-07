@@ -8,19 +8,19 @@ public abstract class PlayerAnimationController
     /// <summary> アニメーションスピード制御用パラメーター名 </summary>
     protected const string AnimSpeedParamName = "";
     /// <summary> アイドル時のアニメーションパラメーター名 </summary>
-    protected const string IdleParamName = "";
+    protected const string IdleParamName = "IsIdle";
     /// <summary> 移動時のアニメーションパラメーター名 </summary>
-    protected const string MoveParamName = "";
+    protected const string MoveParamName = "IsMove";
     /// <summary> 上昇時のアニメーションパラメーター名 </summary>
     protected const string RiseParamName = "";
     /// <summary> 落下時のアニメーションパラメーター名 </summary>
     protected const string FallParamName = "";
     /// <summary> 攻撃時のアニメーションパラメーター名 </summary>
-    protected const string AttackParamName = "";
+    protected const string AttackParamName = "IsAttack";
     /// <summary> ギミック操作時のアニメーションパラメーター名 </summary>
-    protected const string ActionParamName = "";
+    protected const string ActionParamName = "IsOnFire";
     /// <summary> ダメージ時のアニメーションパラメーター名 </summary>
-    protected const string DamageParamName = "";
+    protected const string DamageParamName = "IsDamage";
 
     protected Animator _animator = default;
     protected PlayerStateController _stateController = default;

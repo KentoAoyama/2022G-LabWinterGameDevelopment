@@ -6,7 +6,7 @@ public class PlayerAnimationController3D : PlayerAnimationController
 {
     // アニメーションパラメーター名2D用
     /// <summary> ジャンプ時のアニメーションパラメーター名 </summary>
-    private const string StepParamName = "";
+    private const string StepParamName = "IsStep";
     /// <summary> ジャンプ時のアニメーションパラメーター </summary>
     private bool _isStep = false;
 
