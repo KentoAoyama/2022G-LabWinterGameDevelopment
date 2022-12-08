@@ -12,9 +12,9 @@ public abstract class PlayerAnimationController
     /// <summary> 移動時のアニメーションパラメーター名 </summary>
     protected const string MoveParamName = "IsMove";
     /// <summary> 上昇時のアニメーションパラメーター名 </summary>
-    protected const string RiseParamName = "";
+    protected const string RiseParamName = "IsRise";
     /// <summary> 落下時のアニメーションパラメーター名 </summary>
-    protected const string FallParamName = "";
+    protected const string FallParamName = "IsFall";
     /// <summary> 攻撃時のアニメーションパラメーター名 </summary>
     protected const string AttackParamName = "IsAttack";
     /// <summary> ギミック操作時のアニメーションパラメーター名 </summary>
