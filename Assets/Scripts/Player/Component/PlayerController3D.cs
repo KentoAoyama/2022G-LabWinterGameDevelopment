@@ -19,6 +19,8 @@ public class PlayerController3D : RetainedPlayerBehavior
     private RailControl3D _railControl = default;
     [SerializeField]
     private PlayerDimensionChanger _dimensionChanger = default;
+    [SerializeField]
+    private PlayerAnimationController3D _animationController3D = default;
 
     [SerializeField]
     private Color _idleColor = Color.white;
@@ -53,6 +55,7 @@ public class PlayerController3D : RetainedPlayerBehavior
         _stateController.Init(rb, _mover, GetComponent<GroundCheck>(),
             _attacker, _actioner, _damage);
         _actioner.Init(_stateController);
+        _animationController3D.Init(transform.GetChild(0).GetComponent<Animator>(), _stateController);
         _dimensionChanger.Init(
             _stateController,
             FindObjectOfType<DimentionController>()
@@ -67,6 +70,7 @@ public class PlayerController3D : RetainedPlayerBehavior
         _attacker.Update();
         _actioner.Update();
         _mover.Update();
+        _animationController3D.Updata();
         // Test
         TestStateColorChange();
     }
