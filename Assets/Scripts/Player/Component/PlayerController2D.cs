@@ -17,6 +17,8 @@ public class PlayerController2D : RetainedPlayerBehavior
     private PlayerStateController2D _stateController = default;
     [SerializeField]
     private PlayerDimensionChanger _dimensionChanger = default;
+    [SerializeField]
+    private PlayerAnimationController2D _animationController2D = default;
 
     [SerializeField]
     private Color _idleColor = Color.white;
@@ -43,10 +45,11 @@ public class PlayerController2D : RetainedPlayerBehavior
         var groundChecker = GetComponent<GroundCheck>();
         _mover.Init(rb2D, groundChecker, _stateController);
         _attacker.Init(transform, _stateController);
-        _damage.Init(rb2D, _stateController,_mover);
+        _damage.Init(rb2D, _stateController, _mover);
         _stateController.Init(rb2D, _mover, _attacker,
             _actioner, _damage, groundChecker);
         _actioner.Init(_stateController);
+        _animationController2D.Init(transform.GetChild(0).GetComponent<Animator>(), _stateController);
         _dimensionChanger.Init(
             _stateController,
             FindObjectOfType<DimentionController>()
@@ -61,7 +64,7 @@ public class PlayerController2D : RetainedPlayerBehavior
         _dimensionChanger.Update();
         _damage.Update();
         _mover.Update();
-
+        _animationController2D.Updata();
         //TestStateColorChange();
     }
     private void OnTriggerEnter2D(Collider2D collision)
