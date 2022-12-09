@@ -6,7 +6,7 @@ public class PlayerAnimationController2D : PlayerAnimationController
 {
     // アニメーションパラメーター名2D用
     /// <summary> ジャンプ時のアニメーションパラメーター名 </summary>
-    private const string JumpParamName = "";
+    private const string JumpParamName = "IsJump";
     /// <summary> ジャンプ時のアニメーションパラメーター名 </summary>
     private bool _isJump = false;
 
