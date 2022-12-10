@@ -6,14 +6,14 @@ public class EnemyHealth
    [SerializeField, Tooltip("ヒットポイント")]
     private int _health;
 
-    private GameObject _gameObject;
+    private GameObject _enemy;
     private EnemyStateController _StateController;
 
     public int Health { get => _health; set => _health = value; }
 
     public void Init(GameObject enemy, EnemyStateController stateController)
     {
-        _gameObject = enemy;
+        _enemy = enemy;
         _StateController = stateController;
     }
     /// <summary>
@@ -34,6 +34,6 @@ public class EnemyHealth
     private void EnemyDestroy()
     {
         //やられアニメーションを出したりする。
-        Object.Destroy(_gameObject);
+        Object.Destroy(_enemy);
     }
 }

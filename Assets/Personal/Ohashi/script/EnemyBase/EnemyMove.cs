@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UniRx;
 
 public abstract class EnemyMove
 {
@@ -14,7 +15,9 @@ public abstract class EnemyMove
     protected Transform _transform;
     private float _enemyDistansce;
     private const int RotationY = 180;
+    private bool _isMove = false;
 
+    private BoolReactiveProperty _isTest = new();
     public float AttackDistance => _attackDistance;
     public float EnemyDistance => _enemyDistansce;
     public float MoveDistansce => _moveDistance;
@@ -53,11 +56,19 @@ public abstract class EnemyMove
     }
 
     /// <summary>
-    /// アップデートで使用クラス
+    /// アップデートでの使用クラス
     /// </summary>
     public void Move()
     {
+        _isTest.Value = PlayerSearch(_moveDistance);
         Rotation();
         RbMove();
+    }
+    //プレイヤー発見時のメソッド
+    public void Test()
+    {
+        _isTest
+            .Where(x => x)
+            .Subscribe(_ => Debug.Log("OK"));
     }
 }

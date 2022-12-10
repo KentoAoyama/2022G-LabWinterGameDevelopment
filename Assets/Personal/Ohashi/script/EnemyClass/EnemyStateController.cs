@@ -15,7 +15,8 @@ public class EnemyStateController
     public EnemyState EnemyState => _enemyState;
 
     public void Init(EnemyMove enemyMove, EnemyAttackBase enemyLongAttack,
-        EnemyHealth enemyHealth, EnemyAttackBase enemyShotAttack, EnemyId enemyId)
+        EnemyHealth enemyHealth, EnemyAttackBase enemyShotAttack,
+        EnemyId enemyId)
     {
         _enemyMove = enemyMove;
        _enemyLongAttack = enemyLongAttack;
@@ -53,7 +54,6 @@ public class EnemyStateController
         if (_enemyId == EnemyId.Long && _enemyMove.PlayerSearch(_enemyMove.AttackDistance)
             && !_enemyLongAttack.IsAttack)
         {
-            Debug.Log("2");
             _enemyState = EnemyState.LongAttack;
         }
     }

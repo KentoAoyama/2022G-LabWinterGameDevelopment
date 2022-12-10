@@ -15,8 +15,14 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     private EnemyStateController _stateController;
     [SerializeField, Tooltip("エネミーのタイプ")]
     private EnemyId _enemyId;
+    [SerializeField, Tooltip("アニメーション管理")]
+    AnimationController _animationController;
+    [SerializeField]
+    AnimationEventController _animationEventController;
     [SerializeField, Tooltip("ポーズ中かどうか")]
     private bool _isPause = false;
+    [SerializeField]
+    private Animator _anim;
 
     private Rigidbody _rb;
     private int _id;
@@ -35,7 +41,10 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
         _enemyMove.InIt(_rb, transform,
             ObjectHolderManager.Instance.PlayerHolder, _stateController);
         _enemyShortAttack3D.InIt(_enemyMove, _rb, _stateController);
+        _animationController.Init(_stateController, _anim);
+        _animationEventController.Init(_enemyMove, _enemyLongAttack);
         _id = (int)_enemyId;
+        _enemyMove.Test();
     }
 
     private void Update()
@@ -43,6 +52,7 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
         if(!_isPause)
         {
             _stateController.State();
+            _animationController.Animation();
             _enemyMove.Move();
             Attack();
         }
@@ -56,11 +66,6 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
         if(_stateController.EnemyState == EnemyState.ShotAttack)
         {
             _enemyShortAttack3D.EnemyAttack();
-        }
-        else if(_stateController.EnemyState == EnemyState.LongAttack)
-        {
-            _enemyLongAttack.EnemyAttack();
-            _enemyLongAttack.Bullet.GetComponent<EnemyBulletController3D>().Set(_enemyMove);
         }
     }
 
