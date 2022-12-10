@@ -345,7 +345,7 @@ PrefabInstance:
     - target: {fileID: 3961470655678139233, guid: ffa2d9d88c2178846859a7d48bbe4f45,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3961470655678139233, guid: ffa2d9d88c2178846859a7d48bbe4f45,
         type: 3}
@@ -396,11 +396,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3961470655678139235, guid: ffa2d9d88c2178846859a7d48bbe4f45,
-        type: 3}
-      propertyPath: _enemyId
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3961470655678139237, guid: ffa2d9d88c2178846859a7d48bbe4f45,
         type: 3}
@@ -606,12 +601,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099935820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.66, y: -0.16, z: -0.37}
+  m_LocalPosition: {x: -8.57, y: -0.16, z: -0.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1099935825
 Rigidbody:
