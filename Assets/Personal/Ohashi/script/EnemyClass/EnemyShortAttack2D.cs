@@ -1,12 +1,12 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Threading.Tasks;
 
 [System.Serializable]
 public class EnemyShortAttack2D : EnemyAttackBase
 {
-    [SerializeField, Tooltip("UŒ‚‚ÌƒCƒ“ƒ^[ƒoƒ‹(2D)")]
+    [SerializeField, Tooltip("æ”»æ’ƒã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«(2D)")]
     private int _attackInterval = 3;
-    [SerializeField, Tooltip("UŒ‚ƒXƒs[ƒh")]
+    [SerializeField, Tooltip("æ”»æ’ƒã‚¹ãƒ”ãƒ¼ãƒ‰")]
     private float _attackSpeed = 6f;
 
     private EnemyMove2D _enemyMove2D;
@@ -27,7 +27,7 @@ public class EnemyShortAttack2D : EnemyAttackBase
     }
 
     /// <summary>
-    /// UŒ‚‚Ì•ûŒü‚Ì¯•Ê
+    /// æ”»æ’ƒã®æ–¹å‘ã®è­˜åˆ¥
     /// </summary>
     private void AttackDirection()
     {

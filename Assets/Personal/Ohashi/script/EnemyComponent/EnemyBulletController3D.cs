@@ -1,9 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyBulletController3D : RetainedEnemyBulletBehavior
 {
-    [SerializeField, Tooltip("’e‚ÌƒXƒs[ƒh")]
+    [SerializeField, Tooltip("å¼¾ã®ã‚¹ãƒ”ãƒ¼ãƒ‰")]
     private float _bulletSpeed = 2f;
 
     private Rigidbody _rb;
@@ -13,7 +13,7 @@ public class EnemyBulletController3D : RetainedEnemyBulletBehavior
 
     public override int Id => _bulletId;
 
-    public void Init(EnemyMove enemyMove)
+    public void Set(EnemyMove enemyMove)
     {
         _enemyMove = enemyMove;
     }
@@ -26,7 +26,7 @@ public class EnemyBulletController3D : RetainedEnemyBulletBehavior
     }
 
     /// <summary>
-    ///  ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£‚Å’e‚ğ”ò‚Î‚·Œü‚«‚ğŒˆ‚ßA”ò‚Î‚·
+    ///  ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã®è·é›¢ã§å¼¾ã‚’é£›ã°ã™å‘ãã‚’æ±ºã‚ã€é£›ã°ã™
     /// </summary>
     private void BulletMove()
     {
@@ -42,10 +42,10 @@ public class EnemyBulletController3D : RetainedEnemyBulletBehavior
 
     private void OnTriggerEnter(Collider other)
     {
-        //IAddDamage‚ğŒp³‚µ‚Ä‚¢‚éƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ÉÚG‚µ‚½‚Æ‚«ˆÈ‰º‚ğÀs‚·‚é
+        //IAddDamageã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«æ¥è§¦ã—ãŸã¨ãä»¥ä¸‹ã‚’å®Ÿè¡Œã™ã‚‹
         if (other.TryGetComponent(out IAddDamage addDamage))
         {
-            Debug.Log("UŒ‚‚ª“–‚½‚Á‚½(‰“‹——£)");
+            Debug.Log("æ”»æ’ƒãŒå½“ãŸã£ãŸ(é è·é›¢)");
         }
     }
 }

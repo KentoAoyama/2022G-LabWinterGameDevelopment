@@ -1,7 +1,7 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 /// <summary>
-/// 3D‚Å‚ÌƒGƒlƒ~[‚ÌˆÚ“®ˆ—‚ª‘‚©‚ê‚½ƒNƒ‰ƒXB
+/// 3Dã§ã®ã‚¨ãƒãƒŸãƒ¼ã®ç§»å‹•å‡¦ç†ãŒæ›¸ã‹ã‚ŒãŸã‚¯ãƒ©ã‚¹ã€‚
 /// </summary>
 [System.Serializable]
 public class EnemyMove3D : EnemyMove
@@ -9,9 +9,9 @@ public class EnemyMove3D : EnemyMove
     private Rigidbody _rb;
 
     /// <summary>
-    /// Rigidbody‚ğQÆ‚·‚é‚½‚ß‚Ìƒƒ\ƒbƒh
+    /// Rigidbodyã‚’å‚ç…§ã™ã‚‹ãŸã‚ã®ãƒ¡ã‚½ãƒƒãƒ‰
     /// </summary>
-    public void Init(Rigidbody rb, Transform enemyTransform, 
+    public void InIt(Rigidbody rb, Transform enemyTransform, 
         GameObject player, EnemyStateController enemyStateController)
     {
         _rb = rb;

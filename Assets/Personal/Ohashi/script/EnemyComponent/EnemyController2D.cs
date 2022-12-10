@@ -1,22 +1,28 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
 {
-    [SerializeField, Tooltip("ˆÚ“®")]
-    private EnemyMove2D _enemyMove = new EnemyMove2D();
-    [SerializeField, Tooltip("‹ß‹——£UŒ‚")]
-    private EnemyShortAttack2D _enemyShortAttack2D = new EnemyShortAttack2D();
-    [SerializeField, Tooltip("‰“‹——£UŒ‚")]
-    private EnemyLongAttack _enemyLongAttack = new EnemyLongAttack();
-    [SerializeField, Tooltip("ƒqƒbƒgƒ|ƒCƒ“ƒg‚ğŠÇ—‚µ‚Ä‚¢‚éƒNƒ‰ƒX")]
-    private EnemyHealth _enemyHealth = new EnemyHealth();
-    [SerializeField, Tooltip("ó‘ÔŠÇ—")]
+    [SerializeField, Tooltip("ç§»å‹•")]
+    private EnemyMove2D _enemyMove;
+    [SerializeField, Tooltip("è¿‘è·é›¢æ”»æ’ƒ")]
+    private EnemyShortAttack2D _enemyShortAttack2D;
+    [SerializeField, Tooltip("é è·é›¢æ”»æ’ƒ")]
+    private EnemyLongAttack _enemyLongAttack;
+    [SerializeField, Tooltip("ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆã‚’ç®¡ç†ã—ã¦ã„ã‚‹ã‚¯ãƒ©ã‚¹")]
+    private EnemyHealth _enemyHealth;
+    [SerializeField, Tooltip("çŠ¶æ…‹ç®¡ç†")]
     private EnemyStateController _stateController;
-    [SerializeField, Tooltip("ƒGƒlƒ~[‚Ìƒ^ƒCƒv")]
+    [SerializeField, Tooltip("ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†")]
+    AnimationController _animationController;
+    [SerializeField]
+    AnimationEventController _animationEventController;
+    [SerializeField, Tooltip("ã‚¨ãƒãƒŸãƒ¼ã®ã‚¿ã‚¤ãƒ—")]
     private EnemyId _enemyId;
-    [SerializeField, Tooltip("ƒ|[ƒY’†‚©‚Ç‚¤‚©")]
+    [SerializeField, Tooltip("ãƒãƒ¼ã‚ºä¸­ã‹ã©ã†ã‹")]
     private bool _isPause = false;
+    [SerializeField]
+    Animator _anim;
 
     private Rigidbody2D _rb2D;
     private int _id;
@@ -34,7 +40,10 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
         _enemyMove.InIt(_rb2D, transform,
             ObjectHolderManager.Instance.PlayerHolder, _stateController);
         _enemyShortAttack2D.InIt(_enemyMove, _rb2D, _stateController);
+        _animationController.Init(_stateController, _anim);
+        _animationEventController.Init(_enemyMove, _enemyLongAttack);
         _id = (int)_enemyId;
+        _enemyMove.Test();
     }
 
     private void Update()
@@ -42,13 +51,14 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
         if(!_isPause)
         {
             _stateController.State();
+            _animationController.Animation();
             _enemyMove.Move();
             Attack();
         }
     }
 
     /// <summary>
-    /// ƒ^ƒCƒv•Ê‚ÅUŒ‚‚ğ¯•Ê
+    /// ã‚¿ã‚¤ãƒ—åˆ¥ã§æ”»æ’ƒã‚’è­˜åˆ¥
     /// </summary>
     private void Attack()
     {
@@ -80,10 +90,10 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //IAddDamage‚ğŒp³‚µ‚Ä‚¢‚éƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ÉÚG‚µ‚½‚Æ‚«ˆÈ‰º‚ğÀs‚·‚é
+        //IAddDamageã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹ã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«æ¥è§¦ã—ãŸã¨ãä»¥ä¸‹ã‚’å®Ÿè¡Œã™ã‚‹
         if (collision.TryGetComponent(out IAddDamage addDamage))
         {
-            Debug.Log("UŒ‚‚ª“–‚½‚Á‚½");
+            Debug.Log("æ”»æ’ƒãŒå½“ãŸã£ãŸ");
         }
     }
 }

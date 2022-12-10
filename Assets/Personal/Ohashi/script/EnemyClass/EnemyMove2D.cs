@@ -1,6 +1,6 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 /// <summary>
-/// 2D‚Å‚ÌƒGƒlƒ~[‚ÌˆÚ“®ˆ—‚ª‘‚©‚ê‚½ƒNƒ‰ƒX
+/// 2Dã§ã®ã‚¨ãƒãƒŸãƒ¼ã®ç§»å‹•å‡¦ç†ãŒæ›¸ã‹ã‚ŒãŸã‚¯ãƒ©ã‚¹
 /// </summary>
 [System.Serializable]
 public class EnemyMove2D : EnemyMove

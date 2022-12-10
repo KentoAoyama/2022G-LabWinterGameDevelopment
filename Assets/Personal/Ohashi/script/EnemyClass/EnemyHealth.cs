@@ -1,23 +1,23 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [System.Serializable]
 public class EnemyHealth
 {
-   [SerializeField, Tooltip("ƒqƒbƒgƒ|ƒCƒ“ƒg")]
+   [SerializeField, Tooltip("ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆ")]
     private int _health;
 
-    private GameObject _gameObject;
+    private GameObject _enemy;
     private EnemyStateController _StateController;
 
     public int Health { get => _health; set => _health = value; }
 
     public void Init(GameObject enemy, EnemyStateController stateController)
     {
-        _gameObject = enemy;
+        _enemy = enemy;
         _StateController = stateController;
     }
     /// <summary>
-    /// ƒ_ƒ[ƒWˆ—
+    /// ãƒ€ãƒ¡ãƒ¼ã‚¸å‡¦ç†
     /// </summary>
     public void EnemyDamage(int damage)
     {
@@ -29,11 +29,11 @@ public class EnemyHealth
     }
 
     /// <summary>
-    /// ƒGƒlƒ~[‚Ìƒqƒbƒgƒ|ƒCƒ“ƒg‚ª0ˆÈ‰º‚É‚È‚Á‚½‚Ìˆ—
+    /// ã‚¨ãƒãƒŸãƒ¼ã®ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆãŒ0ä»¥ä¸‹ã«ãªã£ãŸæ™‚ã®å‡¦ç†
     /// </summary>
     private void EnemyDestroy()
     {
-        //‚â‚ç‚êƒAƒjƒ[ƒVƒ‡ƒ“‚ğo‚µ‚½‚è‚·‚éB
-        Object.Destroy(_gameObject);
+        //ã‚„ã‚‰ã‚Œã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å‡ºã—ãŸã‚Šã™ã‚‹ã€‚
+        Object.Destroy(_enemy);
     }
 }

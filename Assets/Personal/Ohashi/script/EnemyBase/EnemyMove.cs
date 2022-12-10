@@ -1,12 +1,13 @@
-using UnityEngine;
+ï»¿using UnityEngine;
+using UniRx;
 
 public abstract class EnemyMove
 {
-    [SerializeField, Tooltip("ˆÚ“®‚·‚é‚©‚Ç‚¤‚©‚Ì‹——£")]
+    [SerializeField, Tooltip("ç§»å‹•ã™ã‚‹ã‹ã©ã†ã‹ã®è·é›¢")]
     protected float _moveDistance = 5.0f;
-    [SerializeField, Tooltip("ˆÚ“®‚Ì‘¬‚³")]
+    [SerializeField, Tooltip("ç§»å‹•ã®é€Ÿã•")]
     protected float _moveSpeed = 3.0f;
-    [SerializeField, Tooltip("UŒ‚‚Å‚«‚é‚©‚Ç‚¤‚©‚Ì‹——£")]
+    [SerializeField, Tooltip("æ”»æ’ƒã§ãã‚‹ã‹ã©ã†ã‹ã®è·é›¢")]
     private float _attackDistance = 3.0f;
 
     protected EnemyStateController _stateController;
@@ -14,18 +15,20 @@ public abstract class EnemyMove
     protected Transform _transform;
     private float _enemyDistansce;
     private const int RotationY = 180;
+    private bool _isMove = false;
 
+    private BoolReactiveProperty _isTest = new();
     public float AttackDistance => _attackDistance;
     public float EnemyDistance => _enemyDistansce;
     public float MoveDistansce => _moveDistance;
 
     /// <summary>
-    /// ƒfƒBƒƒ“ƒVƒ‡ƒ“•Ê‚ÌƒGƒlƒ~[‚ÌˆÚ“®ˆ—
+    /// ãƒ‡ã‚£ãƒ¡ãƒ³ã‚·ãƒ§ãƒ³åˆ¥ã®ã‚¨ãƒãƒŸãƒ¼ã®ç§»å‹•å‡¦ç†
     /// </summary>
     protected abstract void RbMove();
 
     /// <summary>
-    /// player‚Æenemy‚ÌX²‚Ì“ñ“_ŠÔ‚Ì·‚Å‹——£‚ğ‘ª‚é
+    /// playerã¨enemyã®Xè»¸ã®äºŒç‚¹é–“ã®å·®ã§è·é›¢ã‚’æ¸¬ã‚‹
     /// </summary>
     public bool PlayerSearch(float distance)
     {
@@ -53,11 +56,19 @@ public abstract class EnemyMove
     }
 
     /// <summary>
-    /// ƒAƒbƒvƒf[ƒg‚Åg—pƒNƒ‰ƒX
+    /// ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã§ã®ä½¿ç”¨ã‚¯ãƒ©ã‚¹
     /// </summary>
     public void Move()
     {
+        _isTest.Value = PlayerSearch(_moveDistance);
         Rotation();
         RbMove();
+    }
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç™ºè¦‹æ™‚ã®ãƒ¡ã‚½ãƒƒãƒ‰
+    public void Test()
+    {
+        _isTest
+            .Where(x => x)
+            .Subscribe(_ => Debug.Log("OK"));
     }
 }

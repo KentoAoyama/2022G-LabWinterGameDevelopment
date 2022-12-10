@@ -134,8 +134,10 @@ MonoBehaviour:
     _health: 5
   _stateController:
     _enemyState: 0
+  _animationEventController: {fileID: 3803724318988725878}
   _enemyId: 0
   _isPause: 0
+  _anim: {fileID: 6362077669391371219}
 --- !u!1001 &1965203246339125551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,3 +214,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1965203246339125551}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2063213980375208082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 5a3e49c34d5ab1f4bad7872b7197b3d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1965203246339125551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6362077669391371219
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063213980375208082}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 52fbfb0a26e91a04a8dcb4f208432066, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3803724318988725878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063213980375208082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc25065927d9e6b48ba3800cdead1ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

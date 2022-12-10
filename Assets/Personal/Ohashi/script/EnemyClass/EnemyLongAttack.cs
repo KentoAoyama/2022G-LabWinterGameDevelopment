@@ -1,16 +1,16 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Threading.Tasks;
 
 [System.Serializable]
 public class EnemyLongAttack : EnemyAttackBase
 {
-    [SerializeField, Tooltip("‰“‹——£UŒ‚‚ÌƒCƒ“ƒ^[ƒoƒ‹")]
+    [SerializeField, Tooltip("é è·é›¢æ”»æ’ƒã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«")]
     private int _attackInterval = 3;
-    [SerializeField, Tooltip("ƒoƒŒƒbƒg‚ğ¶¬‚·‚éƒIƒuƒWƒFƒNƒg")]
+    [SerializeField, Tooltip("ãƒãƒ¬ãƒƒãƒˆã‚’ç”Ÿæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ")]
     GameObject _muzzle;
-    [SerializeField, Tooltip("c‚ÌƒoƒŒƒbƒg")]
+    [SerializeField, Tooltip("ç¸¦ã®ãƒãƒ¬ãƒƒãƒˆ")]
     private GameObject _verticalBullet;
-    [SerializeField, Tooltip("‰¡‚ÌƒoƒŒƒbƒg")]
+    [SerializeField, Tooltip("æ¨ªã®ãƒãƒ¬ãƒƒãƒˆ")]
     private GameObject _horizontalBullet;
 
     private EnemyBulletId _enemyBulletId;
