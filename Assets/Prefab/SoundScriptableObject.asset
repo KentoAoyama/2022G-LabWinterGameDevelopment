@@ -40,7 +40,7 @@ MonoBehaviour:
     - Clip: {fileID: 8300000, guid: d6827d436c895b247b0264e6d6cc51d2, type: 3}
       Volume: 1
       IsLoop: 0
-    - Clip: {fileID: 8300000, guid: e7aa152756442cb4a83cbe3b338526b5, type: 3}
+    - Clip: {fileID: 0}
       Volume: 1
       IsLoop: 0
     - Clip: {fileID: 8300000, guid: e7aa152756442cb4a83cbe3b338526b5, type: 3}
@@ -49,7 +49,10 @@ MonoBehaviour:
     - Clip: {fileID: 8300000, guid: deff24529e0bbb142b279a797ca5a67e, type: 3}
       Volume: 1
       IsLoop: 0
-    - Clip: {fileID: 8300000, guid: 160d0a36adee6a940b3ed30c135487d7, type: 3}
+    - Clip: {fileID: 8300000, guid: 695d57f125da1054da48e343a354dbb0, type: 3}
+      Volume: 1
+      IsLoop: 0
+    - Clip: {fileID: 8300000, guid: f5a51427af2e6d94885a698067b9021f, type: 3}
       Volume: 1
       IsLoop: 0
     - Clip: {fileID: 8300000, guid: 160d0a36adee6a940b3ed30c135487d7, type: 3}
@@ -64,8 +67,20 @@ MonoBehaviour:
     - Clip: {fileID: 8300000, guid: 60e25d473381dd04abbfcf0c67c4b240, type: 3}
       Volume: 1
       IsLoop: 0
-    Me: []
+    Me:
+    - Clip: {fileID: 8300000, guid: 2df196f53aada8b49801f984cdb4f287, type: 3}
+      Volume: 1
+      IsLoop: 0
     Bgm:
+    - Clip: {fileID: 8300000, guid: c8e31059aaca92746b61eaec622fce38, type: 3}
+      Volume: 1
+      IsLoop: 1
+    - Clip: {fileID: 8300000, guid: 850ba1e97bd80e441be336e4d225d033, type: 3}
+      Volume: 1
+      IsLoop: 1
+    - Clip: {fileID: 8300000, guid: 83aa7d800abedf14b81aefa10cb69e01, type: 3}
+      Volume: 1
+      IsLoop: 1
     - Clip: {fileID: 8300000, guid: 9171d74ecde536a4f8108143145a6b96, type: 3}
       Volume: 1
       IsLoop: 1
