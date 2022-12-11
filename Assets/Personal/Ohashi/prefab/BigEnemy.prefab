@@ -124,7 +124,7 @@ MonoBehaviour:
     _horizontalBullet: {fileID: 2184208299946647746, guid: b848129bc75dfd1409eafa43e36130d1,
       type: 3}
   _enemyHealth:
-    _health: 5
+    _maxHealth: 10
   _stateController:
     _enemyState: 0
   _enemyId: 1

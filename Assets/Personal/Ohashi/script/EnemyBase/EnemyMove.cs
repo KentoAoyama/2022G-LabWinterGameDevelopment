@@ -12,27 +12,29 @@ public abstract class EnemyMove
 
     protected EnemyStateController _stateController;
     protected GameObject _player;
-    protected Transform _transform;
+    protected GameObject _gameObject;
     private float _enemyDistansce;
     private const int RotationY = 180;
-    private bool _isMove = false;
+    private bool _isFinding = false;
 
-    private BoolReactiveProperty _isTest = new();
+    public bool IsFinding{ get => _isFinding; set => _isFinding = value; }
     public float AttackDistance => _attackDistance;
     public float EnemyDistance => _enemyDistansce;
     public float MoveDistansce => _moveDistance;
 
+    private BoolReactiveProperty _isFind = new();
+
     /// <summary>
     /// ディメンション別のエネミーの移動処理
     /// </summary>
-    protected abstract void RbMove();
+    protected abstract void MoveType();
 
     /// <summary>
     /// playerとenemyのX軸の二点間の差で距離を測る
     /// </summary>
     public bool PlayerSearch(float distance)
     {
-        _enemyDistansce = _player.transform.position.x - _transform.position.x;
+        _enemyDistansce = _player.transform.position.x - _gameObject.transform.position.x;
         if (distance > _enemyDistansce)
         {
             if (-distance < _enemyDistansce)
@@ -47,11 +49,11 @@ public abstract class EnemyMove
     {
         if (_enemyDistansce < 0)
         {
-            _transform.rotation = new Quaternion(0, 0, 0, 0);
+            _gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
         else
         {
-            _transform.rotation = new Quaternion(0, RotationY, 0, 0);
+            _gameObject.transform.rotation = new Quaternion(0, RotationY, 0, 0);
         }
     }
 
@@ -60,15 +62,18 @@ public abstract class EnemyMove
     /// </summary>
     public void Move()
     {
-        _isTest.Value = PlayerSearch(_moveDistance);
+        _isFind.Value = PlayerSearch(_moveDistance);
         Rotation();
-        RbMove();
+        MoveType();
     }
-    //プレイヤー発見時のメソッド
-    public void Test()
+    /// <summary>
+    /// _isFindの値が変更されたときに呼ばれる
+    /// </summary>
+    public void FindPlayer()
     {
-        _isTest
+        _isFind
             .Where(x => x)
-            .Subscribe(_ => Debug.Log("OK"));
+            .Subscribe(_ => _isFinding = true)
+            .AddTo(_gameObject);
     }
 }

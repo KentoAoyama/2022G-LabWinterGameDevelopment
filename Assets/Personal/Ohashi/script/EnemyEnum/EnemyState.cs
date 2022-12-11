@@ -4,6 +4,7 @@ public enum EnemyState
     Move,
     LongAttack,
     ShotAttack,
+    Find,
     Damage,
     Death,
 
