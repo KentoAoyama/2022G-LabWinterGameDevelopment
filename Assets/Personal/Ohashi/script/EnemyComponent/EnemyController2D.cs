@@ -36,14 +36,15 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
         _rb2D = GetComponent<Rigidbody2D>();
         _stateController.Init(_enemyMove, _enemyLongAttack, _enemyHealth,
             _enemyShortAttack2D, _enemyId);
-        _enemyHealth.Init(gameObject, _stateController);
-        _enemyMove.InIt(_rb2D, transform,
+        _enemyMove.InIt(_rb2D, gameObject,
             ObjectHolderManager.Instance.PlayerHolder, _stateController);
+        _enemyHealth.Init(gameObject, _stateController);
         _enemyShortAttack2D.InIt(_enemyMove, _rb2D, _stateController);
         _animationController.Init(_stateController, _anim);
-        _animationEventController.Init(_enemyMove, _enemyLongAttack);
+        _animationEventController.Init(_enemyMove, _enemyLongAttack, _enemyShortAttack2D);
         _id = (int)_enemyId;
-        _enemyMove.Test();
+        _enemyMove.FindPlayer();
+        _enemyHealth.Damage();
     }
 
     private void Update()
@@ -53,23 +54,6 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
             _stateController.State();
             _animationController.Animation();
             _enemyMove.Move();
-            Attack();
-        }
-    }
-
-    /// <summary>
-    /// タイプ別で攻撃を識別
-    /// </summary>
-    private void Attack()
-    {
-        if (_stateController.EnemyState == EnemyState.ShotAttack)
-        {
-            _enemyShortAttack2D.EnemyAttack();
-        }
-        else if(_stateController.EnemyState == EnemyState.LongAttack)
-        {
-            _enemyLongAttack.EnemyAttack();
-            _enemyLongAttack.Bullet.GetComponent<EnemyBulletController2D>().Init(_enemyMove);
         }
     }
 
@@ -93,7 +77,7 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
         //IAddDamageを継承しているクラスのオブジェクトに接触したとき以下を実行する
         if (collision.TryGetComponent(out IAddDamage addDamage))
         {
-            Debug.Log("攻撃が当たった");
+            addDamage.AddDamage(_enemyShortAttack2D.AttackPower);
         }
     }
 }
