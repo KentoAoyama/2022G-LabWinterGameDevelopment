@@ -1,10 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyBulletController3D : RetainedEnemyBulletBehavior
 {
     [SerializeField, Tooltip("弾のスピード")]
     private float _bulletSpeed = 2f;
+    [SerializeField]
+    private int _bulletPower = 2;
+    [SerializeField]
+    private float _interval = 10f;
 
     private Rigidbody _rb;
     private EnemyBulletId _enemyBulletId;
@@ -45,7 +50,15 @@ public class EnemyBulletController3D : RetainedEnemyBulletBehavior
         //IAddDamageを継承しているクラスのオブジェクトに接触したとき以下を実行する
         if (other.TryGetComponent(out IAddDamage addDamage))
         {
+            addDamage.AddDamage(_bulletPower);
             Debug.Log("攻撃が当たった(遠距離)");
         }
+        Destroy(gameObject);
+        StartCoroutine(DestroyInterval());
+    }
+    private IEnumerator DestroyInterval()
+    {
+        yield return new WaitForSeconds(_interval);
+        Destroy(gameObject);
     }
 }
