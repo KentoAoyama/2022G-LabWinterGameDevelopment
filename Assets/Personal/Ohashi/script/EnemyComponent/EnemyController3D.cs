@@ -37,14 +37,15 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
         _rb = GetComponent<Rigidbody>();
         _stateController.Init(EnemyMove, _enemyLongAttack, _enemyHealth,
             _enemyShortAttack3D, _enemyId);
-        _enemyHealth.Init(gameObject, _stateController);
-        _enemyMove.InIt(_rb, transform,
+        _enemyMove.InIt(_rb, gameObject,
             ObjectHolderManager.Instance.PlayerHolder, _stateController);
         _enemyShortAttack3D.InIt(_enemyMove, _rb, _stateController);
         _animationController.Init(_stateController, _anim);
-        _animationEventController.Init(_enemyMove, _enemyLongAttack);
+        _enemyHealth.Init(gameObject, _stateController);
+        _animationEventController.Init(_enemyMove, _enemyLongAttack, _enemyShortAttack3D);
         _id = (int)_enemyId;
-        _enemyMove.Test();
+        _enemyMove.FindPlayer();
+        _enemyHealth.Damage();
     }
 
     private void Update()
@@ -54,18 +55,6 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
             _stateController.State();
             _animationController.Animation();
             _enemyMove.Move();
-            Attack();
-        }
-    }
-
-    /// <summary>
-    /// タイプ別で攻撃を識別
-    /// </summary>
-    private void Attack()
-    {
-        if(_stateController.EnemyState == EnemyState.ShotAttack)
-        {
-            _enemyShortAttack3D.EnemyAttack();
         }
     }
 

@@ -130,11 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4364132567490265730, guid: bf666aa43aad32644b22d5df69ca6b0d,
-        type: 3}
-      propertyPath: _enemyMove._moveDistance
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4364132567490265731, guid: bf666aa43aad32644b22d5df69ca6b0d,
         type: 3}
       propertyPath: m_Name

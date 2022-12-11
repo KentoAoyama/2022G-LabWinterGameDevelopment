@@ -13,11 +13,11 @@ public class AnimationController
     }
     public void Animation()
     {
+        FindAnimation();
         MoveAnimation();
         LongAttackAnimation();
         ShotAttackAnimation();
         DamageAnimation();
-        DeathAnimation();
     }
     private void MoveAnimation()
     {
@@ -34,16 +34,16 @@ public class AnimationController
         _anim.SetBool("IsShotAttack",
             _stateController.EnemyState == EnemyState.ShotAttack ? true : false);
     }
+    private void FindAnimation()
+    {
+        _anim.SetBool("IsFind",
+            _stateController.EnemyState == EnemyState.Find ? true : false);
+    }
     private void DamageAnimation()
     {
         if (_stateController.EnemyState == EnemyState.Damage)
         {
-        }
-    }
-    private void DeathAnimation()
-    {
-        if (_stateController.EnemyState == EnemyState.Death)
-        {
+            _anim.Play("Damage");
         }
     }
 }

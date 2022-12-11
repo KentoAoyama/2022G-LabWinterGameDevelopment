@@ -8,23 +8,20 @@ public class EnemyMove3D : EnemyMove
 {
     private Rigidbody _rb;
 
-    /// <summary>
-    /// Rigidbodyを参照するためのメソッド
-    /// </summary>
-    public void InIt(Rigidbody rb, Transform enemyTransform, 
+    public void InIt(Rigidbody rb, GameObject enemy, 
         GameObject player, EnemyStateController enemyStateController)
     {
         _rb = rb;
         _stateController = enemyStateController;
-        _transform = enemyTransform;
+        _gameObject = enemy;
         _player = player;
     }
 
-    protected override void RbMove()
+    protected override void MoveType()
     {
         if(_stateController.EnemyState == EnemyState.Move)
         {
-            Vector3 target = (_player.transform.position - _transform.position).normalized;
+            Vector3 target = (_player.transform.position - _gameObject.transform.position).normalized;
             _rb.velocity = new Vector3(target.x * _moveSpeed, 0, 0);
         }
     }

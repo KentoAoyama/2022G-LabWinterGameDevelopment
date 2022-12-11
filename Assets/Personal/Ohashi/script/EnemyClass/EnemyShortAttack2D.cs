@@ -8,9 +8,13 @@ public class EnemyShortAttack2D : EnemyAttackBase
     private int _attackInterval = 3;
     [SerializeField, Tooltip("攻撃スピード")]
     private float _attackSpeed = 6f;
+    [SerializeField]
+    private int _attackPower = 2;
 
     private EnemyMove2D _enemyMove2D;
     private Rigidbody2D _rb2D;
+
+    public int AttackPower => _attackPower;
 
     public void InIt(EnemyMove2D enemyMove2D, Rigidbody2D rb2D,
         EnemyStateController stateController)

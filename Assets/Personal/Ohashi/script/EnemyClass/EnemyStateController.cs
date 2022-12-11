@@ -28,6 +28,9 @@ public class EnemyStateController
     {
         _enemyState = EnemyState.Idle;
         Move();
+        Damage();
+        Find();
+        
         Attack();
         LongAttack();
         Death();
@@ -57,9 +60,22 @@ public class EnemyStateController
             _enemyState = EnemyState.LongAttack;
         }
     }
+    private void Find()
+    {
+        if(_enemyMove.IsFinding)
+        {
+            _enemyState = EnemyState.Find;
+            _enemyMove.IsFinding = false;
+        }
+    }
     private void Damage()
     {
-
+        if(_enemyHealth.IsDamage)
+        {
+            Debug.Log("ddd");
+            _enemyState = EnemyState.Damage;
+            _enemyHealth.IsDamage = false;
+        }
     }
     private void Death()
     {
