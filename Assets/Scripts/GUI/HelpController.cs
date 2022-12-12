@@ -32,6 +32,7 @@ public class HelpController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                PauseManager.Instance.OnResume?.Invoke();
                 helpMenu.SetActive(false);
                 helpCursor.SetActive(false);
             }
@@ -61,6 +62,7 @@ public class HelpController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                PauseManager.Instance.OnPause?.Invoke();
                 counter = 0;
                 helpMenu.SetActive(true);
                 helpCursor.SetActive(true);

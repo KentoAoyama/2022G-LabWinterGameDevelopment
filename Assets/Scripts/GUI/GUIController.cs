@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UniRx;
+using UnityEngine;
 
 public class GUIController : MonoBehaviour
 {
     //Playerパラメータの代わり
     PlayerStatusManager playerStatusManager;
     //HPゲージ
-    [SerializeField] PlayerGuage hpBar;
-    [SerializeField] PlayerGuage temperatureBar;
+    [SerializeField] PlayerGauge hpBar;
+    [SerializeField] PlayerGauge temperatureBar;
 
     int playerLifeMax;
     int BodyTemperatureMax;

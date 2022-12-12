@@ -2,7 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 /// <summary>
 /// MonoBehaviorを継承した値などを定義するクラス
@@ -19,6 +19,9 @@ public class DimentionController : MonoBehaviour
 
     [Tooltip("変化させるGlovalVolume")]
     [SerializeField] private Volume _glovalVolume;
+
+    [Tooltip("変化させるPanel")]
+    [SerializeField] private Image _panelImage;
 
     [Header("遷移時に出すプレハブ")]
 
@@ -46,8 +49,7 @@ public class DimentionController : MonoBehaviour
             if (DimentionManager.Instance.BeforeState == GameStateManager.InGameState.Game3D)
             {
                 StartCoroutine
-                    (DimentionManager
-                    .Instance
+                    (DimentionManager.Instance
                     .DimentionChangeFinish(
                         _dimentionObjects2d, 
                         FadeDimention(0f)));
@@ -55,20 +57,17 @@ public class DimentionController : MonoBehaviour
             else if (DimentionManager.Instance.BeforeState == GameStateManager.InGameState.Game2D)
             {
                 StartCoroutine(
-                    DimentionManager.
-                    Instance.
-                    DimentionChangeFinish(
+                    DimentionManager.Instance
+                    .DimentionChangeFinish(
                         _dimentionObjects3d,
                         FadeDimention(0f)));
             }
         }
         else if (GameStateManager.Instance.GameState == GameStateManager.InGameState.Start)
         {
-            GameStateManager.
-                Instance.
-                GameStateChange(
-                GameStateManager.
-                InGameState.Game2D);
+            GameStateManager.Instance
+                .GameStateChange(
+                GameStateManager.InGameState.Game2D);
         }
     }
 
@@ -80,20 +79,23 @@ public class DimentionController : MonoBehaviour
         if (GameStateManager.Instance.GameState != GameStateManager.InGameState.DimentionChange)
         {
             StartCoroutine(
-                DimentionManager.
-                Instance.
-                DimentionChangeStart(
+                DimentionManager.Instance
+                .DimentionChangeStart(
                     _changeSceneName, 
                     FadeDimention(WEIGHT_VALUE)));
         }
     }
 
-    private IEnumerator FadeDimention(float _changeValue)
+    private IEnumerator FadeDimention(float changeValue)
     {
+        _panelImage.DOFade(
+            changeValue, 
+            _changeSceneTime);
+
         yield return DOTween.To(
             () => _glovalVolume.weight,
             (x) => _glovalVolume.weight = x, 
-            _changeValue, 
+            changeValue, 
             _changeSceneTime)
             .WaitForCompletion();       
     }

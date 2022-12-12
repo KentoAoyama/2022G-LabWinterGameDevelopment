@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class PlayerGuage : MonoBehaviour
+public class PlayerGauge : MonoBehaviour
 {
     [SerializeField] float sliderDownTime = 1f;
     Slider slider;

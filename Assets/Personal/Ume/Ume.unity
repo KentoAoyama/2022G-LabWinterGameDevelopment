@@ -167,20 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5765e4688af159b4ead74ed76cccf5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 52286863}
-  temperatureBar: {fileID: 1289612747}
---- !u!114 &52286863 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3685621679025510308, guid: d1bdbaa1fde934a4a84dd9bde21cc052,
-    type: 3}
-  m_PrefabInstance: {fileID: 3685621679009464875}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a127f8cfaf8744244aebe8fe0391f4fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  hpBar: {fileID: 1405673297}
+  temperatureBar: {fileID: 1850419022}
 --- !u!1 &156378840 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3685621678853104883, guid: d1bdbaa1fde934a4a84dd9bde21cc052,
@@ -485,16 +473,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811e45fda6082ea4ea0b82bc6a1ebd51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1289612747 stripped
+--- !u!114 &1405673297 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3685621677855305696, guid: d1bdbaa1fde934a4a84dd9bde21cc052,
+  m_CorrespondingSourceObject: {fileID: 7777698717425248112, guid: d1bdbaa1fde934a4a84dd9bde21cc052,
     type: 3}
   m_PrefabInstance: {fileID: 3685621679009464875}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a127f8cfaf8744244aebe8fe0391f4fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d2295003a66a094fb59e4b430a94f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1850419022 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1367912641135361479, guid: d1bdbaa1fde934a4a84dd9bde21cc052,
+    type: 3}
+  m_PrefabInstance: {fileID: 3685621679009464875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2295003a66a094fb59e4b430a94f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1961658565
@@ -762,5 +762,7 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3685621679025510308, guid: d1bdbaa1fde934a4a84dd9bde21cc052, type: 3}
+    - {fileID: 3685621677855305696, guid: d1bdbaa1fde934a4a84dd9bde21cc052, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d1bdbaa1fde934a4a84dd9bde21cc052, type: 3}
