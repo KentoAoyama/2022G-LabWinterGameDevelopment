@@ -14,15 +14,17 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
     [SerializeField, Tooltip("状態管理")]
     private EnemyStateController _stateController;
     [SerializeField, Tooltip("アニメーション管理")]
-    AnimationController _animationController;
+    private AnimationController _animationController;
     [SerializeField]
-    AnimationEventController _animationEventController;
+    private AnimationEventController _animationEventController;
     [SerializeField, Tooltip("エネミーのタイプ")]
     private EnemyId _enemyId;
     [SerializeField, Tooltip("ポーズ中かどうか")]
     private bool _isPause = false;
     [SerializeField]
-    Animator _anim;
+    private Animator _anim;
+    [SerializeField]
+    private GameObject _enemyPrefab;
 
     private Rigidbody2D _rb2D;
     private int _id;
@@ -37,8 +39,8 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
         _stateController.Init(_enemyMove, _enemyLongAttack, _enemyHealth,
             _enemyShortAttack2D, _enemyId);
         _enemyMove.InIt(_rb2D, gameObject,
-            ObjectHolderManager.Instance.PlayerHolder, _stateController);
-        _enemyHealth.Init(gameObject, _stateController);
+            ObjectHolderManager.Instance.PlayerHolder, _stateController, _anim);
+        _enemyHealth.Init(gameObject, _stateController, _enemyPrefab);
         _enemyShortAttack2D.InIt(_enemyMove, _rb2D, _stateController);
         _animationController.Init(_stateController, _anim);
         _animationEventController.Init(_enemyMove, _enemyLongAttack, _enemyShortAttack2D);
@@ -54,6 +56,7 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
             _stateController.State();
             _animationController.Animation();
             _enemyMove.Move();
+            _enemyHealth.EnemyDestroy();
         }
     }
 
