@@ -16,19 +16,18 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     [SerializeField, Tooltip("エネミーのタイプ")]
     private EnemyId _enemyId;
     [SerializeField, Tooltip("アニメーション管理")]
-    private AnimationController _animationController;
+    AnimationController _animationController;
     [SerializeField]
-    private AnimationEventController _animationEventController;
+    AnimationEventController _animationEventController;
     [SerializeField, Tooltip("ポーズ中かどうか")]
     private bool _isPause = false;
     [SerializeField]
     private Animator _anim;
-    [SerializeField]
-    private GameObject _enemyPrefab;
 
     private Rigidbody _rb;
     private int _id;
 
+    public EnemyMove3D EnemyMove => _enemyMove;
     public override int Id => _id;
 
     public override int Health { get => _enemyHealth.Health; set => _enemyHealth.Health = value; }
@@ -36,13 +35,13 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _stateController.Init(_enemyMove, _enemyLongAttack, _enemyHealth,
+        _stateController.Init(EnemyMove, _enemyLongAttack, _enemyHealth,
             _enemyShortAttack3D, _enemyId);
         _enemyMove.InIt(_rb, gameObject,
-            ObjectHolderManager.Instance.PlayerHolder, _stateController, _anim);
+            ObjectHolderManager.Instance.PlayerHolder, _stateController);
         _enemyShortAttack3D.InIt(_enemyMove, _rb, _stateController);
         _animationController.Init(_stateController, _anim);
-        _enemyHealth.Init(gameObject, _stateController, _enemyPrefab);
+        _enemyHealth.Init(gameObject, _stateController);
         _animationEventController.Init(_enemyMove, _enemyLongAttack, _enemyShortAttack3D);
         _id = (int)_enemyId;
         _enemyMove.FindPlayer();
@@ -56,7 +55,6 @@ public class EnemyController3D : RetainedEnemyBehavior, IAddDamage, IPause
             _stateController.State();
             _animationController.Animation();
             _enemyMove.Move();
-            _enemyHealth.EnemyDestroy();
         }
     }
 

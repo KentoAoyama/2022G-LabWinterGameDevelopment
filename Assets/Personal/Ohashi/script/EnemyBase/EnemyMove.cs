@@ -13,16 +13,16 @@ public abstract class EnemyMove
     protected EnemyStateController _stateController;
     protected GameObject _player;
     protected GameObject _gameObject;
-    protected Animator _anim;
     private float _enemyDistansce;
     private const int RotationY = 180;
     private bool _isFinding = false;
-    private BoolReactiveProperty _isFind = new();
 
     public bool IsFinding{ get => _isFinding; set => _isFinding = value; }
     public float AttackDistance => _attackDistance;
     public float EnemyDistance => _enemyDistansce;
     public float MoveDistansce => _moveDistance;
+
+    private BoolReactiveProperty _isFind = new();
 
     /// <summary>
     /// ディメンション別のエネミーの移動処理
@@ -64,10 +64,7 @@ public abstract class EnemyMove
     {
         _isFind.Value = PlayerSearch(_moveDistance);
         Rotation();
-        if(_anim.GetCurrentAnimatorStateInfo(0).IsName("Move"))
-        {
-            MoveType();
-        }
+        MoveType();
     }
     /// <summary>
     /// _isFindの値が変更されたときに呼ばれる

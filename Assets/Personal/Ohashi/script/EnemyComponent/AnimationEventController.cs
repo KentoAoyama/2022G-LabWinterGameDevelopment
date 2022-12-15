@@ -20,12 +20,7 @@ public class AnimationEventController : MonoBehaviour
     private void OnLongAttackEvent()
     {
         _enemyLongAttack.EnemyAttack();
-        _enemyLongAttack.Bullet.GetComponent<EnemyBulletController3D>().Init(_enemyMove);
-    }
-    private void OnLongAttackEvent2D()
-    {
-        _enemyLongAttack.EnemyAttack();
-        _enemyLongAttack.Bullet.GetComponent<EnemyBulletController2D>().Init(_enemyMove);
+        _enemyLongAttack.Bullet.GetComponent<EnemyBulletController3D>().Set(_enemyMove);
     }
     //近距離攻撃のアニメーションイベント
     private void OnShotAttackEvent()

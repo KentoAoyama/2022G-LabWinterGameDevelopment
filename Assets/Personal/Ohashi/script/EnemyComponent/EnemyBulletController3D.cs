@@ -18,7 +18,7 @@ public class EnemyBulletController3D : RetainedEnemyBulletBehavior
 
     public override int Id => _bulletId;
 
-    public void Init(EnemyMove enemyMove)
+    public void Set(EnemyMove enemyMove)
     {
         _enemyMove = enemyMove;
     }

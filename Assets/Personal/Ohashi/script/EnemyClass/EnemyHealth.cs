@@ -11,17 +11,14 @@ public class EnemyHealth
     private GameObject _enemy;
     private EnemyStateController _StateController;
     private bool _isDamage = false;
-    private GameObject _enemyPrefab;
 
     public bool IsDamage { get => _isDamage; set => _isDamage = value; }
     public int Health { get => _health.Value; set => _health.Value = value; }
 
-    public void Init(GameObject enemy, EnemyStateController stateController,
-        GameObject enemyPrefab)
+    public void Init(GameObject enemy, EnemyStateController stateController)
     {
         _enemy = enemy;
         _StateController = stateController;
-        _enemyPrefab = enemyPrefab;
         _health.Value = _maxHealth;
         
     }
@@ -41,14 +38,11 @@ public class EnemyHealth
             .AddTo(_enemy);
     }
 
-    public void EnemyDestroy()
+    private void EnemyDestroy()
     {
         if (_StateController.EnemyState == EnemyState.Death)
         {
-            Object.Instantiate(_enemyPrefab,
-                _enemy.transform.position,
-                _enemy.transform.rotation);
-            Object.Destroy(_enemy);
+            
         }
     }
 }
