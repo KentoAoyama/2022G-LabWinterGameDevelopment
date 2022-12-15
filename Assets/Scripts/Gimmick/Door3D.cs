@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, ISwitchable
+public class Door3D : MonoBehaviour, ISwitchable
 {
     /// <summary> ドアが開くAnimation </summary>
     private Animator _anim;
 
-    private BoxCollider2D _collider2D;
+    private BoxCollider _collider;
 
     /// <summary> アクティブか、非アクティブか </summary>
     private bool _isActive;
@@ -18,14 +18,14 @@ public class Door : MonoBehaviour, ISwitchable
     private void Start()
     {
         _anim = GetComponent<Animator>();
-        _collider2D = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<BoxCollider>();
     }
 
     public void Active()
     {
         _isActive = true;
         _anim.Play("Open");
-        _collider2D.isTrigger = true;
+        _collider.isTrigger = true;
         SoundManager.Instance.AudioPlay(SoundType.SE, 16);
 
         Debug.Log("Door");

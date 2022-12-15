@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorLever : MonoBehaviour, IGimmickEvent
+public class DoorLever3D : MonoBehaviour, IGimmickEvent
 {
     [Tooltip("このレバーで動かすGimmick")]
-    [SerializeField] private Door client;
+    [SerializeField] private Door3D client;
 
     [Tooltip("プレイヤーのアニメーションを再生するか")]
     [SerializeField] private bool _isPlayAnimation;
