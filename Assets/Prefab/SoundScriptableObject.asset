@@ -57,7 +57,7 @@ MonoBehaviour:
       IsLoop: 0
     - Clip: {fileID: 8300000, guid: 160d0a36adee6a940b3ed30c135487d7, type: 3}
       Volume: 1
-      IsLoop: 1
+      IsLoop: 0
     - Clip: {fileID: 8300000, guid: 04f75e753dfa792438631fae6999d776, type: 3}
       Volume: 1
       IsLoop: 0

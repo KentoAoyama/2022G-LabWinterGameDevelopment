@@ -31,6 +31,6 @@ public class DoorLever : MonoBehaviour, IGimmickEvent
         transform.y = -_lever.transform.localScale.y;
         _lever.transform.localScale = transform;
 
-        SoundManager.Instance.AudioPlay(SoundType.SE, 14);
+        SoundManager.Instance.AudioPlay(SoundType.SE, 13);
     }
 }
