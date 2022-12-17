@@ -38,7 +38,7 @@ public class ElevatorUp2D : MonoBehaviour, ISwitchable
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("è„è∏ÇµÇ‹Ç∑");
-        col.gameObject.transform.SetParent(gameObject.transform);
+        //col.gameObject.transform.SetParent(gameObject.transform);
         _anim.Play("ElevatorMove");
         SoundManager.Instance.AudioPlay(SoundType.SE, 0);
     }
