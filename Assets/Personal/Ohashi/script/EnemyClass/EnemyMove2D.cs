@@ -8,12 +8,14 @@ public class EnemyMove2D : EnemyMove
     private Rigidbody2D _rb2D;
 
     public void InIt(Rigidbody2D rb2D, GameObject enemy,
-        GameObject player, EnemyStateController stateController)
+        GameObject player, EnemyStateController stateController, 
+        Animator anim)
     {
         _rb2D = rb2D;
         _gameObject = enemy;
         _player = player;
         _stateController = stateController;
+        _anim = anim;
     }
 
     protected override void MoveType()

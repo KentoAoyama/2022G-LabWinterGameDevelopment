@@ -132,6 +132,8 @@ MonoBehaviour:
   _animationEventController: {fileID: 8688857796998367363}
   _isPause: 0
   _anim: {fileID: 8603348927991129757}
+  _enemyPrefab: {fileID: 8134685346875219052, guid: 3d7a2f60c81295a4d84b82dc305fa7f0,
+    type: 3}
 --- !u!1001 &3094581959893405578
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,12 +9,14 @@ public class EnemyMove3D : EnemyMove
     private Rigidbody _rb;
 
     public void InIt(Rigidbody rb, GameObject enemy, 
-        GameObject player, EnemyStateController enemyStateController)
+        GameObject player, EnemyStateController enemyStateController, 
+        Animator anim)
     {
         _rb = rb;
         _stateController = enemyStateController;
         _gameObject = enemy;
         _player = player;
+        _anim = anim;
     }
 
     protected override void MoveType()
