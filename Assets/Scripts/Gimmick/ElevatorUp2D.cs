@@ -43,8 +43,8 @@ public class ElevatorUp2D : MonoBehaviour, ISwitchable
         SoundManager.Instance.AudioPlay(SoundType.SE, 0);
     }
 
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        col.gameObject.transform.parent = null;
-    }
+    //private void OnTriggerExit2D(Collider2D col)
+    //{
+    //    col.gameObject.transform.parent = null;
+    //}
 }
