@@ -268,6 +268,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6724141094472780429, guid: 2be19640767aac647a7d99b1b563a150,
+        type: 3}
+      propertyPath: _changeSceneName
+      value: Game3D
+      objectReference: {fileID: 0}
     - target: {fileID: 6724141094472780430, guid: 2be19640767aac647a7d99b1b563a150,
         type: 3}
       propertyPath: m_Name
@@ -578,6 +583,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da44cd8d57ded745bdc06a98fe009ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1616765973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8659283316436083143, guid: 53c15ef2bf9a2a440b0653b0d3aea5aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 2047199905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1616765977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616765973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d40ebd798564284f9cffbf7af695e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1654537202 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2497039184481477984, guid: 56efbfd5083a7ba468b56862ba3d5e4a,
@@ -755,6 +778,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1563246913, guid: 53c15ef2bf9a2a440b0653b0d3aea5aa, type: 3}
+      propertyPath: _attacker._fireButtonName
+      value: Cancel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1563246913, guid: 53c15ef2bf9a2a440b0653b0d3aea5aa, type: 3}
       propertyPath: _dimensionChanger._dimentionController
       value: 
       objectReference: {fileID: 353231350}
@@ -771,7 +798,7 @@ PrefabInstance:
     - target: {fileID: 4074260259602323802, guid: 53c15ef2bf9a2a440b0653b0d3aea5aa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 208.8
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 4074260259602323802, guid: 53c15ef2bf9a2a440b0653b0d3aea5aa,
         type: 3}
@@ -818,6 +845,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9208800843553919071, guid: 53c15ef2bf9a2a440b0653b0d3aea5aa,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3aca45f0df9d44a459bf931b000c6411, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53c15ef2bf9a2a440b0653b0d3aea5aa, type: 3}
 --- !u!1001 &2497039184332832882
