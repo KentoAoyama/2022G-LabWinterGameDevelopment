@@ -2,8 +2,11 @@
 using UnityEditor;
 using System.Collections.Generic;
 
-public class InputNameAttribute : PropertyAttribute { }
 
+/// <summary>
+/// CustomPropertyDrawerには属性名を設定する。<br/>
+/// このクラスは、属性を付与した相手に合わせた処理をするクラス。<br/>
+/// </summary>
 [CustomPropertyDrawer(typeof(InputNameAttribute))]
 public class InputName : PropertyDrawer
 {
