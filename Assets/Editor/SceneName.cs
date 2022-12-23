@@ -2,7 +2,6 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-public class SceneNameAttribute : PropertyAttribute { }
 
 
 [CustomPropertyDrawer(typeof(SceneNameAttribute))]
