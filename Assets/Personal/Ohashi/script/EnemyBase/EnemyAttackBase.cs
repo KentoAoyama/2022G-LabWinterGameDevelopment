@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Threading.Tasks;
-
+/// <summary>
+/// エネミーの攻撃の基底クラス
+/// </summary>
 public abstract class EnemyAttackBase
 {
     private const int MilliSecond = 1000;
@@ -14,7 +16,6 @@ public abstract class EnemyAttackBase
     /// </summary>
     public abstract void EnemyAttack();
     /// <summary>
-    /// エネミーの攻撃のインターバル
     /// </summary>
     protected async Task EnemyAttackInterval(int attackInterval)
     {

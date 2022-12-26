@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// ２Dの弾を管理しているクラス
+/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBulletController2D : RetainedEnemyBulletBehavior
 {
     [SerializeField, Tooltip("弾のスピード")]
     private float _bulletSpeed = 2f;
-    [SerializeField]
+    [SerializeField, Tooltip("弾のダメージ")]
     private int _bulletPower = 2;
-    [SerializeField]
+    [SerializeField, Tooltip("攻撃のインターバル")]
     private float _interval = 10f;
 
     private EnemyBulletId _enemyBulletId;

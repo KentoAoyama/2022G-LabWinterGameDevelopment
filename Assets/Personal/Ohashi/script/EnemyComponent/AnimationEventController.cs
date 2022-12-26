@@ -1,5 +1,7 @@
 using UnityEngine;
-
+/// <summary>
+/// エネミーのアニメーションイベントのクラス
+/// </summary>
 [RequireComponent(typeof(Animator))]
 public class AnimationEventController : MonoBehaviour
 {
@@ -15,12 +17,15 @@ public class AnimationEventController : MonoBehaviour
         _enemyShotAttack = enemyShotAttack;
     }
     /// <summary>
-    /// 遠距離攻撃のアニメーションイベント
+    /// 遠距離攻撃のアニメーションイベント3D
     /// </summary>
     private void OnLongAttackEvent()
     {
         _enemyLongAttack.EnemyAttack();
     }
+    /// <summary>
+    /// 遠距離攻撃のアニメーションイベント2D
+    /// </summary>
     private void OnLongAttackEvent2D()
     {
         _enemyLongAttack.EnemyAttack();

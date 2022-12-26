@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// ステートを管理するクラス
+/// </summary>
 [System.Serializable]
 public class EnemyStateController
 {
-    [SerializeField]
+    [SerializeField, Tooltip("エネミーステート")]
     private EnemyState _enemyState;
 
     private EnemyAttackBase _enemyLongAttack;
@@ -24,6 +27,9 @@ public class EnemyStateController
         _enemyShotAttack = enemyShotAttack;
         _enemyId = enemyId;
     }
+    /// <summary>
+    /// ステート管理
+    /// </summary>
     public void State()
     {
         _enemyState = EnemyState.Idle;
@@ -36,6 +42,9 @@ public class EnemyStateController
         Death();
     }
 
+    /// <summary>
+    /// 移動のステート管理
+    /// </summary>
     private void Move()
     {
         if (_enemyMove.PlayerSearch(_enemyMove.MoveDistansce) &&
@@ -44,6 +53,10 @@ public class EnemyStateController
             _enemyState = EnemyState.Move;
         }
     }
+
+    /// <summary>
+    /// 近距離攻撃のステート管理
+    /// </summary>
     private void Attack()
     {
         if (_enemyId == EnemyId.Short && _enemyMove.PlayerSearch(_enemyMove.AttackDistance)
@@ -52,6 +65,10 @@ public class EnemyStateController
             _enemyState = EnemyState.ShotAttack;
         }
     }
+
+    /// <summary>
+    /// 遠距離攻撃のステート管理
+    /// </summary>
     private void LongAttack()
     {
         if (_enemyId == EnemyId.Long && _enemyMove.PlayerSearch(_enemyMove.AttackDistance)
@@ -60,6 +77,10 @@ public class EnemyStateController
             _enemyState = EnemyState.LongAttack;
         }
     }
+
+    /// <summary>
+    /// 発見時のステート管理
+    /// </summary>
     private void Find()
     {
         if(_enemyMove.IsFinding)
@@ -68,6 +89,10 @@ public class EnemyStateController
             _enemyMove.IsFinding = false;
         }
     }
+
+    /// <summary>
+    /// ダメージのステートを管理
+    /// </summary>
     private void Damage()
     {
         if(_enemyHealth.IsDamage)
@@ -77,6 +102,10 @@ public class EnemyStateController
             _enemyHealth.IsDamage = false;
         }
     }
+
+    /// <summary>
+    /// ヒットポイントが0になったときのステートを管理
+    /// </summary>
     private void Death()
     {
         if (_enemyHealth.Health <= 0)
