@@ -1,5 +1,5 @@
-/// <summary>
-/// ƒGƒlƒ~[‚Ìí—Ş
+ï»¿/// <summary>
+/// ã‚¨ãƒãƒŸãƒ¼ã®ç¨®é¡
 /// </summary>
 public enum EnemyId
 {

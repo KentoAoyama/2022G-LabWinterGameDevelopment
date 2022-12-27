@@ -1,6 +1,6 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 /// <summary>
-/// ƒGƒlƒ~[‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—ƒNƒ‰ƒX
+/// ã‚¨ãƒãƒŸãƒ¼ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†ã‚¯ãƒ©ã‚¹
 /// </summary>
 [System.Serializable]
 public class AnimationController
@@ -14,7 +14,7 @@ public class AnimationController
         _anim = anim;
     }
     /// <summary>
-    /// ƒGƒlƒ~[ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŠÇ—
+    /// ã‚¨ãƒãƒŸãƒ¼ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç®¡ç†
     /// </summary>
     public void Animation()
     {
@@ -26,7 +26,7 @@ public class AnimationController
     }
 
     /// <summary>
-    /// ˆÚ“®‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—
+    /// ç§»å‹•ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†
     /// </summary>
     private void MoveAnimation()
     {
@@ -35,7 +35,7 @@ public class AnimationController
     }
 
     /// <summary>
-    /// ‰“‹——£UŒ‚‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—
+    /// é è·é›¢æ”»æ’ƒã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†
     /// </summary>
     private void LongAttackAnimation()
     {
@@ -44,7 +44,7 @@ public class AnimationController
     }
 
     /// <summary>
-    /// ‹ß‹——£UŒ‚‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ŠÇ—
+    /// è¿‘è·é›¢æ”»æ’ƒã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç®¡ç†
     /// </summary>
     private void ShotAttackAnimation()
     {
@@ -53,7 +53,7 @@ public class AnimationController
     }
 
     /// <summary>
-    /// ”­Œ©ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŠÇ—
+    /// ç™ºè¦‹ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç®¡ç†
     /// </summary>
     private void FindAnimation()
     {
@@ -62,7 +62,7 @@ public class AnimationController
     }
 
     /// <summary>
-    /// ƒ_ƒ[ƒWƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŠÇ—
+    /// ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç®¡ç†
     /// </summary>
     private void DamageAnimation()
     {

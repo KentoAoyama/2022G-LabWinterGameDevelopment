@@ -1,5 +1,5 @@
-/// <summary>
-/// ГGГlГ~Б[В╠ТeВ╠ОэЧ▐
+я╗┐/// <summary>
+/// уВиуГНуГЯуГ╝уБох╝╛уБочиощбЮ
 /// </summary>
 public enum EnemyBulletId
 {

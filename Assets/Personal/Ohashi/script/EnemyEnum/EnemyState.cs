@@ -1,5 +1,5 @@
-/// <summary>
-/// ƒGƒlƒ~[‚Ì‚Ó‚é‚Ü‚¢‚Ìí—Ş
+ï»¿/// <summary>
+/// ã‚¨ãƒãƒŸãƒ¼ã®ãµã‚‹ã¾ã„ã®ç¨®é¡
 /// </summary>
 public enum EnemyState
 {
