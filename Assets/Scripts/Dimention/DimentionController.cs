@@ -44,7 +44,7 @@ public class DimentionController : MonoBehaviour
         if (GameStateManager.Instance.GameState == GameStateManager.InGameState.DimentionChange)
         {
             //weight‚Ì’l‚ð1.0‚É‚µ‚Ä‚¨‚­
-            _glovalVolume.weight = WEIGHT_VALUE;
+            //_glovalVolume.weight = WEIGHT_VALUE;
 
             if (DimentionManager.Instance.BeforeState == GameStateManager.InGameState.Game3D)
             {
@@ -95,7 +95,7 @@ public class DimentionController : MonoBehaviour
         yield return DOTween.To(
             () => _glovalVolume.weight,
             (x) => _glovalVolume.weight = x, 
-            changeValue, 
+            /*changeValue*/0, 
             _changeSceneTime)
             .WaitForCompletion();       
     }
