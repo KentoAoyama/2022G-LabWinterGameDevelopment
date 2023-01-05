@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Threading.Tasks;
 
+/// <summary>
+/// 2D近距離攻撃を管理するクラス
+/// </summary>
 [System.Serializable]
 public class EnemyShortAttack2D : EnemyAttackBase
 {
@@ -8,7 +11,7 @@ public class EnemyShortAttack2D : EnemyAttackBase
     private int _attackInterval = 3;
     [SerializeField, Tooltip("攻撃スピード")]
     private float _attackSpeed = 6f;
-    [SerializeField]
+    [SerializeField, Tooltip("近距離攻撃のダメージ")]
     private int _attackPower = 2;
 
     private EnemyMove2D _enemyMove2D;

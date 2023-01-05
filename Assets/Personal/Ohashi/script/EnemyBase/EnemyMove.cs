@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UniRx;
 
+/// <summary>
+/// エネミーの移動の基底クラス
+/// </summary>
 public abstract class EnemyMove
 {
     [SerializeField, Tooltip("移動するかどうかの距離")]
@@ -45,6 +48,9 @@ public abstract class EnemyMove
         return false;
     }
 
+    /// <summary>
+    /// エネミーの向きを変える
+    /// </summary>
     private void Rotation()
     {
         if (_enemyDistansce < 0)

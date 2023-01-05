@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UniRx;
 
+/// <summary>
+/// エネミーのヒットポイントを管理するクラス
+/// </summary>
 [System.Serializable]
 public class EnemyHealth
 {
@@ -33,6 +36,9 @@ public class EnemyHealth
         _health.Value -= damage;
     }
 
+    /// <summary>
+    /// ダメージを食らったときに実行される
+    /// </summary>
     public void Damage()
     {
         _health
@@ -41,6 +47,9 @@ public class EnemyHealth
             .AddTo(_enemy);
     }
 
+    /// <summary>
+    /// エネミーステートがDeathの時実行される
+    /// </summary>
     public void EnemyDestroy()
     {
         if (_StateController.EnemyState == EnemyState.Death)

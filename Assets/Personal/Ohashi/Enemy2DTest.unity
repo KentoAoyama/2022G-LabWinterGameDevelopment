@@ -636,6 +636,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8989142389824518691, guid: 836ee0ddad83c0d44bba7a1b4496f030,
+        type: 3}
+      propertyPath: _enemyMove._moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989142389824518691, guid: 836ee0ddad83c0d44bba7a1b4496f030,
+        type: 3}
+      propertyPath: _enemyMove._moveDistance
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989142389824518691, guid: 836ee0ddad83c0d44bba7a1b4496f030,
+        type: 3}
+      propertyPath: _enemyMove._attackDistance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8989142389824518693, guid: 836ee0ddad83c0d44bba7a1b4496f030,
         type: 3}
       propertyPath: m_Name
