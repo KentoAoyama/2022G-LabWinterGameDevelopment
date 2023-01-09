@@ -1,5 +1,7 @@
-using UnityEngine;
-
+ï»¿using UnityEngine;
+/// <summary>
+/// ã‚¨ãƒãƒŸãƒ¼ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã®ã‚¯ãƒ©ã‚¹
+/// </summary>
 [RequireComponent(typeof(Animator))]
 public class AnimationEventController : MonoBehaviour
 {
@@ -15,17 +17,20 @@ public class AnimationEventController : MonoBehaviour
         _enemyShotAttack = enemyShotAttack;
     }
     /// <summary>
-    /// ‰“‹——£UŒ‚‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg
+    /// é è·é›¢æ”»æ’ƒã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ3D
     /// </summary>
     private void OnLongAttackEvent()
     {
         _enemyLongAttack.EnemyAttack();
     }
+    /// <summary>
+    /// é è·é›¢æ”»æ’ƒã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ2D
+    /// </summary>
     private void OnLongAttackEvent2D()
     {
         _enemyLongAttack.EnemyAttack();
     }
-    //‹ß‹——£UŒ‚‚ÌƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg
+    //è¿‘è·é›¢æ”»æ’ƒã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆ
     private void OnShotAttackEvent()
     {
         _enemyShotAttack.EnemyAttack();

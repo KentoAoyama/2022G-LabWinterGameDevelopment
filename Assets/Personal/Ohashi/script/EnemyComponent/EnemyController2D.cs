@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 3Dエネミーを管理しているクラス
+/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
 {
@@ -21,9 +24,9 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
     private EnemyId _enemyId;
     [SerializeField, Tooltip("ポーズ中かどうか")]
     private bool _isPause = false;
-    [SerializeField]
+    [SerializeField, Tooltip("アニメーター")]
     private Animator _anim;
-    [SerializeField]
+    [SerializeField, Tooltip("デストロイ時に出すプレハブ")]
     private GameObject _enemyPrefab;
 
     private Rigidbody2D _rb2D;
