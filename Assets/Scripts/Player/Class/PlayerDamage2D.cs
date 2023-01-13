@@ -6,7 +6,6 @@ public class PlayerDamage2D : PlayerDamage
 {
     private Rigidbody2D _rb2D = default;
 
-
     public void Init(Rigidbody2D rb2D,PlayerStateController stateController,PlayerMove playerMove)
     {
         base.Init(stateController, playerMove);
@@ -36,4 +35,6 @@ public class PlayerDamage2D : PlayerDamage
             await KnockBackStart(knockBackTime);
         }
     }
+
+    
 }

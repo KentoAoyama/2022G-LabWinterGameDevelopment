@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController2D : RetainedPlayerBehavior
+public class PlayerController2D : RetainedPlayerBehavior, IAddDamage
 {
     #region Inspector Variables
     [SerializeField]
@@ -112,6 +112,12 @@ public class PlayerController2D : RetainedPlayerBehavior
     {
         _damage.OnDamage(value, knockBackDir,
             knockBackPower, knockBackTime);
+    }
+
+    void IAddDamage.AddDamage(int value)
+    {
+        // ‘Ì—Í‚ðŒ¸‚ç‚·
+        PlayerStatusManager.Instance.Damage(value);
     }
     #endregion
 

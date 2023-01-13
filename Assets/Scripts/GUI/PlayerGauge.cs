@@ -9,16 +9,9 @@ public class PlayerGauge : MonoBehaviour
     [SerializeField] float sliderDownTime = 1f;
     Slider slider;
 
-    // Start is called before the first frame update
     void Start()
     {
         slider = GetComponent<Slider>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /// <summary>View‚Æ‚µ‚Äˆµ‚¦‚é‚æ‚¤‚É‚·‚é‚½‚ßAPresenter‚©‚çQÆ‰Â”\‚É‚·‚é</summary>

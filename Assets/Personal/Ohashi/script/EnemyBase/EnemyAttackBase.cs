@@ -25,7 +25,6 @@ public abstract class EnemyAttackBase
         
         //指定したミリ秒後に実行する
         await Task.Delay(MilliSecond * attackInterval);
-        Debug.Log("attack");
         _isAttack = false;
     }
 }

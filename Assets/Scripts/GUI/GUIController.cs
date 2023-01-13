@@ -21,13 +21,13 @@ public class GUIController : MonoBehaviour
         playerStatusManager.PlayerLife
             .Subscribe(x =>
             {
-                hpBar.SetValues(1-(float)x / playerLifeMax);
+                hpBar.SetValues(1f - (float)x / playerLifeMax);
             }).AddTo(this);
 
         playerStatusManager.BodyTemperature
             .Subscribe(x =>
             {
-                temperatureBar.SetValues(1 - (float)x / BodyTemperatureMax);
+                temperatureBar.SetValues(1f - (float)x / BodyTemperatureMax);
             }).AddTo(this);
     }
 }

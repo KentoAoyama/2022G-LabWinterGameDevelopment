@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController3D : RetainedPlayerBehavior
+public class PlayerController3D : RetainedPlayerBehavior, IAddDamage
 {
     #region Inspector Variables
     [SerializeField]
@@ -150,8 +150,14 @@ public class PlayerController3D : RetainedPlayerBehavior
     {
         _actioner.EndActionAnimation();
     }
-    #endregion
 
+
+    #endregion
+    void IAddDamage.AddDamage(int value)
+    {
+        // ‘Ì—Í‚ðŒ¸‚ç‚·
+        PlayerStatusManager.Instance.Damage(value);
+    }
     #region Debug
     private void OnDrawAttackArea()
     {
