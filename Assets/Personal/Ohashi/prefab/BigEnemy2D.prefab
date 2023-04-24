@@ -117,23 +117,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyMove:
-    _moveDistance: 10
+    _moveDistance: 6
     _moveSpeed: 3
-    _attackDistance: 7
+    _attackDistance: 5
   _enemyShortAttack2D:
-    _attackInterval: 3
+    _attackInterval: 4
     _attackSpeed: 6
     _attackPower: 10
     _knockBackPower: 10
   _enemyLongAttack:
-    _attackInterval: 4
+    _attackInterval: 5
     _muzzle: {fileID: 384003735}
     _verticalBullet: {fileID: 5257820586062109293, guid: 8d07046b68f2f284cb96d8c56a7cc6a5,
       type: 3}
     _horizontalBullet: {fileID: 614891172947649630, guid: 796ecc2564eba3549ba268f8f1e007cd,
       type: 3}
   _enemyHealth:
-    _maxHealth: 5
+    _maxHealth: 2
   _stateController:
     _enemyState: 0
   _animationEventController: {fileID: 474390923185433797}
