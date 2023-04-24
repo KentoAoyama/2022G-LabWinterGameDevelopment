@@ -81,9 +81,14 @@ public class EnemyController2D : RetainedEnemyBehavior, IAddDamage, IPause
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //IAddDamageを継承しているクラスのオブジェクトに接触したとき以下を実行する
-        if (collision.TryGetComponent(out IAddDamage addDamage))
+        if (collision.TryGetComponent(out PlayerController2D playerController))
         {
-            addDamage.AddDamage(_enemyShortAttack2D.AttackPower);
+            playerController.OnDamage(_enemyShortAttack2D.AttackPower,
+                collision.gameObject.transform.position - transform.position,
+                _enemyShortAttack2D.KnockBackPower,
+                500);
+
+            _rb2D.velocity = Vector3.zero;
         }
     }
 }

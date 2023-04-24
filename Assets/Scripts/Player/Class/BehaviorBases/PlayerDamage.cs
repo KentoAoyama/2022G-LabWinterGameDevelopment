@@ -44,14 +44,14 @@ public abstract class PlayerDamage
 
     // 指定秒ノックバック状態にする。（指定時間はﾐﾘsecond）
     // （ノックバック中はゴッドモードにする）
-    protected async Task KnockBackStart(int sleepTime)
+    protected async void KnockBackStart(int sleepTime)
     {
         Debug.Log("ノックバック開始");
         _stateController.CurrentState = PlayerState.DAMAGE;
         _playerMove.IsKnockBackNow = true;
         _isDamageNow = true;
         _isGodMode = true;
-        await Task.Run(() => Thread.Sleep(sleepTime));
+        await Task.Delay(sleepTime);
         Debug.Log("ノックバック終了");
         _playerMove.IsKnockBackNow = false;
         _isDamageNow = false;

@@ -39,7 +39,7 @@ public class PlayerDamage3D : PlayerDamage
             PlayerStatusManager.Instance.Damage(value);
             _stateController.StateClear();
             // ノックバック中、RigidBody Velocity の更新を止める
-            await KnockBackStart(knockBackTime);
+            KnockBackStart(knockBackTime);
         }
     }
 }

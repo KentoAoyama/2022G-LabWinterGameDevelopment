@@ -43,7 +43,7 @@ public class ScenChenji : MonoBehaviour
             yield return new WaitForSeconds(2.1f);
             titleLogo.gameObject.SetActive(false);
             strat.gameObject.SetActive(true);
-            opushon.gameObject.SetActive(true);
+            //opushon.gameObject.SetActive(true);
             help.gameObject.SetActive(true);
             credit.gameObject.SetActive(true);
 

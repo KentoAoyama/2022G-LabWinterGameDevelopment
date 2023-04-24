@@ -17,10 +17,10 @@ public class PlayerAttack2D : PlayerAttack
         foreach (var e in colliders)
         {
             Debug.Log($"\"{e.name}\"Ç…çUåÇÇµÇΩ");
-            // if(e.TryGetComponent(out EnemyController enemy))
-            // {
-            //     enemy.Damage();
-            // }
+            if (e.TryGetComponent(out IAddDamage addDamage))
+            {
+                addDamage.AddDamage(1);
+            }
         }
     }
 }

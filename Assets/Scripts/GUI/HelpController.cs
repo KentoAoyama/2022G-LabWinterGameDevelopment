@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HelpController : MonoBehaviour
 {
     [SerializeField] GameObject helpMenu;
     [SerializeField] GameObject helpOptions;
     [SerializeField] GameObject helpCursor;
+
+    [SerializeField] GameObject _helpMenu;
 
     int counter = 0;
     // Start is called before the first frame update
@@ -46,13 +49,11 @@ public class HelpController : MonoBehaviour
                         helpMenu.SetActive(false);
                         helpCursor.SetActive(false);
                         break;
-                    case 1://ゲームをやめる
+                    case 1://ヘルプ
+                        _helpMenu.SetActive(true);
                         break;
-                    case 2://ヘルプ
-                        break;
-                    case 3://タイトルに戻る
-                        break;
-                    case 4://操作説明
+                    case 2://タイトルに戻る
+                        SceneManager.LoadScene("TitleScene");
                         break;
                     default:
                         break;
@@ -61,12 +62,20 @@ public class HelpController : MonoBehaviour
         }
         else if (!helpMenu.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButton(1))
             {
                 PauseManager.Instance.OnPause?.Invoke();
                 counter = 0;
                 helpMenu.SetActive(true);
                 helpCursor.SetActive(true);
+            }
+        }
+
+        if (_helpMenu.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _helpMenu.SetActive(false);
             }
         }
     }

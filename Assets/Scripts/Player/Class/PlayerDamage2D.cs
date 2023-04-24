@@ -6,13 +6,13 @@ public class PlayerDamage2D : PlayerDamage
 {
     private Rigidbody2D _rb2D = default;
 
-    public void Init(Rigidbody2D rb2D,PlayerStateController stateController,PlayerMove playerMove)
+    public void Init(Rigidbody2D rb2D, PlayerStateController stateController, PlayerMove playerMove)
     {
         base.Init(stateController, playerMove);
         _rb2D = rb2D;
     }
 
-    public override async void OnDamage(
+    public override void OnDamage(
         int value, Vector3 knockBackDir,
         float knockBackPower, int knockBackTime)
     {
@@ -32,9 +32,9 @@ public class PlayerDamage2D : PlayerDamage
             PlayerStatusManager.Instance.Damage(value);
             _stateController.StateClear();
             // ノックバック中、RigidBody Velocity の更新を止める
-            await KnockBackStart(knockBackTime);
+            KnockBackStart(knockBackTime);
         }
     }
 
-    
+
 }

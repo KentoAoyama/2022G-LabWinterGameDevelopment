@@ -31,11 +31,11 @@ public class PlayerStateController3D : PlayerStateController
         // Œü‚¢‚Ä‚¢‚é•ûŒü‚ðXV‚·‚é
         if (!Mathf.Approximately(_rb.velocity.x, 0f))
         {
-            if (_rb.velocity.x > 0f)
+            if (Input.GetAxisRaw("Horizontal") > 0f)
             {
                 FacingDirection = FacingDirection.RIGHT;
             }
-            else if (_rb.velocity.x < 0f)
+            else if (Input.GetAxisRaw("Horizontal") < 0f)
             {
                 FacingDirection = FacingDirection.LEFT;
             }

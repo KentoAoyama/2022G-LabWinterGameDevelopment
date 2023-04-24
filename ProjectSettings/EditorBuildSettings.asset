@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Personal/Toyama/Game2D.unity
-    guid: a7b9a569f0ff93142b76f96ed240f292
+    path: Assets/Scenes/TitleScene.unity
+    guid: 33143b6fef72234489cb8ba3be66f44c
   - enabled: 1
-    path: Assets/Personal/Toyama/Game3D.unity
-    guid: 02e1768bc09eb0744ae34a26b5320fdc
+    path: Assets/Scenes/2DScene First.unity
+    guid: d820a65b21ba7f34b8b28d4aabb60796
   - enabled: 1
-    path: Assets/Personal/Toyama/Game2D 1.unity
-    guid: a5b1ab3ede134c348b9ade5e742f2b74
+    path: Assets/Scenes/2DScene.unity
+    guid: b9477ee532099b846a117edef3fe5fda
   - enabled: 1
-    path: Assets/Personal/Toyama/Game3D 1.unity
-    guid: 4c05008e06e16954b91cbc63bab2b722
+    path: Assets/Scenes/3DScene.unity
+    guid: dc8270269a30b2c42835f9db97864cdc
   m_configObjects: {}

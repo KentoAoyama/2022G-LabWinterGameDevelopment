@@ -10,7 +10,12 @@ public class PlayerAnimationEventController2D : MonoBehaviour
         _playerController = transform.parent.GetComponent<PlayerController2D>();
     }
 
-    private void OnAttackEnd()
+    public void OnAttackStart()
+    {
+        _playerController.AttackProcess();
+    }
+
+    public void OnAttackEnd()
     {
         _playerController.EndAttack();
     }

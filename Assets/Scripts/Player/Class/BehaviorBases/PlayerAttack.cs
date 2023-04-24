@@ -6,6 +6,7 @@ public abstract class PlayerAttack
 {
     protected PlayerStateController _stateController = default;
     protected Transform _transform = default;
+    [SerializeField]
     private bool _isAttackNow = false;
 
     [InputName, SerializeField]
@@ -48,8 +49,8 @@ public abstract class PlayerAttack
         bool result = false;
 
         result =
-            Input_InputManager.Instance.
-            GetInputDown(_fireButtonName) &&
+            !_isAttackNow &&
+            Input_InputManager.Instance.GetInputDown(_fireButtonName) &&
             (_stateController.CurrentState == PlayerState.IDLE ||
             _stateController.CurrentState == PlayerState.MOVE);
 
@@ -68,12 +69,13 @@ public abstract class PlayerAttack
     {
         // アタックアニメーション再生開始
         _isAttackNow = true;
-        _stateController.CurrentState = PlayerState.ATTACK;
     }
-    public void EndAttack()
+    private float _fireInterval = 1f;
+    public async void EndAttack()
     {
         // 攻撃アニメーション再生終了
         _isAttackNow = false;
+        await System.Threading.Tasks.Task.Delay((int)(_fireInterval * 1000f));
     }
 
     public Vector3 GetFirePos()

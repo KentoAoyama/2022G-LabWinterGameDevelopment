@@ -13,11 +13,14 @@ public class EnemyShortAttack2D : EnemyAttackBase
     private float _attackSpeed = 6f;
     [SerializeField, Tooltip("近距離攻撃のダメージ")]
     private int _attackPower = 2;
+    [SerializeField, Tooltip("ノックバックのパワー")]
+    private float _knockBackPower = 10f;
 
     private EnemyMove2D _enemyMove2D;
     private Rigidbody2D _rb2D;
 
     public int AttackPower => _attackPower;
+    public float KnockBackPower => _knockBackPower;
 
     public void InIt(EnemyMove2D enemyMove2D, Rigidbody2D rb2D,
         EnemyStateController stateController)
