@@ -110,12 +110,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyMove:
-    _moveDistance: 10
-    _moveSpeed: 3
-    _attackDistance: 4
+    _moveDistance: 6
+    _moveSpeed: 2
+    _attackDistance: 3
   _enemyShortAttack3D:
-    _attackInterval: 3
-    _attackSpeed: 6
+    _attackInterval: 4
+    _attackSpeed: 4
     _attackPower: 1
   _enemyLongAttack:
     _attackInterval: 3
@@ -125,7 +125,7 @@ MonoBehaviour:
     _horizontalBullet: {fileID: 2184208299946647746, guid: b848129bc75dfd1409eafa43e36130d1,
       type: 3}
   _enemyHealth:
-    _maxHealth: 10
+    _maxHealth: 2
   _stateController:
     _enemyState: 0
   _enemyId: 0
